@@ -7,9 +7,10 @@
 //
 
 import UIKit
+fileprivate let collectionViewReusableID = "SourceCollectionViewIdentifier"
 
 class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     @IBOutlet weak var sourceCollectionView: UICollectionView!
     
     
@@ -19,16 +20,19 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         sourceCollectionView.delegate = self
         sourceCollectionView.dataSource = self
     }
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        <#code#>
+        return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewReusableID, for: indexPath)
+        
+        return cell
     }
-
+    
 }
