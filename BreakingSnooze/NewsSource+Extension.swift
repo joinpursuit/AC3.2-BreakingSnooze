@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 extension NewsSource {
     private func populate(sourceID: String, sourceName: String, sourceDescription: String, category: String, sourceLogo: String) {
         self.sourceID = sourceID
