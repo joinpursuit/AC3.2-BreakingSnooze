@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7533914A0817270561146119 /* Pods_BreakingSnooze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */; };
 		81D64CD21E253572000B47E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D64CD11E253572000B47E8 /* AppDelegate.swift */; };
 		81D64CD71E253572000B47E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D64CD51E253572000B47E8 /* Main.storyboard */; };
 		81D64CDC1E253572000B47E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D64CDB1E253572000B47E8 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingSnooze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D64CCE1E253572000B47E8 /* BreakingSnooze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakingSnooze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D64CD11E253572000B47E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D64CD61E253572000B47E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		81D64CE91E253628000B47E8 /* NewsSource+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NewsSource+Extension.swift"; path = "../NewsSource+Extension.swift"; sourceTree = "<group>"; };
 		81D64CEA1E253628000B47E8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
 		81D64CF31E253680000B47E8 /* BreakingSnooze.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BreakingSnooze.xcdatamodel; sourceTree = "<group>"; };
+		C9C8F0F155BB3A0C948E3557 /* Pods-BreakingSnooze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingSnooze.release.xcconfig"; path = "Pods/Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze.release.xcconfig"; sourceTree = "<group>"; };
+		F175005E17DDF3C054DA13EF /* Pods-BreakingSnooze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingSnooze.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7533914A0817270561146119 /* Pods_BreakingSnooze.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C61AAA36CC1F4EB4127ECF7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F175005E17DDF3C054DA13EF /* Pods-BreakingSnooze.debug.xcconfig */,
+				C9C8F0F155BB3A0C948E3557 /* Pods-BreakingSnooze.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		77A5A68C7FE03DDAA91B696D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		81D64CC51E253572000B47E8 = {
 			isa = PBXGroup;
 			children = (
 				81D64CD01E253572000B47E8 /* BreakingSnooze */,
+				81D64CF61E2536BF000B47E8 /* Supporting Files */,
 				81D64CCF1E253572000B47E8 /* Products */,
+				0C61AAA36CC1F4EB4127ECF7 /* Pods */,
+				77A5A68C7FE03DDAA91B696D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,7 +91,6 @@
 				81D64CEF1E253644000B47E8 /* Extensions */,
 				81D64CF11E253651000B47E8 /* Controllers */,
 				81D64CEE1E25363C000B47E8 /* Models */,
-				81D64CF61E2536BF000B47E8 /* Supporting Files */,
 				81D64CF51E2536AF000B47E8 /* Storyboards */,
 			);
 			path = BreakingSnooze;
@@ -122,6 +146,7 @@
 				81D64CF21E253680000B47E8 /* BreakingSnooze.xcdatamodeld */,
 			);
 			name = "Supporting Files";
+			path = BreakingSnooze;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81D64CE31E253572000B47E8 /* Build configuration list for PBXNativeTarget "BreakingSnooze" */;
 			buildPhases = (
+				DAF7BD3FDBFC78E06CD9290D /* [CP] Check Pods Manifest.lock */,
 				81D64CCA1E253572000B47E8 /* Sources */,
 				81D64CCB1E253572000B47E8 /* Frameworks */,
 				81D64CCC1E253572000B47E8 /* Resources */,
+				17FC9F0B276D198863773225 /* [CP] Embed Pods Frameworks */,
+				004865DF43AB5D348D071367 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,6 +218,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		004865DF43AB5D348D071367 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		17FC9F0B276D198863773225 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAF7BD3FDBFC78E06CD9290D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81D64CCA1E253572000B47E8 /* Sources */ = {
@@ -322,6 +398,7 @@
 		};
 		81D64CE41E253572000B47E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F175005E17DDF3C054DA13EF /* Pods-BreakingSnooze.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BreakingSnooze/Info.plist;
@@ -334,6 +411,7 @@
 		};
 		81D64CE51E253572000B47E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9C8F0F155BB3A0C948E3557 /* Pods-BreakingSnooze.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BreakingSnooze/Info.plist;
