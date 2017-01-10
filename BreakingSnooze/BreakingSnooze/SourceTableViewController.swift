@@ -22,8 +22,6 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         initializeFetchedResultsController()
     }
     
