@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DA7412AC3D95806949255570396B7F88F5101153",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DA7412AC3D95806949255570396B7F88F5101153" : 9223372036854775807,
+    "7F5F9FE35D3AF8E4AD76C26B362B3DBB8AA159E6" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "31B4FD0B-48F6-4CC4-8618-27C531D4B5CF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DA7412AC3D95806949255570396B7F88F5101153" : "AC3.2-BreakingSnooze\/",
+    "7F5F9FE35D3AF8E4AD76C26B362B3DBB8AA159E6" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BreakingSnooze",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BreakingSnooze\/BreakingSnooze.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cristopherchavezny\/AC3.2-MidtermElements.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7F5F9FE35D3AF8E4AD76C26B362B3DBB8AA159E6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/C4Q\/AC3.2-BreakingSnooze.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DA7412AC3D95806949255570396B7F88F5101153"
+    }
+  ]
+}
