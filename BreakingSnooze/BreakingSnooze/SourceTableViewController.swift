@@ -20,7 +20,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
         initializeFetchedResultsController()
     }
     
@@ -57,7 +57,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sourceCollectionViewCellID", for: indexPath)
         
         // Configure the cell...
         
