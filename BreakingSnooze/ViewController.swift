@@ -84,12 +84,5 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     func getArticlesFromSources() {
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
 
