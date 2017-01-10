@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7533914A0817270561146119 /* Pods_BreakingSnooze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */; };
+		810E8C491E2566E3002938F1 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E8C481E2566E3002938F1 /* FavouritesViewController.swift */; };
 		81D64CD21E253572000B47E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D64CD11E253572000B47E8 /* AppDelegate.swift */; };
 		81D64CD71E253572000B47E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D64CD51E253572000B47E8 /* Main.storyboard */; };
 		81D64CDC1E253572000B47E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D64CDB1E253572000B47E8 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingSnooze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		810E8C481E2566E3002938F1 /* FavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		81D64CCE1E253572000B47E8 /* BreakingSnooze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakingSnooze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D64CD11E253572000B47E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D64CD61E253572000B47E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				81D64CEA1E253628000B47E8 /* ViewController.swift */,
+				810E8C481E2566E3002938F1 /* FavouritesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				81D64CF41E253680000B47E8 /* BreakingSnooze.xcdatamodeld in Sources */,
 				81D64CD21E253572000B47E8 /* AppDelegate.swift in Sources */,
 				81D64CEC1E253628000B47E8 /* NewsSource+Extension.swift in Sources */,
+				810E8C491E2566E3002938F1 /* FavouritesViewController.swift in Sources */,
 				81D64CE71E2535BD000B47E8 /* SourceArticles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +445,7 @@
 				81D64CE51E253572000B47E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
