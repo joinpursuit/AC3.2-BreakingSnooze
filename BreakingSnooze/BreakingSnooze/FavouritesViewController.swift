@@ -12,6 +12,7 @@ import View2ViewTransition
 class FavouritesViewController: UIViewController, View2ViewTransitionPresenting, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var transitionController: TransitionController = TransitionController()
+    var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     
     lazy var collectionView: UICollectionView = {
         
@@ -33,21 +34,32 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    //MARK: Collection View Delegate 
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func setupTranisitinoDelegate () {
+        self.selectedIndexPath = indexPath
+        
         let presentedViewController: WebSavePostFavouriteViewController = WebSavePostFavouriteViewController()
-        presentedViewController.transitioningDelegate = self.transitionController
         
-        self.transitionController.present(viewController: presentedViewController, on: self, attached: presentedViewController, completion: nil)
+        presentedViewController.transitionController = self.transitionController
+        transitionController.userInfo = ["destinationIndexPath": indexPath as NSIndexPath, "initialIndexPath": indexPath as NSIndexPath]
+        
+        // This example will push view controller if presenting view controller has navigation controller.
+        // Otherwise, present another view controller
+        if let navigationController = self.navigationController {
+            
+            // Set transitionController as a navigation controller delegate and push.
+            navigationController.delegate = transitionController
+            transitionController.push(viewController: presentedViewController, on: self, attached: presentedViewController)
+            
+        }
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
+    
     
     // MARK: CollectionView Data Source
     
@@ -98,29 +110,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
             self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)
             self.collectionView.layoutIfNeeded()
         }
-    }
-
-    
+    }    
 }
 
 
-public class PresentingCollectionViewCell: UICollectionViewCell {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.contentView.addSubview(self.content)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public lazy var content: UIImageView = {
-        let view: UIImageView = UIImageView(frame: self.contentView.bounds)
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.backgroundColor = UIColor.gray
-        view.clipsToBounds = true
-        view.contentMode = .scaleAspectFill
-        return view
-    }()
-}
