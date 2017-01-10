@@ -29,7 +29,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
         let sort = NSSortDescriptor(key: "category", ascending: true)
         request.sortDescriptors = [sort]
         
-        self.controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        self.controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: mainContext, sectionNameKeyPath: "category", cacheName: nil)
         controller.delegate = self
         
         do {
@@ -66,7 +66,8 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let category = controller.object(at: IndexPath(item: 1, section: section))
-        return category.category
+        let categoryName =  category.category?.capitalized
+        return categoryName
     }
     
     /*
