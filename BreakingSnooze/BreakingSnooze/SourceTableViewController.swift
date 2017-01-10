@@ -11,6 +11,8 @@ import CoreData
 
 class SourceTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    
+    
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -20,7 +22,8 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        
+        
         initializeFetchedResultsController()
     }
     
