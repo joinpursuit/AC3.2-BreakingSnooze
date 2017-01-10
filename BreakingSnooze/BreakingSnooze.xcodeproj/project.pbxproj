@@ -140,8 +140,8 @@
 				A2B61A2D1E25667F00630C45 /* ViewController.swift */,
 				810E8C481E2566E3002938F1 /* FavouritesViewController.swift */,
 				2D40F3651E2578C700E088C7 /* SourceTableViewController.swift */,
-				2D40F3671E258AF000E088C7 /* SourceCollectionViewCell.swift */,
 				2DD878311E258E6B00DBE51D /* CategoryTableViewCell.swift */,
+				2D40F3671E258AF000E088C7 /* SourceCollectionViewCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
