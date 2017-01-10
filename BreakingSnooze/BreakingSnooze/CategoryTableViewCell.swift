@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import CoreData
 
-fileprivate let collectionViewReusableID = "SourceCollectionViewIdentifier"
+class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
+<<<<<<< HEAD
 class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     
     var category: String! {
@@ -25,73 +25,37 @@ fileprivate let collectionViewReusableID = "SourceCollectionViewIdentifier"
 
 class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
+=======
+>>>>>>> parent of 3a9fe61... CollectionView in Tableview cell working but still crasing
     @IBOutlet weak var sourceCollectionView: UICollectionView!
     
-    var mainContext: NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
-    private var controller: NSFetchedResultsController<NewsSource>!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         sourceCollectionView.delegate = self
         sourceCollectionView.dataSource = self
-        
-    }
-    
-    func initializeFetchedResultsController() {
-        let request: NSFetchRequest<NewsSource> = NewsSource.fetchRequest()
-        let sort = NSSortDescriptor(key: "sourceLogo", ascending: true)
-        
-        request.sortDescriptors =  [sort]
-        
-        let predicate = NSPredicate(format: "%K == %@", "category", self.category)
-        request.predicate = predicate
-        self.controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: mainContext, sectionNameKeyPath: "category", cacheName: nil)
-        controller.delegate = self
-        
-        do {
-            try controller.performFetch()
-            // self.tableView.reloadData()
-        } catch {
-            fatalError("Failed to initialize FetchedResultsController: \(error)")
-        }
-        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let sections = controller.sections else {
-            print("No sections in fetchedResultsController")
-            return 0
-        }
-        return sections.count
+        <#code#>
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+<<<<<<< HEAD
         guard let sections = controller.sections else {
             fatalError("No sections in fetchedResultsController")
         }
         let sectionInfo = sections[section]
         return sectionInfo.numberOfObjects
         return 0
+=======
+        <#code#>
+>>>>>>> parent of 3a9fe61... CollectionView in Tableview cell working but still crasing
     }
     
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewReusableID, for: indexPath)
-        if let cell = cell as? SourceCollectionViewCell {
-            let source = controller.object(at: indexPath)
-            APIManager.shared.getData(urlString: source.sourceLogo!, completion: { (data) in
-                guard let validData = data else { return }
-                guard let validImage = UIImage(data: validData) else { return }
-                cell.sourceImageView.image = validImage
-            })
-        }
-        
-        return cell
+        <#code#>
     }
 }
