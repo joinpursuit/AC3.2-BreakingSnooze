@@ -9,8 +9,13 @@
 //APIKEYFORRADIO = ed4616717617f6e9d090f88c8f
 import UIKit
 import CoreData
+import CoreLocation
 
-class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
+    
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var conditionsImageView: UIImageView!
     
     var sourcesURL = "https://newsapi.org/v1/sources"
     
@@ -20,11 +25,50 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     private var controller: NSFetchedResultsController<NewsSource>!
     
+    let locationManager: CLLocationManager = {
+        let locMan = CLLocationManager()
+        
+        locMan.desiredAccuracy = 250.0
+        locMan.distanceFilter = 250.0
+        
+        return locMan
+    }()
+    
+    var currentWeather: [Weather] = []
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeFetchedResultsController()
         getSources()
+        locationManager.delegate = self
+        permission()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    //MARK: - Load data from API
+    
+    func loadData(endPoint: String) {
+        APIRequestManager.manager.getPOD(endPoint: endPoint) { (data: Data?) in
+            if data != nil {
+                
+                if let new = Weather.getData(from: data!) {
+                    self.currentWeather = new
+                    dump(self.currentWeather)
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    let imageName = self.currentWeather[0].icon
+                    let image = UIImage(named: imageName)
+                    self.conditionsImageView.image =  image
+                    
+                    self.locationLabel.text = "\(self.currentWeather[0].name),  \(self.currentWeather[0].country)"
+                }
+                
+            }
+        }
+        
     }
     
     func getSources() {
@@ -91,5 +135,54 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     
+    //MARK: - Core Location
+    
+    func permission() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("ALL good")
+        case .denied, .restricted:
+            print("NOPE")
+            guard let validSettingsURL = URL(string: UIApplicationOpenSettingsURLString) else {return}
+            UIApplication.shared.open(validSettingsURL, options: [:], completionHandler: nil)
+        case .notDetermined:
+            print("IDK")
+            locationManager.requestAlwaysAuthorization()
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("All good")
+            manager.startUpdatingLocation()
+        case .denied, .restricted:
+            print("NOPE")
+            manager.stopUpdatingLocation()
+        case .notDetermined:
+            print("IDK")
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("locations updated")
+        guard let validLocation = locations.last else {return}
+        let latCoordinate = validLocation.coordinate.latitude
+        let longCoordinate = validLocation.coordinate.longitude
+        let latCoord =  String(format: "%0.4f", latCoordinate )
+        let longCoord = String(format: "%0.4f", longCoordinate )
+        dump(latCoord)
+        dump(longCoord)
+        
+        
+        loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        dump(error)
+    }
+
 }
 

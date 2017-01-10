@@ -1,0 +1,6 @@
+framework module Pods_BreakingSnooze {
+  umbrella header "Pods-BreakingSnooze-umbrella.h"
+
+  export *
+  module * { export * }
+}
