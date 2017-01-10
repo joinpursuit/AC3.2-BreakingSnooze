@@ -1,0 +1,6 @@
+framework module View2ViewTransition {
+  umbrella header "View2ViewTransition-umbrella.h"
+
+  export *
+  module * { export * }
+}
