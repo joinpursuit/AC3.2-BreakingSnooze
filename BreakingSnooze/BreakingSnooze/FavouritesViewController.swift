@@ -34,6 +34,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(collectionView)
     }
     
     
