@@ -21,6 +21,9 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         
     }
     
+fileprivate let collectionViewReusableID = "SourceCollectionViewIdentifier"
+
+class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var sourceCollectionView: UICollectionView!
     
@@ -58,7 +61,7 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         }
         
     }
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let sections = controller.sections else {
             print("No sections in fetchedResultsController")
@@ -73,7 +76,10 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         }
         let sectionInfo = sections[section]
         return sectionInfo.numberOfObjects
+        return 0
     }
+    
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewReusableID, for: indexPath)
@@ -88,5 +94,4 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         
         return cell
     }
-
 }

@@ -57,8 +57,6 @@ class SourceArticles {
         }
         return articleDetails
     }
-    
-    
 }
 
 /*
