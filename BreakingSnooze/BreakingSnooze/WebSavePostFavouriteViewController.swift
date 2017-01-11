@@ -8,26 +8,25 @@
 
 import UIKit
 import View2ViewTransition
+import WebKit
 
-class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionPresented, UICollectionViewDataSource, UICollectionViewDelegate {
+class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionPresented, UICollectionViewDataSource, UICollectionViewDelegate, WKUIDelegate {
     
     weak var transitionController: TransitionController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
     }
+    
+    //MARK: Set up View Hierarchy
+    
+    func setUpViewHierarchy () {
+        let webConfiguration = WKWebViewConfiguration()
+        let userContentController = WKUserContentController()
 
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+        _ = []
+    }
     
     //MARK View2ViewTransitionPresented Delegates
     
@@ -50,13 +49,62 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         if isPresenting {
             
             let indexPath: IndexPath = userInfo!["destinationIndexPath"] as! IndexPath
-            let contentOfffset: CGPoint = CGPoint(x: self.collectionView.frame.size.width*CGFloat(indexPath.item), y: 0.0)
+            let contentOfffset: CGPoint = CGPoint(x: self.collectionView.frame.size.width * CGFloat(indexPath.item), y: 0.0)
             self.collectionView.contentOffset = contentOfffset
             
             self.collectionView.reloadData()
             self.collectionView.layoutIfNeeded()
         }
     }
+    
+    //MARK: - Views
+//    lazy var webView: WKWebView = {
+//        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+//        webView.uiDelegate = self
+//        return webView
+//    }()
+
+    
+    lazy var webViewContainterView: UIView = {
+        let view = UIView()
+        return UIView()
+    }()
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("👈", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightHeavy)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        return button
+    }()
+    
+    lazy var favouriteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("🖤", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightHeavy)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        return button
+    }()
+    
+    lazy var shareButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Share", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightHeavy)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        return button
+    }()
+    
+    lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Save", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightHeavy)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        return button
+    }()
+    
     lazy var collectionView: UICollectionView = {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -73,16 +121,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         collectionView.isPagingEnabled = true
         return collectionView
     }()
-    
-    lazy var closeButton: UIButton = {
-        let frame: CGRect = CGRect(x: 0.0, y: 20.0, width: 60.0, height: 40.0)
-        let button: UIButton = UIButton(frame: frame)
-        button.setTitle("Close", for: .normal)
-        button.setTitleColor(self.view.tintColor, for: .normal)
-        button.addTarget(self, action: #selector(onCloseButtonClicked(sender:)), for: .touchUpInside)
-        return button
-    }()
-    
+   
     lazy var titleLabel: UILabel = {
         let font: UIFont = UIFont.boldSystemFont(ofSize: 16.0)
         let label: UILabel = UILabel()
@@ -90,11 +129,6 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         label.text = "Detail"
         label.sizeToFit()
         return label
-    }()
-    
-    lazy var backItem: UIBarButtonItem = {
-        let item: UIBarButtonItem = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(onBackItemClicked(sender:)))
-        return item
     }()
     
     // MARK: CollectionView Data Source
@@ -115,27 +149,6 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         cell.content.image = UIImage(named: "image\(number)")
         
         return cell
-    }
-    
-    // MARK: Actions
-    
-    func onCloseButtonClicked(sender: AnyObject) {
-        
-        let indexPath: NSIndexPath = self.collectionView.indexPathsForVisibleItems.first! as NSIndexPath
-        
-        self.transitionController.userInfo = ["destinationIndexPath": indexPath, "initialIndexPath": indexPath]
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func onBackItemClicked(sender: AnyObject) {
-        
-        let indexPath: NSIndexPath = self.collectionView.indexPathsForVisibleItems.first! as NSIndexPath
-        self.transitionController.userInfo = ["destinationIndexPath": indexPath, "initialIndexPath": indexPath]
-        
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
     }
     
     // MARK: Gesture Delegate
