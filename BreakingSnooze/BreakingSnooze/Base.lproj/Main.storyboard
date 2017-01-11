@@ -307,7 +307,7 @@
         <!--Item-->
         <scene sceneID="mvI-BL-Pcv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CAw-aj-GLw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CAw-aj-GLw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="7nc-r0-XcU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SDv-qX-Ik7">
