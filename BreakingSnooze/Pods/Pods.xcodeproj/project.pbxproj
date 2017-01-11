@@ -41,16 +41,16 @@
 		304B8E3CB9741D4D52799CBB4B9BAD03 /* Pods-BreakingSnooze-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BreakingSnooze-acknowledgements.markdown"; sourceTree = "<group>"; };
 		338DB6EDDF8300DBA3CAAE78368B8686 /* Pods-BreakingSnooze-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BreakingSnooze-dummy.m"; sourceTree = "<group>"; };
 		4037811605F5E6B501B310FBA94CFDF5 /* Pods-BreakingSnooze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BreakingSnooze.release.xcconfig"; sourceTree = "<group>"; };
-		4F7181BE89F0574865F637B0DFA1E3E8 /* View2ViewTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = View2ViewTransition.framework; path = View2ViewTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F7181BE89F0574865F637B0DFA1E3E8 /* View2ViewTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = View2ViewTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7157828E2127A230ABD9988DE22D4CC0 /* PresentAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentAnimationController.swift; path = Sources/PresentAnimationController.swift; sourceTree = "<group>"; };
 		7AA9CAA0898D49439F33C7825BB3269F /* UIView+SnapshotImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+SnapshotImage.swift"; path = "Sources/UIView+SnapshotImage.swift"; sourceTree = "<group>"; };
 		7E1A4361F7653B814D925C73AC96E572 /* Pods-BreakingSnooze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BreakingSnooze.debug.xcconfig"; sourceTree = "<group>"; };
 		84EC967424925E2086F170A5BDA801BB /* DismissAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DismissAnimationController.swift; path = Sources/DismissAnimationController.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B11E56D135FC80A14BE29F5C2D54CF7D /* Pods-BreakingSnooze.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BreakingSnooze.modulemap"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B11E56D135FC80A14BE29F5C2D54CF7D /* Pods-BreakingSnooze.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BreakingSnooze.modulemap"; sourceTree = "<group>"; };
 		B9D447168189C630260EE9CCFC23E9F2 /* Pods-BreakingSnooze-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BreakingSnooze-umbrella.h"; sourceTree = "<group>"; };
-		BBE1DB25A9827D985D65549B5ADEB9FE /* View2ViewTransition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = View2ViewTransition.modulemap; sourceTree = "<group>"; };
-		BE71F477A3A04B94AAC1599C5135CC14 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BreakingSnooze.framework; path = "Pods-BreakingSnooze.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBE1DB25A9827D985D65549B5ADEB9FE /* View2ViewTransition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = View2ViewTransition.modulemap; sourceTree = "<group>"; };
+		BE71F477A3A04B94AAC1599C5135CC14 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingSnooze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D13B3883B592560437B896CE0655E7 /* View2ViewTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = View2ViewTransition.xcconfig; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		DE9D2279F41D718B427154914878F843 /* Pods-BreakingSnooze-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BreakingSnooze-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 				2234A63F6C94087788C1CB474204DF08 /* View2ViewTransition.swift */,
 				02ED75438A7E6EB8C5197DBE5C00B8D3 /* Support Files */,
 			);
-			name = View2ViewTransition;
 			path = View2ViewTransition;
 			sourceTree = "<group>";
 		};
@@ -243,7 +242,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -302,6 +301,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E1A4361F7653B814D925C73AC96E572 /* Pods-BreakingSnooze.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -348,15 +348,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -382,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4037811605F5E6B501B310FBA94CFDF5 /* Pods-BreakingSnooze.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -492,14 +497,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -513,6 +522,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};

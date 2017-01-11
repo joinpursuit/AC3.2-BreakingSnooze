@@ -7,16 +7,18 @@
 //
 //APIKEY = 817c2d1fcd584b7ca26af5888e55bfd2
 //APIKEYFORRADIO = ed4616717617f6e9d090f88c8f
+import Foundation
 import UIKit
 import CoreData
 import CoreLocation
 
-class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate {
     
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var conditionsImageView: UIImageView!
     
+    @IBOutlet weak var breakingNewsLabel: UILabel!
     var sourcesURL = "https://newsapi.org/v1/sources"
     
     var mainContext: NSManagedObjectContext {
@@ -35,7 +37,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }()
     
     var currentWeather: [Weather] = []
-
+    let reuseIdentifer = "Top Stories Cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +64,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                     let imageName = self.currentWeather[0].icon
                     let image = UIImage(named: imageName)
                     self.conditionsImageView.image =  image
-                    self.temperatureLabel.text = String(self.currentWeather[0].temp.rounded())
+
+                    self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
                     self.locationLabel.text = "\(self.currentWeather[0].name),  \(self.currentWeather[0].country)"
                 }
                 
@@ -183,6 +186,12 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         dump(error)
     }
+    
+    //MARK: // -Table View Delegate
+    
+    
 
+    
+    
 }
 
