@@ -12,8 +12,11 @@ import UIKit
 import CoreData
 import CoreLocation
 
+
+fileprivate var AssociatedPress = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
 fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
 fileprivate let reuseIdentifer = "Top Stories Cell"
+
 
 
 class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -47,6 +50,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return locMan
     }()
     var currentWeather: [Weather] = []
+
+    var allArticles: [NewsArticles] = []
+
     
     
     
@@ -59,6 +65,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         getSources()
         locationManager.delegate = self
         permission()
+        getArticlesFromSources()
         whiteTextShadow()
         setUpButtonImages()
     }
@@ -109,7 +116,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             breakingSnoozeBackgroundView
             ].map { $0.layer.shadowRadius = 6 }
         
-        
+
     }
     
     //MARK: - Load data from API
@@ -195,6 +202,20 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     
     func getArticlesFromSources() {
         
+        APIRequestManager.manager.getPOD(endPoint: AssociatedPress) { (data: Data?) in
+            if data != nil {
+                
+                if let article = NewsArticles.getData(from: data!) {
+                    self.allArticles = article
+                    
+                }
+                
+                DispatchQueue.main.async {
+                 self.localNewsTableView.reloadData()
+                }
+                
+            }
+        }
         
     }
     
@@ -271,6 +292,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             print("No sections in fetchedResultsController")
             return 0
         }
+        
         return sections.count
     }
     
@@ -287,6 +309,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         let article = controller.object(at: indexPath)
         cell.textLabel?.text = article.sourceName
+      
         return cell
     }
     
