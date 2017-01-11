@@ -12,12 +12,9 @@ import UIKit
 import CoreData
 import CoreLocation
 
-
 fileprivate var AssociatedPress = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
 fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
 fileprivate let reuseIdentifer = "Top Stories Cell"
-
-
 
 class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -53,9 +50,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
 
     var allArticles: [NewsArticles] = []
 
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
@@ -69,6 +63,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         whiteTextShadow()
         setUpButtonImages()
     }
+    
     
     func setUpButtonImages() {
         let playPauseImage = UIImage(named: "play_button")

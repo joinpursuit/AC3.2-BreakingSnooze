@@ -10,11 +10,17 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        backButton.title = "Back"
     }
-
+    
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -24,23 +30,37 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        var cell = UITableViewCell()
 
-        // Configure the cell...
-
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell", for: indexPath)
+            if let location: LocationTableViewCell = cell as? LocationTableViewCell {
+                
+            }
+        } else if  indexPath.section == 1 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "RadioSwitchTableViewCell", for: indexPath)
+            if let segmentedCell: RadioSwitchTableViewCell = cell as? RadioSwitchTableViewCell {
+               
+            }
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "RadioStationTableViewCell", for: indexPath)
+            if let segmentedCell: RadioStationTableViewCell = cell as? RadioStationTableViewCell {
+                
+            }
+        }
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
