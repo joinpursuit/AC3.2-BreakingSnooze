@@ -9,24 +9,75 @@
 import UIKit
 import View2ViewTransition
 import WebKit
+import CoreData
 
-class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionPresented, UICollectionViewDataSource, UICollectionViewDelegate, WKUIDelegate {
+class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionPresented, UICollectionViewDataSource, UICollectionViewDelegate, WKUIDelegate, NSFetchedResultsControllerDelegate {
     
     weak var transitionController: TransitionController!
+    var articles: [SourceArticles]?
+    var image: UIImage!
+    var currentArticle: SourceArticles!
+    var mainContext: NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    private var controller: NSFetchedResultsController<NewsSource>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        setUpViewHierarchyAndConstraints()
     }
     
-    //MARK: Set up View Hierarchy
+    //MARK: Set up View Hierarchy and Constraints
     
-    func setUpViewHierarchy () {
+    func setUpViewHierarchyAndConstraints () {
         let webConfiguration = WKWebViewConfiguration()
-        let userContentController = WKUserContentController()
+        //let userContentController = WKUserContentController()
+        _ = [backButton,
+             saveButton,
+             shareButton,
+             favouriteButton,
+             webViewContainterView].map { self.view.addSubview($0) }
+        
+        _ = [backButton.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor),
+             backButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10.0),
+             backButton.widthAnchor.constraint(equalToConstant: 30),
+             
+             shareButton.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: 15.0),
+             shareButton.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+             
+             favouriteButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0),
+             favouriteButton.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+             favouriteButton.widthAnchor.constraint(equalToConstant: 30),
+             
+             saveButton.trailingAnchor.constraint(equalTo: favouriteButton.leadingAnchor, constant: -15.0),
+             saveButton.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+             
+             
+             webViewContainterView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor),
+             webViewContainterView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+             webViewContainterView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+             webViewContainterView.bottomAnchor.constraint(equalTo: backButton.topAnchor)
+            ].map { $0.isActive = true }
 
-        _ = []
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.uiDelegate = self
+        
+        self.webViewContainterView.addSubview(webView)
+        
+        _ = [
+            webView.topAnchor.constraint(equalTo: webViewContainterView.topAnchor),
+            webView.trailingAnchor.constraint(equalTo: webViewContainterView.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: webViewContainterView.bottomAnchor),
+            webView.leadingAnchor.constraint(equalTo: webViewContainterView.leadingAnchor)
+            ].map { $0.isActive = true }
     }
+    
+    //MARK: - Webview FUN!
+    
+    
     
     //MARK View2ViewTransitionPresented Delegates
     
@@ -57,24 +108,22 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         }
     }
     
-    //MARK: - Views
-//    lazy var webView: WKWebView = {
-//        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
-//        webView.uiDelegate = self
-//        return webView
-//    }()
-
+    var webView: WKWebView!
     
     lazy var webViewContainterView: UIView = {
         let view = UIView()
-        return UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
+    
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("👈", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightHeavy)
-        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
+        //button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         return button
     }()
     
@@ -82,8 +131,8 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("🖤", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightHeavy)
-        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
+        //button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         return button
     }()
     
@@ -91,8 +140,8 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Share", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightHeavy)
-        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
         return button
     }()
     
@@ -100,8 +149,8 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Save", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightHeavy)
-        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
         return button
     }()
     
@@ -143,10 +192,12 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PresentedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "presented_cell", for: indexPath) as! PresentedCollectionViewCell
-        cell.contentView.backgroundColor = UIColor.white
+        currentArticle = articles?[indexPath.row]
+        cell.content.image = self.image
+        cell.content.alpha = 0.35
         
-        let number: Int = indexPath.item%4 + 1
-        cell.content.image = UIImage(named: "image\(number)")
+        let request = URLRequest(url: URL(string: currentArticle.articleURL)!)
+        webView.load(request)
         
         return cell
     }
@@ -161,5 +212,15 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         let panGestureRecognizer: UIPanGestureRecognizer = gestureRecognizer as! UIPanGestureRecognizer
         let transate: CGPoint = panGestureRecognizer.translation(in: self.view)
         return Double(abs(transate.y)/abs(transate.x)) > M_PI_4
+    }
+    
+    //MARK: - Actions 
+    
+    func backButtonPressed (sender: UIButton) {
+        webView.goBack()
+    }
+    
+    func favouritesButtonPresses (sender: UIButton) {
+        
     }
 }
