@@ -51,10 +51,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
 
     lazy var allArticles: [NewsArticles] = []
 
-//    var AssociatedPress = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
@@ -70,7 +67,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     
-    
+
     func setUpButtonImages() {
         let playPauseImage = UIImage(named: "play_button")
         playPauseButton.setBackgroundImage(playPauseImage, for: UIControlState.normal)

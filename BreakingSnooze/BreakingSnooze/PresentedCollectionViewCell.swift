@@ -26,7 +26,7 @@ public class PresentedCollectionViewCell: UICollectionViewCell {
         let height: CGFloat = (UIScreen.main.bounds.size.height - 160.0)
         let frame: CGRect = CGRect(x: margin, y: (UIScreen.main.bounds.size.height - height)/2.0, width: width, height: height)
         let view: UIImageView = UIImageView(frame: frame)
-        view.backgroundColor = UIColor.gray
+        view.alpha = 0.35
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
         return view
