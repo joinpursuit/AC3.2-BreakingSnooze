@@ -10,9 +10,15 @@ import UIKit
 import CoreData
 
 fileprivate let collectionViewReusableID = "SourceCollectionViewIdentifier"
+fileprivate let segueID = "sourceArticlesSegue"
+protocol Pusher {
+    func pushViewController(vc: FavouritesViewController, sourceID: String)
+}
+
 
 class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     
+    var delegate: Pusher!
     var category: String! {
         didSet {
             initializeFetchedResultsController()
@@ -89,5 +95,13 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
             })
         }        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "favouriteViewController")
+        
+        delegate.pushViewController(vc: vc as! FavouritesViewController, sourceID: controller.object(at: indexPath).sourceID!)
     }
 }

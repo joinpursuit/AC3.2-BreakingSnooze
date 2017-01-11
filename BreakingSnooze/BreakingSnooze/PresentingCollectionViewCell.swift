@@ -32,13 +32,14 @@ class PresentingCollectionViewCell: UICollectionViewCell {
     func setUpConstraints () {
         _ = [
             self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 4.0),
-            self.titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 4.0),
+            self.titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -4.0),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 4.0),
             
             authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4.0),
             authorLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8.0),
+            authorLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8.0),
             
-            descriptionLabel.topAnchor.constraint(equalTo: authorLabel.topAnchor, constant: 2.0),
+            descriptionLabel.topAnchor.constraint(greaterThanOrEqualTo: authorLabel.bottomAnchor, constant: 3.0),
             descriptionLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 2.0),
             descriptionLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -2.0),
             descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -2.0)
@@ -48,8 +49,9 @@ class PresentingCollectionViewCell: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightHeavy)
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightHeavy)
         return label
     }()
     
@@ -57,7 +59,7 @@ class PresentingCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.backgroundColor = .clear
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightHeavy)
+        label.font = UIFont.systemFont(ofSize: 8)
         return label
     }()
     
@@ -66,7 +68,7 @@ class PresentingCollectionViewCell: UICollectionViewCell {
         label.backgroundColor = .clear
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightHeavy)
+        label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
     
@@ -74,6 +76,7 @@ class PresentingCollectionViewCell: UICollectionViewCell {
         let view: UIImageView = UIImageView(frame: self.contentView.bounds)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.clipsToBounds = true
+        view.alpha = 0.35 //We chose .35 because that is both Kadell and Cris' favourite number between 40 and 30
         view.contentMode = .scaleAspectFill
         return view
     }()

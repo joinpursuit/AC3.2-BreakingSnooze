@@ -73,7 +73,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfi-xJ-lul" id="KDn-fM-tYV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -209,7 +209,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxk-ev-kJo" id="ire-Lh-6rW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcY-Fq-ahs">
@@ -229,7 +229,7 @@
                                 <rect key="frame" x="0.0" y="130" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U9y-Do-2uU" id="dX0-tx-3W8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhe-Oj-GbI">
@@ -256,7 +256,7 @@
                                 <rect key="frame" x="0.0" y="188" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kXb-4y-xOM" id="6ey-bk-wgI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radio Station:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsh-4I-n9E">
@@ -336,7 +336,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="188"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7t-rs-LGi" id="V7I-35-uRj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="188"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KkG-zF-aYK">
@@ -379,7 +379,6 @@
                                                     <connections>
                                                         <outlet property="sourceImageView" destination="PM3-YU-ZdU" id="Kcx-4P-Dfo"/>
                                                         <outlet property="sourceNameLabel" destination="Jpp-l7-mT2" id="KtE-aS-scb"/>
-                                                        <segue destination="o5c-Vs-TxQ" kind="show" id="tGj-Pj-MAp"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
@@ -430,7 +429,7 @@
         <!--Favourites View Controller-->
         <scene sceneID="sSE-yL-sgO">
             <objects>
-                <viewController id="o5c-Vs-TxQ" customClass="FavouritesViewController" customModule="BreakingSnooze" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favouriteViewController" id="o5c-Vs-TxQ" customClass="FavouritesViewController" customModule="BreakingSnooze" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7B-gY-EbG"/>
                         <viewControllerLayoutGuide type="bottom" id="67t-E8-4HU"/>
@@ -466,7 +465,4 @@
             <point key="canvasLocation" x="1692" y="794.75262368815595"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="tGj-Pj-MAp"/>
-    </inferredMetricsTieBreakers>
 </document>
