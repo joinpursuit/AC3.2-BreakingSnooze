@@ -161,6 +161,7 @@
                         <outlet property="conditionsImageView" destination="Bye-I1-nUh" id="OAI-kd-FDz"/>
                         <outlet property="degreeIconView" destination="l1D-cb-QxX" id="sSb-Wt-YLQ"/>
                         <outlet property="listeningToLabel" destination="D2m-PO-dFJ" id="ORz-aa-Kvo"/>
+                        <outlet property="localNewsTableView" destination="ZcD-re-GM3" id="0AR-GQ-w3Y"/>
                         <outlet property="locationLabel" destination="lTz-HE-0Kh" id="8eV-Jr-zKy"/>
                         <outlet property="playPauseButton" destination="tth-UU-5Ct" id="gKs-wd-7pd"/>
                         <outlet property="radioStationNameLabel" destination="7VT-Oe-Wuy" id="xU1-sA-Gi1"/>
