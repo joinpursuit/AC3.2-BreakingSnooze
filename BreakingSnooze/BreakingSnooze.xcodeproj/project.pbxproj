@@ -150,18 +150,10 @@
 				810E8C4A1E258A5E002938F1 /* WebSavePostFavouriteViewController.swift */,
 				810E8C481E2566E3002938F1 /* FavouritesViewController.swift */,
 				2D40F3651E2578C700E088C7 /* SourceTableViewController.swift */,
-<<<<<<< HEAD
 				2DD878311E258E6B00DBE51D /* CategoryTableViewCell.swift */,
-<<<<<<< HEAD
 				2D40F3671E258AF000E088C7 /* SourceCollectionViewCell.swift */,
-=======
 				810E8C4E1E2595A3002938F1 /* PresentingCollectionViewCell.swift */,
 				810E8C501E2595D5002938F1 /* PresentedCollectionViewCell.swift */,
->>>>>>> 8fac9e2bb32b23326e40803e3e5d94d3604ef48e
-=======
-				2D40F3671E258AF000E088C7 /* SourceCollectionViewCell.swift */,
-				2DD878311E258E6B00DBE51D /* CategoryTableViewCell.swift */,
->>>>>>> parent of 3a9fe61... CollectionView in Tableview cell working but still crasing
 			);
 			name = Controllers;
 			sourceTree = "<group>";

@@ -11,8 +11,6 @@ import CoreData
 
 class SourceTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    
-    
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -28,6 +26,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<NewsSource> = NewsSource.fetchRequest()
         let sort = NSSortDescriptor(key: "category", ascending: true)
+        
         request.sortDescriptors = [sort]
         
         self.controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: mainContext, sectionNameKeyPath: "category", cacheName: nil)
@@ -56,11 +55,11 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
         return 1
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sourceCollectionViewCellID", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sourceCollectionViewCellID", for: indexPath) as! CategoryTableViewCell
         
-        // Configure the cell...
+        
+        cell.category = controller.object(at: indexPath).category
         
         return cell
     }
