@@ -21,7 +21,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
-    private var controller: NSFetchedResultsController<NewsSource>!
+    private var controller: NSFetchedResultsController<Favorite>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,9 +75,23 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
             ].map { $0.isActive = true }
     }
     
-    //MARK: - Webview FUN!
-    
-    
+    func initializeFetchedResultsController() {
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Favorite.title), ascending: false)]
+        controller = NSFetchedResultsController(fetchRequest: request,
+                                                managedObjectContext: mainContext,
+                                                sectionNameKeyPath: nil,
+                                                cacheName: nil)
+        controller.delegate = self
+        
+        do {
+            try controller.performFetch()
+            // self.tableView.reloadData()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+        
+    }
     
     //MARK View2ViewTransitionPresented Delegates
     
@@ -102,7 +116,6 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
             let indexPath: IndexPath = userInfo!["destinationIndexPath"] as! IndexPath
             let contentOfffset: CGPoint = CGPoint(x: self.collectionView.frame.size.width * CGFloat(indexPath.item), y: 0.0)
             self.collectionView.contentOffset = contentOfffset
-            
             self.collectionView.reloadData()
             self.collectionView.layoutIfNeeded()
         }
@@ -132,6 +145,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("🖤", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
+        button.addTarget(self, action: #selector(favouritesButtonPresses(sender:)), for: .touchUpInside)
         //button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         return button
     }()
@@ -192,7 +206,6 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PresentedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "presented_cell", for: indexPath) as! PresentedCollectionViewCell
-        currentArticle = articles?[indexPath.row]
         cell.content.image = self.image
         cell.content.alpha = 0.35
         
@@ -221,6 +234,14 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     }
     
     func favouritesButtonPresses (sender: UIButton) {
-        
+        let favorite = Favorite(context: mainContext)
+        favorite.populate(article: currentArticle)
+        do {
+            try mainContext.save()
+            print("working")
+            sender.setTitle("❤️", for: .normal)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
