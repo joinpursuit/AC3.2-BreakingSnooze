@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2D40F3661E2578C700E088C7 /* SourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D40F3651E2578C700E088C7 /* SourceTableViewController.swift */; };
 		2D40F3681E258AF000E088C7 /* SourceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D40F3671E258AF000E088C7 /* SourceCollectionViewCell.swift */; };
+		2DA2CE441E26AA15008F025C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA2CE431E26AA15008F025C /* SettingsTableViewController.swift */; };
+		2DA2CE461E26AE5A008F025C /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA2CE451E26AE5A008F025C /* LocationTableViewCell.swift */; };
+		2DA2CE481E26AE76008F025C /* RadioSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA2CE471E26AE76008F025C /* RadioSwitchTableViewCell.swift */; };
+		2DA2CE4A1E26AE81008F025C /* RadioStationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA2CE491E26AE81008F025C /* RadioStationTableViewCell.swift */; };
 		2DD878321E258E6B00DBE51D /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD878311E258E6B00DBE51D /* CategoryTableViewCell.swift */; };
 		7533914A0817270561146119 /* Pods_BreakingSnooze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */; };
 		810E8C491E2566E3002938F1 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E8C481E2566E3002938F1 /* FavouritesViewController.swift */; };
@@ -33,6 +37,10 @@
 /* Begin PBXFileReference section */
 		2D40F3651E2578C700E088C7 /* SourceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceTableViewController.swift; sourceTree = "<group>"; };
 		2D40F3671E258AF000E088C7 /* SourceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DA2CE431E26AA15008F025C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		2DA2CE451E26AE5A008F025C /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		2DA2CE471E26AE76008F025C /* RadioSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		2DA2CE491E26AE81008F025C /* RadioStationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioStationTableViewCell.swift; sourceTree = "<group>"; };
 		2DD878311E258E6B00DBE51D /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5E82FAD7D215E208BCE365C9 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingSnooze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810E8C481E2566E3002938F1 /* FavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +165,10 @@
 				810E8C4A1E258A5E002938F1 /* WebSavePostFavouriteViewController.swift */,
 				810E8C4E1E2595A3002938F1 /* PresentingCollectionViewCell.swift */,
 				810E8C501E2595D5002938F1 /* PresentedCollectionViewCell.swift */,
+				2DA2CE431E26AA15008F025C /* SettingsTableViewController.swift */,
+				2DA2CE451E26AE5A008F025C /* LocationTableViewCell.swift */,
+				2DA2CE471E26AE76008F025C /* RadioSwitchTableViewCell.swift */,
+				2DA2CE491E26AE81008F025C /* RadioStationTableViewCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -312,15 +324,19 @@
 				2D40F3681E258AF000E088C7 /* SourceCollectionViewCell.swift in Sources */,
 				810E8C4F1E2595A3002938F1 /* PresentingCollectionViewCell.swift in Sources */,
 				81D64CF41E253680000B47E8 /* BreakingSnooze.xcdatamodeld in Sources */,
+				2DA2CE441E26AA15008F025C /* SettingsTableViewController.swift in Sources */,
 				81D64CD21E253572000B47E8 /* AppDelegate.swift in Sources */,
 				810E8C511E2595D5002938F1 /* PresentedCollectionViewCell.swift in Sources */,
 				810E8C4B1E258A5E002938F1 /* WebSavePostFavouriteViewController.swift in Sources */,
+				2DA2CE481E26AE76008F025C /* RadioSwitchTableViewCell.swift in Sources */,
 				810E8C4D1E258A7E002938F1 /* CoreDataManager.swift in Sources */,
 				81D64CEC1E253628000B47E8 /* NewsSource+Extension.swift in Sources */,
+				2DA2CE461E26AE5A008F025C /* LocationTableViewCell.swift in Sources */,
 				A2B61A2E1E25667F00630C45 /* ViewController.swift in Sources */,
 				810E8C491E2566E3002938F1 /* FavouritesViewController.swift in Sources */,
 				81D64CE71E2535BD000B47E8 /* SourceArticles.swift in Sources */,
 				A2B61A2C1E2563DF00630C45 /* Weather.swift in Sources */,
+				2DA2CE4A1E26AE81008F025C /* RadioStationTableViewCell.swift in Sources */,
 				2DD878321E258E6B00DBE51D /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
