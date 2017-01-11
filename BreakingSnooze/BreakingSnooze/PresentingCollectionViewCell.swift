@@ -13,17 +13,66 @@ class PresentingCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.addSubview(self.content)
+        setupViewHierarchy()
+        setUpConstraints()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public lazy var content: UIImageView = {
+    func setupViewHierarchy () {
+        _ = [contentImage,
+             titleLabel,
+             authorLabel,
+             descriptionLabel
+            ].map { self.contentView.addSubview($0) }
+    }
+    
+    func setUpConstraints () {
+        _ = [
+            self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 4.0),
+            self.titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 4.0),
+            self.titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 4.0),
+            
+            authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4.0),
+            authorLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8.0),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: authorLabel.topAnchor, constant: 2.0),
+            descriptionLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 2.0),
+            descriptionLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -2.0),
+            descriptionLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -2.0)
+            ].map { $0.isActive = true }
+    }
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightHeavy)
+        return label
+    }()
+    
+    lazy var authorLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightHeavy)
+        return label
+    }()
+    
+    lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightHeavy)
+        return label
+    }()
+    
+    lazy var contentImage: UIImageView = {
         let view: UIImageView = UIImageView(frame: self.contentView.bounds)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.backgroundColor = UIColor.gray
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
         return view

@@ -8,17 +8,19 @@
 
 import UIKit
 import View2ViewTransition
+import CoreData
 
 class FavouritesViewController: UIViewController, View2ViewTransitionPresenting, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var transitionController: TransitionController = TransitionController()
     var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
+    var articles: [SourceArticles]?
     
     lazy var collectionView: UICollectionView = {
         
-        let lendth: CGFloat = (UIScreen.main.bounds.size.width - 4.0)/3.0
+        let length: CGFloat = (UIScreen.main.bounds.size.width - 4.0)/3.0
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: lendth, height: lendth)
+        layout.itemSize = CGSize(width: length, height: length)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         layout.scrollDirection = .vertical
@@ -35,10 +37,37 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(collectionView)
+        getDataFromAPI(source: "techcrunch")
+    }
+    
+    //MARK: Get Data from API:
+    func getDataFromAPI(source: String) {
+        APIManager.shared.getData(urlString:  "https://newsapi.org/v1/articles?source=\(source)&apiKey=817c2d1fcd584b7ca26af5888e55bfd2&sortBy=latest") { (data: Data?) in
+            guard let validData = data else { return }
+            
+            do {
+                guard let validJSON = try JSONSerialization.jsonObject(with: validData, options: []) as? [String: Any] else { return }
+                guard let articlesDictArr = validJSON["articles"] as? [[String: Any]] else { return }
+                var articles = [SourceArticles]()
+                
+                for article in articlesDictArr {
+                    guard let validObject = SourceArticles.init(from: article) else { continue }
+                    articles.append(validObject)
+                }
+                self.articles = articles
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     
-    //MARK: Collection View Delegate 
+    //MARK: Collection View Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -65,7 +94,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     // MARK: CollectionView Data Source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return articles?.count ?? 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -75,17 +104,31 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: PresentingCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "presenting_cell", for: indexPath) as! PresentingCollectionViewCell
-        cell.contentView.backgroundColor = UIColor.lightGray
+        cell.contentView.backgroundColor = .white
         
-        let number: Int = indexPath.item%4 + 1
-        cell.content.image = UIImage(named: "image\(number)")
+        if let arr = articles {
+            let currentArticle = arr[indexPath.row]
+            cell.titleLabel.text = currentArticle.title
+            cell.authorLabel.text = currentArticle.author
+            cell.descriptionLabel.text = currentArticle.description
+            APIManager.shared.getData(urlString: currentArticle.imageURL){ (data: Data?) in
+                guard let validData = data else { return }
+                DispatchQueue.main.async {
+                    cell.contentImage.image = UIImage(data: validData)
+                    cell.setNeedsLayout()
+                }
+            }
+        }
+        
+        
+        //cell.contentImage.image =
         
         return cell
     }
-
     
     
-    //MARK: - Transition Delegates 
+    
+    //MARK: - Transition Delegates
     
     func initialFrame(_ userInfo: [String: AnyObject]?, isPresenting: Bool) -> CGRect {
         
@@ -111,7 +154,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
             self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)
             self.collectionView.layoutIfNeeded()
         }
-    }    
+    }
 }
 
 
