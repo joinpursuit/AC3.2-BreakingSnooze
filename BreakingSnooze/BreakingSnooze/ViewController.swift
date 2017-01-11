@@ -13,10 +13,8 @@ import CoreData
 import CoreLocation
 
 
-fileprivate var AssociatedPress = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
 fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
 fileprivate let reuseIdentifer = "Top Stories Cell"
-
 
 
 class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -34,7 +32,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     
     @IBOutlet weak var breakingNewsLabel: UILabel!
     @IBOutlet weak var localNewsTableView: UITableView!
-        
+    
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -51,10 +49,11 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }()
     var currentWeather: [Weather] = []
 
-    var allArticles: [NewsArticles] = []
+    lazy var allArticles: [NewsArticles] = []
 
+//    var AssociatedPress = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
     
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +64,12 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         getSources()
         locationManager.delegate = self
         permission()
-        getArticlesFromSources()
         whiteTextShadow()
         setUpButtonImages()
+        getArticlesFromSources()
     }
+    
+    
     
     func setUpButtonImages() {
         let playPauseImage = UIImage(named: "play_button")
@@ -182,7 +183,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             }
         }
     }
-    
+
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<NewsSource> = NewsSource.fetchRequest()
         let sort = NSSortDescriptor(key: "sourceName", ascending: true)
@@ -200,24 +201,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
     }
     
-    func getArticlesFromSources() {
-        
-        APIRequestManager.manager.getPOD(endPoint: AssociatedPress) { (data: Data?) in
-            if data != nil {
-                
-                if let article = NewsArticles.getData(from: data!) {
-                    self.allArticles = article
-                    
-                }
-                
-                DispatchQueue.main.async {
-                 self.localNewsTableView.reloadData()
-                }
-                
-            }
-        }
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -263,11 +246,11 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         let longCoordinate = validLocation.coordinate.longitude
         let latCoord =  String(format: "%0.4f", latCoordinate )
         let longCoord = String(format: "%0.4f", longCoordinate )
-        dump(latCoord)
-        dump(longCoord)
         
         
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
+        
+        locationManager.delegate = nil
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -276,39 +259,71 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     
     //MARK: // -Helper Functions
     
-    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath) -> String {
         let article = controller.object(at: indexPath)
-        cell.textLabel?.text = article.sourceName
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .medium
-//        formatter.timeStyle = .medium
+        let name = article.sourceID
+        return name ?? "associated-press"
+    }
+    
+    func randomNewSource() -> NSFetchedResultsSectionInfo {
+        guard let section = controller.sections else {return NSFetchedResultsSectionInfo.self as! NSFetchedResultsSectionInfo}
+        let random = section[Int(arc4random_uniform(UInt32(68)))]
+        return random
+    }
+    
+    func getArticlesFromSources() {
+        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
+        
+        let endpoint = "https://newsapi.org/v1/articles?source=\(random!)&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
+        print("****************\(endpoint)************")
+        APIRequestManager.manager.getPOD(endPoint: endpoint) { (data: Data?) in
+            if data != nil {
+                
+                if let article = NewsArticles.getData(from: data!) {
+                    self.allArticles = article
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    self.localNewsTableView.reloadData()
+                    print("***********Reload or Nah*************")
+                }
+                
+            }
+        }
         
     }
+
 
     //MARK: // -Table View Delegate
     
      func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = controller.sections else {
-            print("No sections in fetchedResultsController")
-            return 0
-        }
-        
-        return sections.count
+//        guard let sections = controller.sections else {
+//            print("No sections in fetchedResultsController")
+//            return 0
+//        }
+//        
+//        return sections.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sections = controller.sections else {
-            fatalError("No sections in fetchedResultsController")
-        }
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
+//        guard let sections = controller.sections else {
+//            fatalError("No sections in fetchedResultsController")
+//        }
+//        let sectionInfo = sections[section]
+//        
+//        return sectionInfo.numberOfObjects
+        return allArticles.count
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath)
         
-        let article = controller.object(at: indexPath)
-        cell.textLabel?.text = article.sourceName
+//        let article = controller.object(at: indexPath)
+//        cell.textLabel?.text = article.sourceName
+        let article = allArticles[indexPath.row]
+        cell.textLabel?.text = article.title
       
         return cell
     }

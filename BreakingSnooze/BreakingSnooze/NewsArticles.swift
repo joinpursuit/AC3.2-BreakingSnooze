@@ -56,9 +56,32 @@ class NewsArticles {
             }
         return allArticles
         }
-        catch{
-        
-            print("An Error I See \n -Yoda")
+        catch ParsingErrors.articles{
+            print("An Error I See \n -Articles")
+        }
+        catch ParsingErrors.source{
+            print("An Error I See \n -Sources")
+        }
+        catch ParsingErrors.author{
+            print("An Error I See \n -Author")
+        }
+        catch ParsingErrors.title{
+            print("An Error I See \n -Title")
+        }
+        catch ParsingErrors.description{
+            print("An Error I See \n -Description")
+        }
+        catch ParsingErrors.url{
+            print("An Error I See \n -URL")
+        }
+        catch ParsingErrors.image{
+            print("An Error I See \n -Image")
+        }
+        catch ParsingErrors.publishedAt{
+            print("An Error I See \n -published")
+        }
+        catch {
+            print("Unknown Error")
         }
         
     return nil
