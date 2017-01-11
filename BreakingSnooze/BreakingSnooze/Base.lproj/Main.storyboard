@@ -387,7 +387,6 @@
                                                     <connections>
                                                         <outlet property="sourceImageView" destination="PM3-YU-ZdU" id="Kcx-4P-Dfo"/>
                                                         <outlet property="sourceNameLabel" destination="Jpp-l7-mT2" id="KtE-aS-scb"/>
-                                                        <segue destination="o5c-Vs-TxQ" kind="show" id="tGj-Pj-MAp"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
@@ -438,7 +437,7 @@
         <!--Favourites View Controller-->
         <scene sceneID="sSE-yL-sgO">
             <objects>
-                <viewController id="o5c-Vs-TxQ" customClass="FavouritesViewController" customModule="BreakingSnooze" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favouriteViewController" id="o5c-Vs-TxQ" customClass="FavouritesViewController" customModule="BreakingSnooze" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7B-gY-EbG"/>
                         <viewControllerLayoutGuide type="bottom" id="67t-E8-4HU"/>
@@ -474,7 +473,4 @@
             <point key="canvasLocation" x="1692" y="794.75262368815595"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="tGj-Pj-MAp"/>
-    </inferredMetricsTieBreakers>
 </document>

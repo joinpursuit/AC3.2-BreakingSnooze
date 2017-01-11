@@ -15,6 +15,17 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     var transitionController: TransitionController = TransitionController()
     var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     var articles: [SourceArticles]?
+    var sourceID: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.addSubview(collectionView)
+        if let source = sourceID {
+            self.getDataFromAPI(source: source)
+        }
+    }
+    //MARK: Views
+    
     
     lazy var collectionView: UICollectionView = {
         
@@ -34,11 +45,6 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         return collectionView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(collectionView)
-        getDataFromAPI(source: "techcrunch")
-    }
     
     //MARK: Get Data from API:
     func getDataFromAPI(source: String) {
@@ -119,10 +125,6 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
                 }
             }
         }
-        
-        
-        //cell.contentImage.image =
-        
         return cell
     }
     
