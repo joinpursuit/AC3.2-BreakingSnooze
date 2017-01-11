@@ -64,6 +64,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                     let imageName = self.currentWeather[0].icon
                     let image = UIImage(named: imageName)
                     self.conditionsImageView.image =  image
+
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
                     self.locationLabel.text = "\(self.currentWeather[0].name),  \(self.currentWeather[0].country)"
                 }
