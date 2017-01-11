@@ -58,9 +58,8 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sourceCollectionViewCellID", for: indexPath) as! CategoryTableViewCell
         
-        
-        cell.category = controller.object(at: indexPath).category
-        
+        let category = controller.object(at: IndexPath(item: 1, section: indexPath.section))
+        cell.category = category.category
         return cell
     }
     

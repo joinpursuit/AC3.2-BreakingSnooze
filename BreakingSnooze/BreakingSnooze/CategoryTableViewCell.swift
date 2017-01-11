@@ -21,6 +21,9 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         }
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
     
     @IBOutlet weak var sourceCollectionView: UICollectionView!
     
@@ -48,7 +51,7 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         
         do {
             try controller.performFetch()
-            // self.tableView.reloadData()
+             sourceCollectionView.reloadData()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
@@ -56,11 +59,12 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let sections = controller.sections else {
-            print("No sections in fetchedResultsController")
-            return 0
-        }
-        return sections.count
+//        guard let sections = controller.sections else {
+//            print("No sections in fetchedResultsController")
+//            return 0
+//        }
+//        return sections.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,19 +73,19 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         }
         let sectionInfo = sections[section]
         return sectionInfo.numberOfObjects
-
     }
-    
-
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewReusableID, for: indexPath)
+        let source = controller.object(at: indexPath)
         if let cell = cell as? SourceCollectionViewCell {
-            let source = controller.object(at: indexPath)
             APIManager.shared.getData(urlString: source.sourceLogo!, completion: { (data) in
                 guard let validData = data else { return }
                 guard let validImage = UIImage(data: validData) else { return }
-                cell.sourceImageView.image = validImage
+                DispatchQueue.main.async {
+                    cell.sourceImageView.image = validImage
+                    cell.sourceNameLabel.text = source.sourceName
+                }
             })
         }        
         return cell
