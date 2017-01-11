@@ -441,7 +441,9 @@
 			baseConfigurationReference = F175005E17DDF3C054DA13EF /* Pods-BreakingSnooze.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BreakingSnooze/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.BreakingSnooze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -454,7 +456,9 @@
 			baseConfigurationReference = C9C8F0F155BB3A0C948E3557 /* Pods-BreakingSnooze.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BreakingSnooze/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.BreakingSnooze;
 				PRODUCT_NAME = "$(TARGET_NAME)";

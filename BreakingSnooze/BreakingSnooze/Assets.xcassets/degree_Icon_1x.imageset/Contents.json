@@ -2,13 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Image.png",
+      "filename" : "degree_Icon_1x.png",
       "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "blue-sky-1571797_1920.jpg",
-      "scale" : "2x"
     },
     {
       "idiom" : "universal",

@@ -35,7 +35,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
         
         do {
             try controller.performFetch()
-            // self.tableView.reloadData()
+             self.tableView.reloadData()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }

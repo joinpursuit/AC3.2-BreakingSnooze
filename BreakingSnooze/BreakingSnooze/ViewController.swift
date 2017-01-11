@@ -12,15 +12,26 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate {
+fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
+fileprivate let reuseIdentifer = "Top Stories Cell"
+
+
+class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var conditionsImageView: UIImageView!
+    @IBOutlet weak var verticalLineView: UIView!
+    @IBOutlet weak var degreeIconView: UIImageView!
+    @IBOutlet weak var listeningToLabel: UILabel!
+    @IBOutlet weak var radioStationNameLabel: UILabel!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var breakingSnoozeBackgroundView: UIView!
     
     @IBOutlet weak var breakingNewsLabel: UILabel!
-    var sourcesURL = "https://newsapi.org/v1/sources"
-    
+    @IBOutlet weak var localNewsTableView: UITableView!
+        
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -35,17 +46,70 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         return locMan
     }()
-    
     var currentWeather: [Weather] = []
-    let reuseIdentifer = "Top Stories Cell"
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
+        localNewsTableView.delegate = self
+        localNewsTableView.dataSource = self
         initializeFetchedResultsController()
         getSources()
         locationManager.delegate = self
         permission()
-        // Do any additional setup after loading the view, typically from a nib.
+        whiteTextShadow()
+        setUpButtonImages()
+    }
+    
+    func setUpButtonImages() {
+        let playPauseImage = UIImage(named: "play_button")
+        playPauseButton.setBackgroundImage(playPauseImage, for: UIControlState.normal)
+
+        let settingsImage = UIImage(named: "settings_Icon")
+        settingsButton.setBackgroundImage(settingsImage, for: UIControlState.normal)
+        
+        let degreeImage = UIImage(named: "degree_Icon_1x")
+        degreeIconView.image = degreeImage
+    }
+    
+    func whiteTextShadow() {
+        let _ = [
+            temperatureLabel,
+            locationLabel,
+            conditionsImageView,
+            verticalLineView,
+            degreeIconView,
+            listeningToLabel,
+            radioStationNameLabel,
+            breakingSnoozeBackgroundView
+        ].map { $0.layer.shadowOffset = CGSize(width: 0, height: 0) }
+        
+        let _ = [
+            temperatureLabel,
+            locationLabel,
+            conditionsImageView,
+            verticalLineView,
+            degreeIconView,
+            listeningToLabel,
+            radioStationNameLabel
+        ].map { $0.layer.shadowOpacity = 0.50 }
+        
+        breakingSnoozeBackgroundView.layer.shadowOpacity = 0.10
+
+        let _ = [
+            temperatureLabel,
+            locationLabel,
+            conditionsImageView,
+            verticalLineView,
+            degreeIconView,
+            listeningToLabel,
+            radioStationNameLabel,
+            breakingSnoozeBackgroundView
+            ].map { $0.layer.shadowRadius = 6 }
+        
+        
     }
     
     //MARK: - Load data from API
@@ -57,7 +121,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 if let new = Weather.getData(from: data!) {
                     self.currentWeather = new
                     dump(self.currentWeather)
-                    
                 }
                 
                 DispatchQueue.main.async {
@@ -66,7 +129,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                     self.conditionsImageView.image =  image
 
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
-                    self.locationLabel.text = "\(self.currentWeather[0].name),  \(self.currentWeather[0].country)"
+                    self.locationLabel.text = "\(self.currentWeather[0].name), \(self.currentWeather[0].country)"
+                    print("\(self.currentWeather[0].name), \n\(self.currentWeather[0].country)")
+                    self.view.reloadInputViews()
                 }
                 
             }
@@ -75,7 +140,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func getSources() {
-        APIManager.shared.getData(urlString: self.sourcesURL)
+        APIManager.shared.getData(urlString: sourcesURL)
         { (data: Data?) in
             if let validData = data {
                 if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
@@ -129,6 +194,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func getArticlesFromSources() {
+        
         
     }
     
@@ -187,7 +253,42 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         dump(error)
     }
     
+    //MARK: // -Helper Functions
+    
+    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+        let article = controller.object(at: indexPath)
+        cell.textLabel?.text = article.sourceName
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .medium
+        
+    }
+
     //MARK: // -Table View Delegate
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
+        guard let sections = controller.sections else {
+            print("No sections in fetchedResultsController")
+            return 0
+        }
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sections = controller.sections else {
+            fatalError("No sections in fetchedResultsController")
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
+    }
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath)
+        
+        let article = controller.object(at: indexPath)
+        cell.textLabel?.text = article.sourceName
+        return cell
+    }
     
     
 
