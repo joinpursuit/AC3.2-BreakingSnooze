@@ -69,7 +69,7 @@
                                 <rect key="frame" x="0.0" y="277" width="375" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="Lfi-xJ-lul">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Top Stories Cell" rowHeight="59" id="Lfi-xJ-lul">
                                         <rect key="frame" x="0.0" y="28" width="375" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfi-xJ-lul" id="KDn-fM-tYV">
@@ -157,6 +157,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="breakingNewsLabel" destination="bqa-XU-UHT" id="yUR-9M-cES"/>
                         <outlet property="conditionsImageView" destination="Bye-I1-nUh" id="OAI-kd-FDz"/>
                         <outlet property="locationLabel" destination="lTz-HE-0Kh" id="8eV-Jr-zKy"/>
                         <outlet property="temperatureLabel" destination="19o-6u-OhC" id="XTN-hm-qUG"/>
