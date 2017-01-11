@@ -12,13 +12,16 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate {
+class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var conditionsImageView: UIImageView!
-    
     @IBOutlet weak var breakingNewsLabel: UILabel!
+    @IBOutlet weak var localNewsTableView: UITableView!
+    
+    
+    
     var sourcesURL = "https://newsapi.org/v1/sources"
     
     var mainContext: NSManagedObjectContext {
@@ -35,12 +38,16 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         return locMan
     }()
-    
     var currentWeather: [Weather] = []
     let reuseIdentifer = "Top Stories Cell"
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
+        localNewsTableView.delegate = self
+        localNewsTableView.dataSource = self
         initializeFetchedResultsController()
         getSources()
         locationManager.delegate = self
@@ -130,6 +137,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     
     func getArticlesFromSources() {
         
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -187,7 +195,42 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         dump(error)
     }
     
+    //MARK: // -Helper Functions
+    
+    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+        let article = controller.object(at: indexPath)
+        cell.textLabel?.text = article.sourceName
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .medium
+        
+    }
+
     //MARK: // -Table View Delegate
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
+        guard let sections = controller.sections else {
+            print("No sections in fetchedResultsController")
+            return 0
+        }
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sections = controller.sections else {
+            fatalError("No sections in fetchedResultsController")
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
+    }
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath)
+        
+        let article = controller.object(at: indexPath)
+        cell.textLabel?.text = article.sourceName
+        return cell
+    }
     
     
 
