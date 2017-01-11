@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+fileprivate let segueID = "sourceArticlesSegue"
 
-class SourceTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class SourceTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, Pusher {
     
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -34,7 +35,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
         
         do {
             try controller.performFetch()
-            // self.tableView.reloadData()
+             self.tableView.reloadData()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
@@ -58,6 +59,7 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sourceCollectionViewCellID", for: indexPath) as! CategoryTableViewCell
         
+        cell.delegate = self
         let category = controller.object(at: IndexPath(item: 1, section: indexPath.section))
         cell.category = category.category
         return cell
@@ -67,6 +69,11 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
         let category = controller.object(at: IndexPath(item: 1, section: section))
         let categoryName =  category.category?.capitalized
         return categoryName
+    }
+    
+    func pushViewController(vc: FavouritesViewController, sourceID: String) {
+        vc.sourceID = sourceID
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /*
@@ -103,15 +110,4 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
      return true
      }
      */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
