@@ -10,15 +10,23 @@ import UIKit
 import View2ViewTransition
 import CoreData
 
-class FavouritesViewController: UIViewController, View2ViewTransitionPresenting, UICollectionViewDelegate, UICollectionViewDataSource {
+class FavouritesViewController: UIViewController, View2ViewTransitionPresenting, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     
     var transitionController: TransitionController = TransitionController()
     var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     var articles: [SourceArticles]?
     var sourceID: String?
+    var mainContext: NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    private var controller: NSFetchedResultsController<NewsSource>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if navigationController?.accessibilityElementCount() ?? 0 > 1 {
+        self.navigationItem.leftBarButtonItem = closeItem
+        }
         self.view.addSubview(collectionView)
         if let source = sourceID {
             self.getDataFromAPI(source: source)
@@ -26,6 +34,11 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     }
     //MARK: Views
     
+    
+    lazy var closeItem: UIBarButtonItem = {
+        let item: UIBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(onCloseButtonClicked(sender:)))
+        return item
+    }()
     
     lazy var collectionView: UICollectionView = {
         
@@ -83,7 +96,9 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         
         presentedViewController.transitionController = self.transitionController
         transitionController.userInfo = ["destinationIndexPath": indexPath as NSIndexPath, "initialIndexPath": indexPath as NSIndexPath]
-        
+        presentedViewController.articles = self.articles
+        let cell = self.collectionView.cellForItem(at: indexPath) as! PresentingCollectionViewCell
+        presentedViewController.image = cell.contentImage.image
         // This example will push view controller if presenting view controller has navigation controller.
         // Otherwise, present another view controller
         if let navigationController = self.navigationController {
@@ -92,7 +107,13 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
             navigationController.delegate = transitionController
             transitionController.push(viewController: presentedViewController, on: self, attached: presentedViewController)
             
+        } else {
+            
+            // Set transitionController as a transition delegate and present.
+            presentedViewController.transitioningDelegate = transitionController
+            transitionController.present(viewController: presentedViewController, on: self, attached: presentedViewController, completion: nil)
         }
+
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
@@ -156,6 +177,12 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
             self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)
             self.collectionView.layoutIfNeeded()
         }
+    }
+    
+    // MARK: Actions
+    
+    func onCloseButtonClicked(sender: UIBarButtonItem) {
+        self.tabBarController.
     }
 }
 
