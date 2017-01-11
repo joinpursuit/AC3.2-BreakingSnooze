@@ -20,6 +20,7 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
             sourceCollectionView.dataSource = self
         }
     }
+
     
     @IBOutlet weak var sourceCollectionView: UICollectionView!
     
@@ -68,6 +69,7 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         }
         let sectionInfo = sections[section]
         return sectionInfo.numberOfObjects
+
     }
     
 
@@ -81,8 +83,7 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
                 guard let validImage = UIImage(data: validData) else { return }
                 cell.sourceImageView.image = validImage
             })
-        }
-        
+        }        
         return cell
     }
 }
