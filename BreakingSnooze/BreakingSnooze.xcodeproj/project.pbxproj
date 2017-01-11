@@ -27,6 +27,7 @@
 		A2B61A2C1E2563DF00630C45 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B61A2B1E2563DF00630C45 /* Weather.swift */; };
 		A2B61A2E1E25667F00630C45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B61A2D1E25667F00630C45 /* ViewController.swift */; };
 		A2B61A301E25684F00630C45 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B61A2F1E25684F00630C45 /* APIRequestManager.swift */; };
+		A2EBDBD11E26991000313A5F /* NewsArticles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EBDBD01E26991000313A5F /* NewsArticles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		A2B61A2B1E2563DF00630C45 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A2B61A2D1E25667F00630C45 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A2B61A2F1E25684F00630C45 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		A2EBDBD01E26991000313A5F /* NewsArticles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticles.swift; sourceTree = "<group>"; };
 		C9C8F0F155BB3A0C948E3557 /* Pods-BreakingSnooze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingSnooze.release.xcconfig"; path = "Pods/Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze.release.xcconfig"; sourceTree = "<group>"; };
 		F175005E17DDF3C054DA13EF /* Pods-BreakingSnooze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingSnooze.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			children = (
 				81D64CE61E2535BD000B47E8 /* SourceArticles.swift */,
 				A2B61A2B1E2563DF00630C45 /* Weather.swift */,
+				A2EBDBD01E26991000313A5F /* NewsArticles.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B61A301E25684F00630C45 /* APIRequestManager.swift in Sources */,
+				A2EBDBD11E26991000313A5F /* NewsArticles.swift in Sources */,
 				81D64CEB1E253628000B47E8 /* APIManager.swift in Sources */,
 				2D40F3661E2578C700E088C7 /* SourceTableViewController.swift in Sources */,
 				2D40F3681E258AF000E088C7 /* SourceCollectionViewCell.swift in Sources */,
