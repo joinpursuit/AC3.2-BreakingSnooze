@@ -6,7 +6,6 @@ target 'BreakingSnooze' do
   use_frameworks!
 
   # Pods for BreakingSnooze
-	pod 'View2ViewTransition'
- 	pod 'p2.OAuth2', '~> 3.0'
+	pod 'View2ViewTransition’
 
 end
