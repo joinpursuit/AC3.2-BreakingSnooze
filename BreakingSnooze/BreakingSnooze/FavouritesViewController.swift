@@ -27,18 +27,20 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         initializeFetchedResultsController()
         guard let newCoreDataCount = controller.fetchedObjects?.count else { return }
         if initialCoreDataCount != newCoreDataCount {
+            print("updating")
             self.collectionView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(collectionView)
         if let source = sourceID {
             self.getDataFromAPI(source: source)
             self.navigationItem.leftBarButtonItem = closeItem
         }
         initializeFetchedResultsController()
+        
+        self.view.addSubview(collectionView)
     }
     
     
@@ -89,7 +91,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     
     //MARK: Get Data from API:
     func getDataFromAPI(source: String) {
-        APIManager.shared.getData(urlString:  "https://newsapi.org/v1/articles?source=\(source)&apiKey=817c2d1fcd584b7ca26af5888e55bfd2&sortBy=latest") { (data: Data?) in
+        APIManager.shared.getData(urlString: "https://newsapi.org/v1/articles?source=\(source)&apiKey=817c2d1fcd584b7ca26af5888e55bfd2&sortBy=latest") { (data: Data?) in
             guard let validData = data else { return }
             
             do {
@@ -160,8 +162,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         
         if let arr = articles {
             return arr.count
-        }
-        if let sections = controller.sections {
+        } else if let sections = controller.sections, let _ = self.sourceID {
             let objectCount = sections[section].numberOfObjects
             print(objectCount)
             return objectCount
