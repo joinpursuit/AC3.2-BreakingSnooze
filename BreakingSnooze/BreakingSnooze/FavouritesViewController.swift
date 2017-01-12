@@ -27,6 +27,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         initializeFetchedResultsController()
         guard let newCoreDataCount = controller.fetchedObjects?.count else { return }
         if initialCoreDataCount != newCoreDataCount {
+            print("updating")
             self.collectionView.reloadData()
         }
     }

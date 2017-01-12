@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 import CoreLocation
+import AVFoundation
 
 fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
 fileprivate let reuseIdentifer = "Top Stories Cell"
@@ -52,6 +53,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     var currentWeather: [Weather] = []
     lazy var allArticles: [SourceArticles] = []
     let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
+     let randomNum = Int(arc4random_uniform(UInt32(19)))
+     var audioPlayer = AVAudioPlayer()
 
      let randomNum = Int(arc4random_uniform(UInt32(19)))
     
@@ -71,6 +74,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         whiteTextShadow()
         setUpButtonImages()
         getArticlesFromSources()
+        setUpAudio()
         self.breakingNewsLabel.text = "Todays Breaking Snooze courtesy of"
         self.detailCompanyLabel.text = "\(sources[randomNum])"
     }
@@ -327,8 +331,18 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         }
         
     }
-    
-    
+    func setUpAudio() {
+        let music = Bundle.main.path(forResource: "Viva_La_Vida", ofType: ".mp3")
+        
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: music!))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch {
+                print(error)
+        }
+    }
     //MARK: // -Table View Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -371,7 +385,22 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
     }
     
+    //MARK: -Actions
+    var imagePlay = UIImage()
     
-    
+    @IBAction func playPauseButtonPressed(_ sender: UIButton) {
+        if !audioPlayer.isPlaying {
+            imagePlay = UIImage(named:"Pause")!
+            audioPlayer.play()
+            playPauseButton.setBackgroundImage(imagePlay, for: UIControlState.normal)
+            self.radioStationNameLabel.text = "Viva La Vida"
+        } else {
+            audioPlayer.stop()
+            imagePlay = UIImage(named:"play_button")!
+            playPauseButton.setBackgroundImage(imagePlay, for: .normal)
+            self.radioStationNameLabel.text = "Paused"
+        }
+        
+    }
 }
 

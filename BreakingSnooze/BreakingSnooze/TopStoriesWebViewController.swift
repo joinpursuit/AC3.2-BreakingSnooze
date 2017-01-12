@@ -174,7 +174,6 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
     //MARK: - View Hierarchy
     func setUpViewHierarchyAndConstraints () {
         let webConfiguration = WKWebViewConfiguration()
-        //let userContentController = WKUserContentController()
         _ = [backButton,
              saveButton,
              shareButton,
