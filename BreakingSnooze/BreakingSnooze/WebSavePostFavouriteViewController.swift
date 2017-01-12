@@ -1,4 +1,4 @@
-//
+    //
 //  WebSavePostFavouriteViewController.swift
 //  BreakingSnooze
 //
@@ -30,6 +30,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         if let _ = isThisInCoreData(article: currentArticle) {
             favouriteButton.setTitle("❤️", for: .normal)
         }
+        initializeFetchedResultsController()
     }
     
     //MARK: Set up View Hierarchy and Constraints
