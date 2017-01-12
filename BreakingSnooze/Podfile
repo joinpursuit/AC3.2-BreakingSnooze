@@ -7,6 +7,4 @@ target 'BreakingSnooze' do
 
   # Pods for BreakingSnooze
 	pod 'View2ViewTransition’
- 	pod 'p2.OAuth2', '~> 3.0'
-
 end
