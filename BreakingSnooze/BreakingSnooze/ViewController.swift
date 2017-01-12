@@ -44,18 +44,22 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     let locationManager: CLLocationManager = {
         let locMan = CLLocationManager()
         
-        locMan.desiredAccuracy = 250.0
-        locMan.distanceFilter = 250.0
+        locMan.desiredAccuracy = 25.0
+        locMan.distanceFilter = 25.0
         
         return locMan
     }()
     var currentWeather: [Weather] = []
+
     lazy var allArticles: [SourceArticles] = []
     
     let sources = ["associated-press", "bb-news", "bloomberg", "buisness-insider", "buzzfeed"]
      let randomNum = Int(arc4random_uniform(UInt32(4)))
+
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +76,20 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         self.breakingNewsLabel.text = "Todays Breaking Snooze \n courtesy of \(sources[randomNum])"
     }
     
-    
+    func loadList(notification: NSNotification){
+        //load data here
+        
+        let userDefaults = UserDefaults.standard
+
+        let locationDict = userDefaults.value(forKey: "locationSave")
+        guard let locDict = locationDict as? [String : Any],
+            let latCoord = locDict["latCoord"] as? String,
+            let longCoord = locDict["longCoord"] as? String else { return }
+        
+        loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
+
+        self.view.reloadInputViews()
+    }
 
     func setUpButtonImages() {
         let playPauseImage = UIImage(named: "play_button")
@@ -141,6 +158,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
                     self.locationLabel.text = "\(self.currentWeather[0].name), \(self.currentWeather[0].country)"
                     print("\(self.currentWeather[0].name), \n\(self.currentWeather[0].country)")
+                    
                     self.view.reloadInputViews()
                 }
                 
@@ -245,13 +263,35 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         guard let validLocation = locations.last else {return}
         let latCoordinate = validLocation.coordinate.latitude
         let longCoordinate = validLocation.coordinate.longitude
-        let latCoord =  String(format: "%0.4f", latCoordinate )
-        let longCoord = String(format: "%0.4f", longCoordinate )
+        var latCoord =  String(format: "%0.4f", latCoordinate )
+        var longCoord = String(format: "%0.4f", longCoordinate )
         
+        let userDefaults = UserDefaults.standard
+        
+        let locationDict: [String : Any] = ["latCoord" : latCoord,
+                            "longCoord" : longCoord,
+                            "didSetOwnLocation" : false
+                            ]
+        
+        if var locationSave = userDefaults.value(forKeyPath: "locationSave") {
+            guard let locationDictionary = locationSave as? [String : Any],
+                let didSetOwnLocation = locationDictionary["didSetOwnLocation"] as? Bool else { return }
+            if didSetOwnLocation == false {
+                locationSave = locationDict
+                userDefaults.set(locationSave, forKey: "locationSave")
+            } else {
+                guard let lat = locationDictionary["latCoord"] as? String,
+                    let long = locationDictionary["latCoord"] as? String else { return }
+                latCoord = lat
+                longCoord = long
+            }
+        }
         
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
         
         locationManager.delegate = nil
+        
+
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -318,7 +358,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return cell
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selected = segue.destination as? TopStoriesWebViewController,
             let cell = sender as? TopStoriesTableViewCell,
@@ -328,6 +367,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
 
     }
     
+
 
 }
 
