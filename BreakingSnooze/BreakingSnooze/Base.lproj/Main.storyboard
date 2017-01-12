@@ -130,7 +130,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfi-xJ-lul" id="KDn-fM-tYV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dtV-7W-UBQ">
@@ -156,7 +156,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dtV-7W-UBQ" firstAttribute="leading" secondItem="KDn-fM-tYV" secondAttribute="leading" id="GBq-HO-VFN"/>
+                                                <constraint firstItem="dtV-7W-UBQ" firstAttribute="leading" secondItem="KDn-fM-tYV" secondAttribute="leading" id="8Ir-XT-YKn"/>
                                                 <constraint firstItem="dtV-7W-UBQ" firstAttribute="top" secondItem="KDn-fM-tYV" secondAttribute="top" id="HFd-ZW-LjY"/>
                                                 <constraint firstItem="aiK-st-FPF" firstAttribute="leading" secondItem="dtV-7W-UBQ" secondAttribute="trailing" constant="17" id="TPb-uK-JxS"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="aiK-st-FPF" secondAttribute="bottom" constant="-1" id="Y9u-ek-2o8"/>
@@ -199,13 +199,13 @@
                             <constraint firstAttribute="trailing" secondItem="Bye-I1-nUh" secondAttribute="trailing" id="YkU-xI-YfD"/>
                             <constraint firstItem="ipA-Cu-0et" firstAttribute="leading" secondItem="l1D-cb-QxX" secondAttribute="trailing" constant="4" id="faJ-Zp-i9e"/>
                             <constraint firstItem="ipA-Cu-0et" firstAttribute="top" secondItem="Bye-I1-nUh" secondAttribute="top" constant="69" id="fm6-pC-bLy"/>
-                            <constraint firstItem="ZcD-re-GM3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="gaa-FG-V4E"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZcD-re-GM3" secondAttribute="bottom" id="gbL-iZ-Iw7"/>
                             <constraint firstItem="lTz-HE-0Kh" firstAttribute="leading" secondItem="ipA-Cu-0et" secondAttribute="trailing" constant="4" id="gjc-5n-Loj"/>
                             <constraint firstItem="ZcD-re-GM3" firstAttribute="top" secondItem="js0-Ws-aLD" secondAttribute="bottom" id="hll-Rw-JKh"/>
                             <constraint firstItem="l1D-cb-QxX" firstAttribute="top" secondItem="19o-6u-OhC" secondAttribute="top" id="jjN-8b-izf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZcD-re-GM3" secondAttribute="trailing" constant="-16" id="jph-r9-j8C"/>
                             <constraint firstItem="tth-UU-5Ct" firstAttribute="top" secondItem="19o-6u-OhC" secondAttribute="bottom" constant="8" id="l2c-by-Rid"/>
+                            <constraint firstItem="ZcD-re-GM3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rSY-8J-Qt6"/>
                             <constraint firstAttribute="bottom" secondItem="js0-Ws-aLD" secondAttribute="bottom" constant="394" id="p0T-ce-xXX"/>
                         </constraints>
                     </view>

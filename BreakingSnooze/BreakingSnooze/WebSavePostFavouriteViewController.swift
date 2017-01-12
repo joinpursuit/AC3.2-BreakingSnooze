@@ -263,7 +263,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     //MARK: - Actions
     
     func backButtonPressed (sender: UIButton) {
-        webView.goBack()
+        dismiss(animated: true, completion: nil)
     }
     
     func favouritesButtonPresses (sender: UIButton) {
