@@ -1,10 +1,9 @@
 //
-//  SourceArticles.swift
-//  UppermostNews
+//  ViewController.swift
+//  BreakingSnooze
 //
-//  Created by Cris on 12/5/16.
-//  Copyright © 2016 Cris. All rights reserved.
-//
+//  Created by C4Q on 1/9/17.
+//  Copyright © 2017 C4Q. All rights reserved.
 
 import Foundation
 

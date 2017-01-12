@@ -5,7 +5,6 @@
 //  Created by C4Q on 1/9/17.
 //  Copyright © 2017 C4Q. All rights reserved.
 //
-//APIKEY = 817c2d1fcd584b7ca26af5888e55bfd2
 //APIKEYFORRADIO = ed4616717617f6e9d090f88c8f
 import Foundation
 import UIKit
@@ -53,7 +52,11 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     var currentWeather: [Weather] = []
     lazy var allArticles: [SourceArticles] = []
     let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
+<<<<<<< HEAD
      let randomNum = Int(arc4random_uniform(UInt32(19)))
+=======
+     let randomNum = Int(arc4random_uniform(UInt32(21)))
+>>>>>>> 8292d93cf5b88941837549dcafcfbd9a09c561ce
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -232,18 +235,13 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
-        
     }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
-
     //MARK: - Core Location
     
     func permission() {

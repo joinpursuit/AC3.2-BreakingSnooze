@@ -30,6 +30,11 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
     
         setupWebView()
         setUpViewHierarchyAndConstraints()
+
+        initializeFetchedResultsController()
+        if let _ = isThisInCoreData(article: article) {
+            favouriteButton.setTitle("❤️", for: .normal)
+        }
         let myURL = URL(string: article.articleURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
