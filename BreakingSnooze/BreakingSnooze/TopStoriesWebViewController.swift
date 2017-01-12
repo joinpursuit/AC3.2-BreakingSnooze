@@ -11,20 +11,62 @@ import WebKit
 
 class TopStoriesWebViewController: UIViewController, WKUIDelegate {
 
-    var article: NewsArticles!
+    var article: SourceArticles!
     var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = article.source
+       
         
         setupWebView()
-        let myURL = URL(string: article.url)
+        
+
+        let myURL = URL(string: article.articleURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
         
     }
 
+//    func initializeFetchedResultsController() {
+//        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+//        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Favorite.title), ascending: false)]
+//        controller = NSFetchedResultsController(fetchRequest: request,
+//                                                managedObjectContext: mainContext,
+//                                                sectionNameKeyPath: nil,
+//                                                cacheName: nil)
+//        controller.delegate = self
+//        
+//        do {
+//            try controller.performFetch()
+//            // self.tableView.reloadData()
+//        } catch {
+//            fatalError("Failed to initialize FetchedResultsController: \(error)")
+//        }
+//    }
+//    
+//    func isThisInCoreData(article: SourceArticles) -> Favorite? {
+//        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+//        let predicate: NSPredicate = NSPredicate(format: "title = %@", article.title)
+//        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Favorite.title), ascending: false)]
+//        request.predicate = predicate
+//        let isItInThereController = NSFetchedResultsController(fetchRequest: request,
+//                                                               managedObjectContext: mainContext,
+//                                                               sectionNameKeyPath: nil,
+//                                                               cacheName: nil)
+//        do {
+//            try isItInThereController.performFetch()
+//        } catch {
+//            print(error)
+//        }
+//        
+//        guard let resultsArr = isItInThereController.fetchedObjects,
+//            resultsArr.count > 0,
+//            let result = resultsArr.first else { return nil }
+//        
+//        return result
+//    }
+
+    
     private func setupWebView() {
         self.edgesForExtendedLayout = []
         let webConfiguration = WKWebViewConfiguration()

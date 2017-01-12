@@ -50,10 +50,12 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return locMan
     }()
     var currentWeather: [Weather] = []
-    lazy var allArticles: [NewsArticles] = []
+
+    lazy var allArticles: [SourceArticles] = []
     
     let sources = ["associated-press", "bb-news", "bloomberg", "buisness-insider", "buzzfeed"]
-    let randomNum = Int(arc4random_uniform(UInt32(4)))
+     let randomNum = Int(arc4random_uniform(UInt32(4)))
+
     
     override func viewWillAppear(_ animated: Bool) {
          NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
@@ -141,7 +143,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     //MARK: - Load data from API
     
     func loadData(endPoint: String) {
-        APIRequestManager.manager.getPOD(endPoint: endPoint) { (data: Data?) in
+        APIManager.shared.getData(urlString: endPoint) { (data: Data?) in
             if data != nil {
                 
                 if let new = Weather.getData(from: data!) {
@@ -307,12 +309,12 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     func getArticlesFromSources() {
 //        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
         let random = sources[randomNum]
-        let endpoint = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
+        let endpoint = "https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
         print("****************\(endpoint)************")
-        APIRequestManager.manager.getPOD(endPoint: endpoint) { (data: Data?) in
+        APIManager.shared.getData(urlString: endpoint) { (data: Data?) in
             if data != nil {
                 
-                if let article = NewsArticles.getData(from: data!) {
+                if let article = SourceArticles.parseArticles(from: data!) {
                     self.allArticles = article
                     
                 }
@@ -344,7 +346,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         cell.titleLabel.text = article.title
         cell.detailLabel.text = article.description
         
-        APIRequestManager.manager.getPOD(endPoint: article.image ) {(data: Data?) in
+        APIManager.shared.getData(urlString: article.imageURL ) {(data: Data?) in
             if let validData = data {
                     DispatchQueue.main.async {
                     cell.photoImageView.image = UIImage(data: validData)
@@ -366,8 +368,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
 
-    
-    
 
 }
 
