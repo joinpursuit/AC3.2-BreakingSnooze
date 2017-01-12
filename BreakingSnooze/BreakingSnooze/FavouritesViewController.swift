@@ -22,14 +22,21 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     }
     private var controller: NSFetchedResultsController<Favorite>!
     
+    override func viewDidAppear(_ animated: Bool) {
+        guard let initialCoreDataCount = controller.fetchedObjects?.count else { return }
+        initializeFetchedResultsController()
+        guard let newCoreDataCount = controller.fetchedObjects?.count else { return }
+        if initialCoreDataCount != newCoreDataCount {
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if navigationController?.accessibilityElementCount() ?? 0 > 1 {
-            self.navigationItem.leftBarButtonItem = closeItem
-        }
         self.view.addSubview(collectionView)
         if let source = sourceID {
             self.getDataFromAPI(source: source)
+            self.navigationItem.leftBarButtonItem = closeItem
         }
         initializeFetchedResultsController()
     }
@@ -48,7 +55,6 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         
         do {
             try controller.performFetch()
-            // self.tableView.reloadData()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }

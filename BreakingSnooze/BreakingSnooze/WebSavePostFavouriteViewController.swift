@@ -27,6 +27,9 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         super.viewDidLoad()
         self.view.backgroundColor = .white
         setUpViewHierarchyAndConstraints()
+        if let _ = isThisInCoreData(article: currentArticle) {
+            favouriteButton.setTitle("❤️", for: .normal)
+        }
     }
     
     //MARK: Set up View Hierarchy and Constraints
@@ -60,7 +63,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
              webViewContainterView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
              webViewContainterView.bottomAnchor.constraint(equalTo: backButton.topAnchor)
             ].map { $0.isActive = true }
-
+        
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.uiDelegate = self
@@ -74,6 +77,8 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
             webView.leadingAnchor.constraint(equalTo: webViewContainterView.leadingAnchor)
             ].map { $0.isActive = true }
     }
+    
+    // MARK: - Fetch Controller Things
     
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
@@ -90,7 +95,28 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
+    }
+    
+    func isThisInCoreData(article: SourceArticles) -> Favorite? {
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        let predicate: NSPredicate = NSPredicate(format: "title = %@", article.title)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Favorite.title), ascending: false)]
+        request.predicate = predicate
+        let isItInThereController = NSFetchedResultsController(fetchRequest: request,
+                                                               managedObjectContext: mainContext,
+                                                               sectionNameKeyPath: nil,
+                                                               cacheName: nil)
+        do {
+            try isItInThereController.performFetch()
+        } catch {
+            print(error)
+        }
         
+        guard let resultsArr = isItInThereController.fetchedObjects,
+            resultsArr.count > 0,
+            let result = resultsArr.first else { return nil }
+        
+        return result
     }
     
     //MARK View2ViewTransitionPresented Delegates
@@ -136,7 +162,6 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
-        //button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         return button
     }()
     
@@ -146,14 +171,13 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         button.setTitle("🖤", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
         button.addTarget(self, action: #selector(favouritesButtonPresses(sender:)), for: .touchUpInside)
-        //button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         return button
     }()
     
     lazy var shareButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Share", for: .normal)
+        button.setTitle("Share on Slack", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
         return button
@@ -162,7 +186,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     lazy var saveButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Save", for: .normal)
+        button.setTitle("Save Offline", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
         return button
@@ -184,7 +208,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         collectionView.isPagingEnabled = true
         return collectionView
     }()
-   
+    
     lazy var titleLabel: UILabel = {
         let font: UIFont = UIFont.boldSystemFont(ofSize: 16.0)
         let label: UILabel = UILabel()
@@ -227,21 +251,28 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         return Double(abs(transate.y)/abs(transate.x)) > M_PI_4
     }
     
-    //MARK: - Actions 
+    //MARK: - Actions
     
     func backButtonPressed (sender: UIButton) {
         webView.goBack()
     }
     
     func favouritesButtonPresses (sender: UIButton) {
-        let favorite = Favorite(context: mainContext)
-        favorite.populate(article: currentArticle)
-        do {
-            try mainContext.save()
-            print("working")
-            sender.setTitle("❤️", for: .normal)
-        } catch {
-            print(error.localizedDescription)
+        if let favourite = isThisInCoreData(article: currentArticle) {
+            mainContext.delete(favourite)
+            sender.setTitle("🖤", for: .normal)
+            print("deletedFromCoreData")
+        } else {
+            let favorite = Favorite(context: mainContext)
+            favorite.populate(article: currentArticle)
+            do {
+                try mainContext.save()
+                print("working")
+                sender.setTitle("❤️", for: .normal)
+
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
