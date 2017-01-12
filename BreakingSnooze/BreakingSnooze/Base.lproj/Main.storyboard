@@ -200,21 +200,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationTableViewCell" rowHeight="58" id="sxk-ev-kJo" customClass="LocationTableViewCell" customModule="BreakingSnooze" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="58"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationTableViewCell" rowHeight="72" id="sxk-ev-kJo" customClass="LocationTableViewCell" customModule="BreakingSnooze" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxk-ev-kJo" id="ire-Lh-6rW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcY-Fq-ahs">
-                                            <rect key="frame" x="23" y="18" width="71" height="21"/>
+                                            <rect key="frame" x="23" y="25.5" width="71" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <pickerView contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="HRT-xK-ESX">
-                                            <rect key="frame" x="180" y="0.0" width="178" height="57.5"/>
+                                        <pickerView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="HRT-xK-ESX">
+                                            <rect key="frame" x="180" y="0.0" width="178" height="71.5"/>
                                         </pickerView>
                                     </subviews>
                                     <constraints>
@@ -231,7 +231,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RadioSwitchTableViewCell" id="U9y-Do-2uU" customClass="RadioSwitchTableViewCell" customModule="BreakingSnooze" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="375" height="58"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U9y-Do-2uU" id="dX0-tx-3W8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
@@ -258,7 +258,7 @@
                                 </constraints>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RadioStationTableViewCell" id="kXb-4y-xOM" customClass="RadioStationTableViewCell" customModule="BreakingSnooze" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="144" width="375" height="58"/>
+                                <rect key="frame" x="0.0" y="158" width="375" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kXb-4y-xOM" id="6ey-bk-wgI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
