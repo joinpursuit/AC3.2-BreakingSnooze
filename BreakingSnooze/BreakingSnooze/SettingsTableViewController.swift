@@ -44,9 +44,7 @@ class SettingsTableViewController: UITableViewController {
 
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell", for: indexPath)
-            if let location: LocationTableViewCell = cell as? LocationTableViewCell {
-                
-            }
+            
         } else if  indexPath.section == 1 {
             cell = tableView.dequeueReusableCell(withIdentifier: "RadioSwitchTableViewCell", for: indexPath)
             if let segmentedCell: RadioSwitchTableViewCell = cell as? RadioSwitchTableViewCell {
