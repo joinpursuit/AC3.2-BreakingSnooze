@@ -233,6 +233,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     
     func onCloseButtonClicked(sender: UIBarButtonItem) {
         //self.tabBarController.
+
     }
 }
 
