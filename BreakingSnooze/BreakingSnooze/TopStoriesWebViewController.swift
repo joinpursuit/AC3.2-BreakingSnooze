@@ -12,7 +12,10 @@ import WebKit
 class TopStoriesWebViewController: UIViewController, WKUIDelegate {
 
     var article: SourceArticles!
+   
     var webView: WKWebView!
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,7 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate {
         webView.load(myRequest)
         
     }
-
+//
 //    func initializeFetchedResultsController() {
 //        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
 //        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Favorite.title), ascending: false)]
@@ -65,6 +68,59 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate {
 //        
 //        return result
 //    }
+//    
+//    lazy var webViewContainterView: UIView = {
+//        let view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+//    
+//    lazy var backButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("👈", for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
+//        button.clipsToBounds = true
+//        button.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
+//        return button
+//    }()
+//    
+//    lazy var favouriteButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("🖤", for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
+//        button.addTarget(self, action: #selector(favouritesButtonPresses(sender:)), for: .touchUpInside)
+//        return button
+//    }()
+//    
+//    lazy var shareButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("Share on Slack", for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
+//        return button
+//    }()
+//    
+//    lazy var saveButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("Save Offline", for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
+//        return button
+//    }()
+//    
+//    lazy var titleLabel: UILabel = {
+//        let font: UIFont = UIFont.boldSystemFont(ofSize: 16.0)
+//        let label: UILabel = UILabel()
+//        label.font = font
+//        label.text = "Detail"
+//        label.sizeToFit()
+//        return label
+//    }()
+//
 
     
     private func setupWebView() {
@@ -84,4 +140,30 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate {
         }
 
     }
+    
+    
+    //MARK: -Actions
+//    
+//    func backButtonPressed (sender: UIButton) {
+//        webView.goBack()
+//    }
+//    
+//    func favouritesButtonPresses (sender: UIButton) {
+//        if let favourite = isThisInCoreData(article: currentArticle) {
+//            mainContext.delete(favourite)
+//            sender.setTitle("🖤", for: .normal)
+//            print("deletedFromCoreData")
+//        } else {
+//            let favorite = Favorite(context: mainContext)
+//            favorite.populate(article: currentArticle)
+//            do {
+//                try mainContext.save()
+//                print("working")
+//                sender.setTitle("❤️", for: .normal)
+//                
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
 }

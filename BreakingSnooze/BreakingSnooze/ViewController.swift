@@ -53,8 +53,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
 
     lazy var allArticles: [SourceArticles] = []
     
-    let sources = ["associated-press", "bb-news", "bloomberg", "buisness-insider", "buzzfeed"]
-     let randomNum = Int(arc4random_uniform(UInt32(4)))
+    let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "the-next-web", "usa-today", "time", "the-washington-post"]
+     let randomNum = Int(arc4random_uniform(UInt32(22)))
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +73,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         whiteTextShadow()
         setUpButtonImages()
         getArticlesFromSources()
-        self.breakingNewsLabel.text = "Todays Breaking Snooze \n courtesy of \(sources[randomNum])"
+        self.breakingNewsLabel.text = "Todays Breaking Snooze courtesy of \n \(sources[randomNum])"
     }
     
     func loadList(notification: NSNotification){
@@ -296,7 +296,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
         
-    
+        locationManager.delegate = nil
 
     }
     
@@ -313,9 +313,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func getArticlesFromSources() {
-//        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
         let random = sources[randomNum]
-        let endpoint = "https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
+        let endpoint = "https://newsapi.org/v1/articles?source=\(random)&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
         print("****************\(endpoint)************")
         APIManager.shared.getData(urlString: endpoint) { (data: Data?) in
             if data != nil {
