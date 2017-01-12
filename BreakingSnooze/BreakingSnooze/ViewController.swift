@@ -12,12 +12,14 @@ import CoreData
 import CoreLocation
 
 
+
 fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
 fileprivate let reuseIdentifer = "Top Stories Cell"
 
 
 class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    //MARK: \\ -Outlets
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var conditionsImageView: UIImageView!
@@ -28,29 +30,34 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var breakingSnoozeBackgroundView: UIView!
-    
     @IBOutlet weak var breakingNewsLabel: UILabel!
     @IBOutlet weak var localNewsTableView: UITableView!
     
+    
+    //MARK: - Properties
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
     private var controller: NSFetchedResultsController<NewsSource>!
-    
     let locationManager: CLLocationManager = {
         let locMan = CLLocationManager()
         
-        locMan.desiredAccuracy = 250.0
-        locMan.distanceFilter = 250.0
+        locMan.desiredAccuracy = 25.0
+        locMan.distanceFilter = 25.0
         
         return locMan
     }()
     var currentWeather: [Weather] = []
-
     lazy var allArticles: [NewsArticles] = []
-
-
+    
+    let sources = ["associated-press", "bb-news", "bloomberg", "buisness-insider", "buzzfeed"]
+    let randomNum = Int(arc4random_uniform(UInt32(4)))
+    
+    override func viewWillAppear(_ animated: Bool) {
+         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
@@ -63,9 +70,23 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         whiteTextShadow()
         setUpButtonImages()
         getArticlesFromSources()
+        self.breakingNewsLabel.text = "Todays Breaking Snooze \n courtesy of \(sources[randomNum])"
     }
     
-    
+    func loadList(notification: NSNotification){
+        //load data here
+        
+        let userDefaults = UserDefaults.standard
+
+        let locationDict = userDefaults.value(forKey: "locationSave")
+        guard let locDict = locationDict as? [String : Any],
+            let latCoord = locDict["latCoord"] as? String,
+            let longCoord = locDict["longCoord"] as? String else { return }
+        
+        loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
+
+        self.view.reloadInputViews()
+    }
 
     func setUpButtonImages() {
         let playPauseImage = UIImage(named: "play_button")
@@ -124,7 +145,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 
                 if let new = Weather.getData(from: data!) {
                     self.currentWeather = new
-                    dump(self.currentWeather)
                 }
                 
                 DispatchQueue.main.async {
@@ -135,6 +155,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
                     self.locationLabel.text = "\(self.currentWeather[0].name), \(self.currentWeather[0].country)"
                     print("\(self.currentWeather[0].name), \n\(self.currentWeather[0].country)")
+                    
                     self.view.reloadInputViews()
                 }
                 
@@ -194,21 +215,19 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
-        
     }
-        
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     //MARK: - Core Location
     
     func permission() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways, .authorizedWhenInUse:
-            print("ALL good")
+            print("All Good")
         case .denied, .restricted:
             print("NOPE")
             guard let validSettingsURL = URL(string: UIApplicationOpenSettingsURLString) else {return}
@@ -223,13 +242,10 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
-            print("All good")
             manager.startUpdatingLocation()
         case .denied, .restricted:
-            print("NOPE")
             manager.stopUpdatingLocation()
         case .notDetermined:
-            print("IDK")
             locationManager.requestAlwaysAuthorization()
         }
     }
@@ -239,13 +255,35 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         guard let validLocation = locations.last else {return}
         let latCoordinate = validLocation.coordinate.latitude
         let longCoordinate = validLocation.coordinate.longitude
-        let latCoord =  String(format: "%0.4f", latCoordinate )
-        let longCoord = String(format: "%0.4f", longCoordinate )
+        var latCoord =  String(format: "%0.4f", latCoordinate )
+        var longCoord = String(format: "%0.4f", longCoordinate )
         
+        let userDefaults = UserDefaults.standard
+        
+        let locationDict: [String : Any] = ["latCoord" : latCoord,
+                            "longCoord" : longCoord,
+                            "didSetOwnLocation" : false
+                            ]
+        
+        if var locationSave = userDefaults.value(forKeyPath: "locationSave") {
+            guard let locationDictionary = locationSave as? [String : Any],
+                let didSetOwnLocation = locationDictionary["didSetOwnLocation"] as? Bool else { return }
+            if didSetOwnLocation == false {
+                locationSave = locationDict
+                userDefaults.set(locationSave, forKey: "locationSave")
+            } else {
+                guard let lat = locationDictionary["latCoord"] as? String,
+                    let long = locationDictionary["latCoord"] as? String else { return }
+                latCoord = lat
+                longCoord = long
+            }
+        }
         
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
         
         locationManager.delegate = nil
+        
+
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -254,12 +292,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     
     //MARK: // -Helper Functions
     
-    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath) -> String {
-        let article = controller.object(at: indexPath)
-        let name = article.sourceID
-        return name ?? "associated-press"
-    }
-    
     func randomNewSource() -> NSFetchedResultsSectionInfo {
         guard let section = controller.sections else {return NSFetchedResultsSectionInfo.self as! NSFetchedResultsSectionInfo}
         let random = section[Int(arc4random_uniform(UInt32(68)))]
@@ -267,9 +299,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func getArticlesFromSources() {
-        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
-        
-        let endpoint = "https://newsapi.org/v1/articles?source=\(random!)&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
+//        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
+        let random = sources[randomNum]
+        let endpoint = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
         print("****************\(endpoint)************")
         APIRequestManager.manager.getPOD(endPoint: endpoint) { (data: Data?) in
             if data != nil {
@@ -281,7 +313,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 
                 DispatchQueue.main.async {
                     self.localNewsTableView.reloadData()
-                    print("***********Reload or Nah*************")
                 }
                 
             }
@@ -293,34 +324,44 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     //MARK: // -Table View Delegate
     
      func numberOfSections(in tableView: UITableView) -> Int {
-//        guard let sections = controller.sections else {
-//            print("No sections in fetchedResultsController")
-//            return 0
-//        }
-//        
-//        return sections.count
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let sections = controller.sections else {
-//            fatalError("No sections in fetchedResultsController")
-//        }
-//        let sectionInfo = sections[section]
-//        
-//        return sectionInfo.numberOfObjects
         return allArticles.count
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath) as! TopStoriesTableViewCell
         
-//        let article = controller.object(at: indexPath)
-//        cell.textLabel?.text = article.sourceName
         let article = allArticles[indexPath.row]
-        cell.textLabel?.text = article.title
+        cell.titleLabel.text = article.title
+        cell.detailLabel.text = article.description
+        
+        APIRequestManager.manager.getPOD(endPoint: article.image ) {(data: Data?) in
+            if let validData = data {
+                    DispatchQueue.main.async {
+                    cell.photoImageView.image = UIImage(data: validData)
+                    cell.setNeedsDisplay()                }
+            }
+        
+        }
       
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let selected = segue.destination as? TopStoriesWebViewController,
+            let cell = sender as? TopStoriesTableViewCell,
+            let articleOf = localNewsTableView.indexPath(for: cell) {
+            selected.article = allArticles[articleOf.row]
+        }
+
+    }
+    
+
+    
+    
+
 }
 
