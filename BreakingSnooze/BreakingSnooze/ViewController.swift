@@ -34,6 +34,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     @IBOutlet weak var breakingNewsLabel: UILabel!
     @IBOutlet weak var localNewsTableView: UITableView!
     
+    @IBOutlet weak var detailCompanyLabel: UILabel!
     
     //MARK: - Properties
     var mainContext: NSManagedObjectContext {
@@ -53,7 +54,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
 
     lazy var allArticles: [SourceArticles] = []
     
-    let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "the-next-web", "usa-today", "time", "the-washington-post"]
+    let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
      let randomNum = Int(arc4random_uniform(UInt32(22)))
 
     
@@ -73,7 +74,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         whiteTextShadow()
         setUpButtonImages()
         getArticlesFromSources()
-        self.breakingNewsLabel.text = "Todays Breaking Snooze courtesy of \n \(sources[randomNum])"
+        self.breakingNewsLabel.text = "Todays Breaking Snooze courtesy of"
+        self.detailCompanyLabel.text = "\(sources[randomNum])"
     }
     
     func loadList(notification: NSNotification){
@@ -111,7 +113,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             degreeIconView,
             listeningToLabel,
             radioStationNameLabel,
-            breakingSnoozeBackgroundView
+            breakingSnoozeBackgroundView,
+            breakingNewsLabel,
+            detailCompanyLabel
         ].map { $0.layer.shadowOffset = CGSize(width: 0, height: 0) }
         
         let _ = [
@@ -121,7 +125,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             verticalLineView,
             degreeIconView,
             listeningToLabel,
-            radioStationNameLabel
+            radioStationNameLabel,
+            breakingNewsLabel,
+            detailCompanyLabel
         ].map { $0.layer.shadowOpacity = 0.50 }
         
         breakingSnoozeBackgroundView.layer.shadowOpacity = 0.10
@@ -134,7 +140,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             degreeIconView,
             listeningToLabel,
             radioStationNameLabel,
-            breakingSnoozeBackgroundView
+            breakingSnoozeBackgroundView,
+            breakingNewsLabel,
+            detailCompanyLabel
             ].map { $0.layer.shadowRadius = 6 }
         
 
