@@ -25,19 +25,30 @@
                             <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="913-qf-tsF">
                                 <rect key="frame" x="16" y="20" width="359" height="647"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, there &amp; welcome to BreakingSnooze" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhd-8q-GNS">
+                                <rect key="frame" x="16" y="296" width="325" height="74"/>
+                                <color key="backgroundColor" red="1" green="0.98976643880208337" blue="0.98976643880208337" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <color key="textColor" red="1" green="0.49789439520496992" blue="0.91775125813893432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="913-qf-tsF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="EB5-kY-753"/>
                             <constraint firstItem="913-qf-tsF" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="G0V-vq-YKa"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="913-qf-tsF" secondAttribute="bottom" id="GJq-67-j7P"/>
+                            <constraint firstItem="Zhd-8q-GNS" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="276" id="Om8-ig-HtW"/>
                             <constraint firstAttribute="trailing" secondItem="913-qf-tsF" secondAttribute="trailing" id="j6Z-3F-a8D" userLabel="view.trailing = loading.trailing"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zhd-8q-GNS" secondAttribute="trailing" constant="18" id="sC7-yB-nOA"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Zhd-8q-GNS" secondAttribute="leading" id="y9y-a7-1Zq"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Zhd-8q-GNS" secondAttribute="bottom" constant="297" id="yrz-Nh-4az"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
