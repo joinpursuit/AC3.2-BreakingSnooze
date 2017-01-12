@@ -49,6 +49,6 @@ class APIManager {
             if let validData = data {
                 completion(validData)
             }
-            }.resume()
+        }.resume()
     }
 }

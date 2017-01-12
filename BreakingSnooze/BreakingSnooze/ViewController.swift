@@ -33,6 +33,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     @IBOutlet weak var breakingNewsLabel: UILabel!
     @IBOutlet weak var localNewsTableView: UITableView!
     
+    @IBOutlet weak var detailCompanyLabel: UILabel!
     
     //MARK: - Properties
     var mainContext: NSManagedObjectContext {
@@ -49,10 +50,12 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return locMan
     }()
     var currentWeather: [Weather] = []
-    lazy var allArticles: [NewsArticles] = []
+
+    lazy var allArticles: [SourceArticles] = []
     
-    let sources = ["associated-press", "bb-news", "bloomberg", "buisness-insider", "buzzfeed"]
-    let randomNum = Int(arc4random_uniform(UInt32(4)))
+    let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
+     let randomNum = Int(arc4random_uniform(UInt32(22)))
+
     
     override func viewWillAppear(_ animated: Bool) {
          NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
@@ -70,7 +73,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         whiteTextShadow()
         setUpButtonImages()
         getArticlesFromSources()
-        self.breakingNewsLabel.text = "Todays Breaking Snooze \n courtesy of \(sources[randomNum])"
+        self.breakingNewsLabel.text = "Todays Breaking Snooze courtesy of"
+        self.detailCompanyLabel.text = "\(sources[randomNum])"
     }
     
     func loadList(notification: NSNotification){
@@ -108,7 +112,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             degreeIconView,
             listeningToLabel,
             radioStationNameLabel,
-            breakingSnoozeBackgroundView
+            breakingSnoozeBackgroundView,
+            breakingNewsLabel,
+            detailCompanyLabel
         ].map { $0.layer.shadowOffset = CGSize(width: 0, height: 0) }
         
         let _ = [
@@ -118,7 +124,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             verticalLineView,
             degreeIconView,
             listeningToLabel,
-            radioStationNameLabel
+            radioStationNameLabel,
+            breakingNewsLabel,
+            detailCompanyLabel
         ].map { $0.layer.shadowOpacity = 0.50 }
         
         breakingSnoozeBackgroundView.layer.shadowOpacity = 0.10
@@ -131,7 +139,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             degreeIconView,
             listeningToLabel,
             radioStationNameLabel,
-            breakingSnoozeBackgroundView
+            breakingSnoozeBackgroundView,
+            breakingNewsLabel,
+            detailCompanyLabel
             ].map { $0.layer.shadowRadius = 6 }
         
 
@@ -140,7 +150,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     //MARK: - Load data from API
     
     func loadData(endPoint: String) {
-        APIRequestManager.manager.getPOD(endPoint: endPoint) { (data: Data?) in
+        APIManager.shared.getData(urlString: endPoint) { (data: Data?) in
             if data != nil {
                 
                 if let new = Weather.getData(from: data!) {
@@ -149,7 +159,15 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 
                 DispatchQueue.main.async {
                     let imageName = self.currentWeather[0].icon
-                    let image = UIImage(named: imageName)
+                    let imageString = { () -> String in
+                        var articleURL = imageName
+                        if articleURL.characters.count > 3 {
+                            articleURL = String(articleURL.characters.suffix(3))
+                            return articleURL
+                        }
+                        return articleURL
+                    }()
+                    let image = UIImage(named: imageString)
                     self.conditionsImageView.image =  image
 
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
@@ -251,7 +269,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("locations updated")
         guard let validLocation = locations.last else {return}
         let latCoordinate = validLocation.coordinate.latitude
         let longCoordinate = validLocation.coordinate.longitude
@@ -282,7 +299,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
         
         locationManager.delegate = nil
-        
 
     }
     
@@ -299,15 +315,15 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func getArticlesFromSources() {
-//        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
         let random = sources[randomNum]
-        let endpoint = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
+        let endpoint = "https://newsapi.org/v1/articles?source=\(random)&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
         print("****************\(endpoint)************")
-        APIRequestManager.manager.getPOD(endPoint: endpoint) { (data: Data?) in
+        APIManager.shared.getData(urlString: endpoint) { (data: Data?) in
             if data != nil {
                 
-                if let article = NewsArticles.getData(from: data!) {
+                if let article = SourceArticles.parseArticles(from: data!) {
                     self.allArticles = article
+                    
                     
                 }
                 
@@ -338,7 +354,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         cell.titleLabel.text = article.title
         cell.detailLabel.text = article.description
         
-        APIRequestManager.manager.getPOD(endPoint: article.image ) {(data: Data?) in
+        
+        APIManager.shared.getData(urlString: article.imageURL) {(data: Data?) in
             if let validData = data {
                     DispatchQueue.main.async {
                     cell.photoImageView.image = UIImage(data: validData)
@@ -360,8 +377,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
 
-    
-    
 
 }
 
