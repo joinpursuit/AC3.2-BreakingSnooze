@@ -38,18 +38,18 @@ class NewsArticles {
         do{
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
             guard let dict = jsonData as? [String: Any] else {return nil }
-            guard let articles = dict["articles"] as? [[String:String]] else {throw ParsingErrors.articles}
+            guard let articles = dict["articles"] as? [[String:Any]] else {return nil}
             
             var allArticles = [NewsArticles]()
             
             for article in articles {
-                guard let source = dict["source"] as? String else {throw ParsingErrors.source}
-                guard let author = article["author"] else {throw ParsingErrors.author}
-                guard let title = article["title"] else {throw ParsingErrors.title}
-                guard let description = article["description"] else {throw ParsingErrors.description}
-                guard let url = article["url"] else {throw ParsingErrors.url}
-                guard let image = article["urlToImage"] else {throw ParsingErrors.image}
-                guard let publishedDate = article["publishedAt"] else {throw ParsingErrors.publishedAt}
+                guard let source = dict["source"] as? String else {continue}
+                guard let author = article["author"] as? String else {continue}
+                guard let title = article["title"] as? String else {continue}
+                guard let description = article["description"] as? String else {continue}
+                guard let url = article["url"]  as? String else {continue}
+                guard let image = article["urlToImage"] as? String else {continue}
+                guard let publishedDate = article["publishedAt"] as? String else {continue}
                 
                 let articleOf = NewsArticles(source: source, author: author, title: title, description: description, url: url, image: image, publishedDate: publishedDate)
                 allArticles.append(articleOf)
