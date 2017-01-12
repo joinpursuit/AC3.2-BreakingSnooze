@@ -78,7 +78,6 @@ class APIManager{
             let authorizedURL = try APIManager.shared.oauth2.authorizeURL(withRedirect: "breakingsnooze://auth.url", scope: "chat:write:user", params: APIManager.shared.oauth2.authParameters)
             print("WOOO")
             print(authorizedURL)
-            APIManager.shared.loader = OAuth2DataLoader(oauth2: oauth2)
             
             var request = URLRequest(url: authorizedURL)
             request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -90,6 +89,8 @@ class APIManager{
             }
             APIManager.shared.oauth2.afterAuthorizeOrFail = { authParameters, error in
             }
+            APIManager.shared.loader = OAuth2DataLoader.(oauth2: oauth2)
+            APIManager.shared.loader
             APIManager.shared.loader.perform(request: request) { response in
                 do {
                     print(response.response)
