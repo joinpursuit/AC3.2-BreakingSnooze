@@ -232,7 +232,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     // MARK: Actions
     
     func onCloseButtonClicked(sender: UIBarButtonItem) {
-        navigationController?.present(SourceTableViewController(), animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

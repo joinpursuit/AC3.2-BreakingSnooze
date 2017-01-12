@@ -7,93 +7,169 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BEAB69533BB8DDFC2C349A381877358 /* PresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157828E2127A230ABD9988DE22D4CC0 /* PresentAnimationController.swift */; };
-		0DC1F450D8640B95C0795C3D3D9BA6F8 /* DismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC967424925E2086F170A5BDA801BB /* DismissAnimationController.swift */; };
-		1B729F889F66386F5C493D3B88F93E73 /* Pods-BreakingSnooze-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 338DB6EDDF8300DBA3CAAE78368B8686 /* Pods-BreakingSnooze-dummy.m */; };
-		4DEBE20BA26F4AF1FA7954CF59055309 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		6F811225F8F7278C953997FF7F381297 /* DismissInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C958146F98CDF14BB6728A47820AF /* DismissInteractiveTransition.swift */; };
-		8FB986B3750F255F34801AA8E097CB6D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		A23C526C15EC5EBBFB599E2EB18EBBE2 /* View2ViewTransition-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EE86CF37842B4904E3CBEAD2980C9DA7 /* View2ViewTransition-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4FC25293CEA835EB35A56FAE758B236 /* UIView+SnapshotImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9CAA0898D49439F33C7825BB3269F /* UIView+SnapshotImage.swift */; };
-		B5529D50DAA2C24E6ECCE8D6F4D77A82 /* View2ViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234A63F6C94087788C1CB474204DF08 /* View2ViewTransition.swift */; };
-		BD4151AB4996CB5A97D19A3199EDB692 /* View2ViewTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FF010BE7AEBD3781B11AEEC6870D1FB8 /* View2ViewTransition-dummy.m */; };
-		D5ED5E1DEC46C4D8FB1E6331ABD91B78 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB7DBE79187A2055379CD224863A74 /* TransitionController.swift */; };
-		E4C9346CC5AFDD1E85C17B0396B445BC /* Pods-BreakingSnooze-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B9D447168189C630260EE9CCFC23E9F2 /* Pods-BreakingSnooze-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0010A26B1D772BDE301624EAABF9637F /* OAuth2Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12B3488CAC93B5C3D2DEBE479BDB25 /* OAuth2Base.swift */; };
+		044B93344BE8B51071411AD0E05FF68C /* OAuth2DebugURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FAD28B4257F1B9E5955D71374AACE5 /* OAuth2DebugURLSessionDelegate.swift */; };
+		11AC31DDB66B2AF22F07706A33961B01 /* OAuth2ClientCredentialsReddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D13829CD7EFE58EBFC56BC0F1FB6D2 /* OAuth2ClientCredentialsReddit.swift */; };
+		194DE13727533082A759A17BD31DA16C /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4775B87936087FD83AC07CFEA1934452 /* TransitionController.swift */; };
+		1FC953353EF77B8E4AAE9B8303A9C2A9 /* View2ViewTransition-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9366A1E5314A8F85D5A2E710A9A112 /* View2ViewTransition-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A3B854AB4CCF4938CF012486FD3902B /* OAuth2Authorizer+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A63FF940A6272A621E8A3764AA5DC2B /* OAuth2Authorizer+iOS.swift */; };
+		2CC224A6D6A3FA247BD7438CF6F07D61 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0FA83230BBA0B69C537447FA8CE323 /* extensions.swift */; };
+		3F2EB815AB71C805753E61DA97188DF0 /* View2ViewTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C411A2FAD99B3229228A8468301385C8 /* View2ViewTransition-dummy.m */; };
+		4074162FE5059EF15F05B7B5DD247539 /* OAuth2DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5C9EF472C314D76AC93A4687CFE0D /* OAuth2DataRequest.swift */; };
+		47F68E17DC3F3BE485DBF4A54DE7E577 /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BDE9DFFE6998D6870F55BBDFCA496 /* OAuth2ClientCredentials.swift */; };
+		4B099C72519FD01EFEF8A789C30C8B85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C8A2E97EC5BAEA477F1DAC72815ED5 /* Foundation.framework */; };
+		4E3FB468F325A17F49081EEB8FD32FDA /* OAuth2Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260DEA3BAEF7E788FAFC4C9C15BBE33 /* OAuth2Logger.swift */; };
+		50C6C256B011A4C063830EA24F2BB90F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C8A2E97EC5BAEA477F1DAC72815ED5 /* Foundation.framework */; };
+		5A867CE565FF57E677E8D46561632B90 /* OAuth2Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADEB1FC01B9F343086368A45341959 /* OAuth2Error.swift */; };
+		5C1730356616BD6FCF85922BA6461943 /* OAuth2PasswordGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2B1782FA74A37497B83790E4444D8 /* OAuth2PasswordGrant.swift */; };
+		60F6720AF15CD0E09D42E56BF61CEBFE /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BE9B7CF9566CACC7E21C16F4114C2E /* OAuth2WebViewController.swift */; };
+		6A8F1E4232DEBA80C7A4EB400FD67F22 /* Pods-BreakingSnooze-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B9D447168189C630260EE9CCFC23E9F2 /* Pods-BreakingSnooze-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BEC713D06F21F4B833608A8C256DF6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C8A2E97EC5BAEA477F1DAC72815ED5 /* Foundation.framework */; };
+		6CCDFB130DBED8F63986C483931B7EB1 /* OAuth2RequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8C00CA8A0F0073D648D8E042728426 /* OAuth2RequestPerformer.swift */; };
+		7119936DFBACE7283FF36B0B4FCAA76C /* OAuth2Securable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A74957F9A1E9D2C54C566393505B43F /* OAuth2Securable.swift */; };
+		72ACAF878A27251B2C7DC471E1D4975A /* OAuth2CodeGrantBasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39507212552515D068F85C88313BD67B /* OAuth2CodeGrantBasicAuth.swift */; };
+		746D989AC367B583A91F7794345EC10D /* OAuth2AuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03309DA7EAC29BC183CDCE5F2A7588C /* OAuth2AuthConfig.swift */; };
+		839F3C7703CB6788BB2864B20A488D11 /* OAuth2AuthorizerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB8735EF1BFA32B20E7967785804A4A /* OAuth2AuthorizerUI.swift */; };
+		8A51897B12D5836B02FB037333BBDEBB /* OAuth2KeychainAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E333D58B01D005B60713B2C748E1D5 /* OAuth2KeychainAccount.swift */; };
+		8B27C37EEE27C352FF91E3E3BEDFB43B /* OAuth2CodeGrantLinkedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A314DBB89C994F1D8307BD824D638 /* OAuth2CodeGrantLinkedIn.swift */; };
+		928B281BD1145228FFFCA41C46D5FC27 /* OAuth2DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD286F02A27932048A43B779DF21836D /* OAuth2DataLoader.swift */; };
+		952B35FD019272783A84BAB55DFB0CF0 /* View2ViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B417EDFE88CB03405A3D361CF34FFD4 /* View2ViewTransition.swift */; };
+		9F78F86BCFBC5DC77CF81E0E65F5AE36 /* OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B90016B394A85770161D69CF65DE92E /* OAuth2.swift */; };
+		ABA8A0D2417AAC23BAB37519EA11CE09 /* OAuth2AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D8B7F92D82186611DD3AA416BDDDE /* OAuth2AuthRequest.swift */; };
+		AC84E1178CD97212A27A599D98EED0D9 /* PresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74821B14D8F165023785DB0BFF962C /* PresentAnimationController.swift */; };
+		B1FFA547F1907ADD74085595696C082A /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901EDD927BE3F78F92BBD5B073065185 /* SafariServices.framework */; };
+		BA28F00BAB8A4ACAE46CB573C36E367D /* OAuth2Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C533BF1D2A348BE540B937A5EF318 /* OAuth2Requestable.swift */; };
+		BA408740DED6FC723C2C2C3B15D86015 /* DismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0CFB8BD22245F2A86361651207CCA /* DismissAnimationController.swift */; };
+		BCE61B033894D653FF30E6ADEDA9323E /* OAuth2CodeGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88821309B62E881CCB9DEFD4886C0E0C /* OAuth2CodeGrant.swift */; };
+		C0D3B3CA74E4294E015012F7A5C08402 /* OAuth2ImplicitGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508264CC7577C5DF3BD9FC718CC243A1 /* OAuth2ImplicitGrant.swift */; };
+		C11DA0A3716B3A16A81D3816200AED23 /* p2.OAuth2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 252578DB802261D776B1D86B4A3414CF /* p2.OAuth2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C4140AA52A0149C13641D5069A41F608 /* OAuth2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F32C127869252D4622D78CC992EA67 /* OAuth2Response.swift */; };
+		C47E80D5F135A1521F8F82854F70C977 /* p2.OAuth2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 059232068C9EC699F95E75D434098A13 /* p2.OAuth2-dummy.m */; };
+		C594E7F94AA7DCD8D71D0F5021A8C32D /* OAuth2CodeGrantNoTokenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E97DFC68A7C03096C6B2912140B1016 /* OAuth2CodeGrantNoTokenType.swift */; };
+		D3D56434A58D2BEF722C5B636436C712 /* Pods-BreakingSnooze-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 338DB6EDDF8300DBA3CAAE78368B8686 /* Pods-BreakingSnooze-dummy.m */; };
+		D5754E6460A522C245EAFFA101DD774C /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3A3600B983197A7DDA80724A9A3586 /* OAuth2DynReg.swift */; };
+		D921F3019DDC4674211D06A4AF5361FC /* UIView+SnapshotImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C128DB10B21334A6AC743EB128D2A /* UIView+SnapshotImage.swift */; };
+		DF9A8411B962AAB76296B99B10784618 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C38A0A0A817A5497FBA56CD784A980F /* Keychain.swift */; };
+		E3FE55B553C2FEEAC8CA09894AF3D66F /* OAuth2ClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90641077FAD79E046C43DC2C48085D7A /* OAuth2ClientConfig.swift */; };
+		E4C0CD13240F2FBCA0578FFA4A28146F /* OAuth2CodeGrantFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9FA9C6AA3F06815C9294F1BDE65484 /* OAuth2CodeGrantFacebook.swift */; };
+		EDEE60A8BBCB8F096D3601FEF30F08CC /* OAuth2CodeGrantAzure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94964516FA3BAA575AA113E60512DC8A /* OAuth2CodeGrantAzure.swift */; };
+		FA0938533A9CCB4DF01E449A62644129 /* DismissInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BFA9F5486CEA0388419937841521D /* DismissInteractiveTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		404F55C606716A7BCF372CB25478AE9A /* PBXContainerItemProxy */ = {
+		53EFD4B9828A8A7ED882C2F093F093B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7B1D24101998825C3DE091191B9DB47F;
+			remoteGlobalIDString = EDC6129B06F036F45E5980B2A028783A;
 			remoteInfo = View2ViewTransition;
+		};
+		9302433C23F609065A3455516D4464E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B45D2FB5F4BC304D75324A66B96EA5E;
+			remoteInfo = p2.OAuth2;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02CB7DBE79187A2055379CD224863A74 /* TransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionController.swift; path = Sources/TransitionController.swift; sourceTree = "<group>"; };
 		04B77AE7F4F0E0337458697B10954975 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		059232068C9EC699F95E75D434098A13 /* p2.OAuth2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "p2.OAuth2-dummy.m"; sourceTree = "<group>"; };
+		0A8D8B7F92D82186611DD3AA416BDDDE /* OAuth2AuthRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2AuthRequest.swift; path = Sources/Base/OAuth2AuthRequest.swift; sourceTree = "<group>"; };
+		0C30D74C8F2DB31A8CBEB7ACEE227C04 /* View2ViewTransition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = View2ViewTransition.modulemap; sourceTree = "<group>"; };
 		0D550793D3391B63E03CD615822E7BDF /* Pods-BreakingSnooze-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BreakingSnooze-resources.sh"; sourceTree = "<group>"; };
-		1A9C958146F98CDF14BB6728A47820AF /* DismissInteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DismissInteractiveTransition.swift; path = Sources/DismissInteractiveTransition.swift; sourceTree = "<group>"; };
+		13E2B1782FA74A37497B83790E4444D8 /* OAuth2PasswordGrant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2PasswordGrant.swift; path = Sources/Flows/OAuth2PasswordGrant.swift; sourceTree = "<group>"; };
+		146BDE9DFFE6998D6870F55BBDFCA496 /* OAuth2ClientCredentials.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2ClientCredentials.swift; path = Sources/Flows/OAuth2ClientCredentials.swift; sourceTree = "<group>"; };
+		195AD5D835C82F4B55D1D558261712DA /* View2ViewTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "View2ViewTransition-prefix.pch"; sourceTree = "<group>"; };
+		1B2FB9C2246311EA6DB1234A097B1636 /* View2ViewTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = View2ViewTransition.xcconfig; sourceTree = "<group>"; };
+		1C38A0A0A817A5497FBA56CD784A980F /* Keychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = SwiftKeychain/Keychain/Keychain.swift; sourceTree = "<group>"; };
 		2157905D4995FA620C8CCC41C1BA8332 /* Pods-BreakingSnooze-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BreakingSnooze-frameworks.sh"; sourceTree = "<group>"; };
-		2234A63F6C94087788C1CB474204DF08 /* View2ViewTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View2ViewTransition.swift; path = Sources/View2ViewTransition.swift; sourceTree = "<group>"; };
+		252578DB802261D776B1D86B4A3414CF /* p2.OAuth2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "p2.OAuth2-umbrella.h"; sourceTree = "<group>"; };
 		304B8E3CB9741D4D52799CBB4B9BAD03 /* Pods-BreakingSnooze-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BreakingSnooze-acknowledgements.markdown"; sourceTree = "<group>"; };
+		327EFF7ED582D15DD6CB91C3232A3A7E /* View2ViewTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = View2ViewTransition.framework; path = View2ViewTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		338DB6EDDF8300DBA3CAAE78368B8686 /* Pods-BreakingSnooze-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BreakingSnooze-dummy.m"; sourceTree = "<group>"; };
+		39507212552515D068F85C88313BD67B /* OAuth2CodeGrantBasicAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantBasicAuth.swift; path = Sources/Flows/OAuth2CodeGrantBasicAuth.swift; sourceTree = "<group>"; };
+		3B90016B394A85770161D69CF65DE92E /* OAuth2.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2.swift; path = Sources/Flows/OAuth2.swift; sourceTree = "<group>"; };
+		3DB8735EF1BFA32B20E7967785804A4A /* OAuth2AuthorizerUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2AuthorizerUI.swift; path = Sources/Base/OAuth2AuthorizerUI.swift; sourceTree = "<group>"; };
 		4037811605F5E6B501B310FBA94CFDF5 /* Pods-BreakingSnooze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BreakingSnooze.release.xcconfig"; sourceTree = "<group>"; };
-		4F7181BE89F0574865F637B0DFA1E3E8 /* View2ViewTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = View2ViewTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7157828E2127A230ABD9988DE22D4CC0 /* PresentAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentAnimationController.swift; path = Sources/PresentAnimationController.swift; sourceTree = "<group>"; };
-		7AA9CAA0898D49439F33C7825BB3269F /* UIView+SnapshotImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+SnapshotImage.swift"; path = "Sources/UIView+SnapshotImage.swift"; sourceTree = "<group>"; };
+		421A314DBB89C994F1D8307BD824D638 /* OAuth2CodeGrantLinkedIn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantLinkedIn.swift; path = Sources/Flows/OAuth2CodeGrantLinkedIn.swift; sourceTree = "<group>"; };
+		4775B87936087FD83AC07CFEA1934452 /* TransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionController.swift; path = Sources/TransitionController.swift; sourceTree = "<group>"; };
+		4A9366A1E5314A8F85D5A2E710A9A112 /* View2ViewTransition-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "View2ViewTransition-umbrella.h"; sourceTree = "<group>"; };
+		508264CC7577C5DF3BD9FC718CC243A1 /* OAuth2ImplicitGrant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2ImplicitGrant.swift; path = Sources/Flows/OAuth2ImplicitGrant.swift; sourceTree = "<group>"; };
+		52C8A2E97EC5BAEA477F1DAC72815ED5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		58BE9B7CF9566CACC7E21C16F4114C2E /* OAuth2WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2WebViewController.swift; path = Sources/iOS/OAuth2WebViewController.swift; sourceTree = "<group>"; };
+		6166DAFD6AFEB577B83F62347BAFE2B5 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BreakingSnooze.framework; path = "Pods-BreakingSnooze.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9251D9A8CE1240E84C9F200D0AB3BC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E97DFC68A7C03096C6B2912140B1016 /* OAuth2CodeGrantNoTokenType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantNoTokenType.swift; path = Sources/Flows/OAuth2CodeGrantNoTokenType.swift; sourceTree = "<group>"; };
+		70C0CFB8BD22245F2A86361651207CCA /* DismissAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DismissAnimationController.swift; path = Sources/DismissAnimationController.swift; sourceTree = "<group>"; };
+		7A0FA83230BBA0B69C537447FA8CE323 /* extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = extensions.swift; path = Sources/Base/extensions.swift; sourceTree = "<group>"; };
+		7A63FF940A6272A621E8A3764AA5DC2B /* OAuth2Authorizer+iOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OAuth2Authorizer+iOS.swift"; path = "Sources/iOS/OAuth2Authorizer+iOS.swift"; sourceTree = "<group>"; };
+		7A74957F9A1E9D2C54C566393505B43F /* OAuth2Securable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Securable.swift; path = Sources/Base/OAuth2Securable.swift; sourceTree = "<group>"; };
+		7D12B3488CAC93B5C3D2DEBE479BDB25 /* OAuth2Base.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Base.swift; path = Sources/Base/OAuth2Base.swift; sourceTree = "<group>"; };
 		7E1A4361F7653B814D925C73AC96E572 /* Pods-BreakingSnooze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BreakingSnooze.debug.xcconfig"; sourceTree = "<group>"; };
-		84EC967424925E2086F170A5BDA801BB /* DismissAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DismissAnimationController.swift; path = Sources/DismissAnimationController.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B11E56D135FC80A14BE29F5C2D54CF7D /* Pods-BreakingSnooze.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BreakingSnooze.modulemap"; sourceTree = "<group>"; };
+		7F5C533BF1D2A348BE540B937A5EF318 /* OAuth2Requestable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Requestable.swift; path = Sources/Base/OAuth2Requestable.swift; sourceTree = "<group>"; };
+		7F9FA9C6AA3F06815C9294F1BDE65484 /* OAuth2CodeGrantFacebook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantFacebook.swift; path = Sources/Flows/OAuth2CodeGrantFacebook.swift; sourceTree = "<group>"; };
+		8260DEA3BAEF7E788FAFC4C9C15BBE33 /* OAuth2Logger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Logger.swift; path = Sources/Base/OAuth2Logger.swift; sourceTree = "<group>"; };
+		8405D1FB9A8D7CCE96F414AB6A75D009 /* p2.OAuth2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = p2.OAuth2.modulemap; sourceTree = "<group>"; };
+		869F27617ECE342D338B852CEDD9278B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88821309B62E881CCB9DEFD4886C0E0C /* OAuth2CodeGrant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrant.swift; path = Sources/Flows/OAuth2CodeGrant.swift; sourceTree = "<group>"; };
+		8B417EDFE88CB03405A3D361CF34FFD4 /* View2ViewTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View2ViewTransition.swift; path = Sources/View2ViewTransition.swift; sourceTree = "<group>"; };
+		8C1C128DB10B21334A6AC743EB128D2A /* UIView+SnapshotImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+SnapshotImage.swift"; path = "Sources/UIView+SnapshotImage.swift"; sourceTree = "<group>"; };
+		901EDD927BE3F78F92BBD5B073065185 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
+		90641077FAD79E046C43DC2C48085D7A /* OAuth2ClientConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2ClientConfig.swift; path = Sources/Base/OAuth2ClientConfig.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94964516FA3BAA575AA113E60512DC8A /* OAuth2CodeGrantAzure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantAzure.swift; path = Sources/Flows/OAuth2CodeGrantAzure.swift; sourceTree = "<group>"; };
+		97D13829CD7EFE58EBFC56BC0F1FB6D2 /* OAuth2ClientCredentialsReddit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2ClientCredentialsReddit.swift; path = Sources/Flows/OAuth2ClientCredentialsReddit.swift; sourceTree = "<group>"; };
+		A0F32C127869252D4622D78CC992EA67 /* OAuth2Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Response.swift; path = Sources/Base/OAuth2Response.swift; sourceTree = "<group>"; };
+		B11E56D135FC80A14BE29F5C2D54CF7D /* Pods-BreakingSnooze.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BreakingSnooze.modulemap"; sourceTree = "<group>"; };
+		B330E4BE559893FDDE2AC8A5FE360989 /* p2_OAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = p2_OAuth2.framework; path = p2.OAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D447168189C630260EE9CCFC23E9F2 /* Pods-BreakingSnooze-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BreakingSnooze-umbrella.h"; sourceTree = "<group>"; };
-		BBE1DB25A9827D985D65549B5ADEB9FE /* View2ViewTransition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = View2ViewTransition.modulemap; sourceTree = "<group>"; };
-		BE71F477A3A04B94AAC1599C5135CC14 /* Pods_BreakingSnooze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingSnooze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9D13B3883B592560437B896CE0655E7 /* View2ViewTransition.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = View2ViewTransition.xcconfig; sourceTree = "<group>"; };
-		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		B9E333D58B01D005B60713B2C748E1D5 /* OAuth2KeychainAccount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2KeychainAccount.swift; path = Sources/Base/OAuth2KeychainAccount.swift; sourceTree = "<group>"; };
+		C411A2FAD99B3229228A8468301385C8 /* View2ViewTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "View2ViewTransition-dummy.m"; sourceTree = "<group>"; };
+		C57F226BDCF94E1F7983229ED5D876BC /* p2.OAuth2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = p2.OAuth2.xcconfig; sourceTree = "<group>"; };
+		C7D5C9EF472C314D76AC93A4687CFE0D /* OAuth2DataRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2DataRequest.swift; path = Sources/DataLoader/OAuth2DataRequest.swift; sourceTree = "<group>"; };
+		CA74821B14D8F165023785DB0BFF962C /* PresentAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentAnimationController.swift; path = Sources/PresentAnimationController.swift; sourceTree = "<group>"; };
+		CE7BFA9F5486CEA0388419937841521D /* DismissInteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DismissInteractiveTransition.swift; path = Sources/DismissInteractiveTransition.swift; sourceTree = "<group>"; };
+		D6ADEB1FC01B9F343086368A45341959 /* OAuth2Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Error.swift; path = Sources/Base/OAuth2Error.swift; sourceTree = "<group>"; };
+		DADD2F0F6AC2A93465BC83F900A9658F /* p2.OAuth2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "p2.OAuth2-prefix.pch"; sourceTree = "<group>"; };
+		DD286F02A27932048A43B779DF21836D /* OAuth2DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2DataLoader.swift; path = Sources/DataLoader/OAuth2DataLoader.swift; sourceTree = "<group>"; };
 		DE9D2279F41D718B427154914878F843 /* Pods-BreakingSnooze-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BreakingSnooze-acknowledgements.plist"; sourceTree = "<group>"; };
-		EB300B88E81B2191192620ECAEA09858 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE86CF37842B4904E3CBEAD2980C9DA7 /* View2ViewTransition-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "View2ViewTransition-umbrella.h"; sourceTree = "<group>"; };
-		FEA0866E57978B99BAC7BE704135B446 /* View2ViewTransition-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "View2ViewTransition-prefix.pch"; sourceTree = "<group>"; };
-		FF010BE7AEBD3781B11AEEC6870D1FB8 /* View2ViewTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "View2ViewTransition-dummy.m"; sourceTree = "<group>"; };
+		E4FAD28B4257F1B9E5955D71374AACE5 /* OAuth2DebugURLSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2DebugURLSessionDelegate.swift; path = Sources/Base/OAuth2DebugURLSessionDelegate.swift; sourceTree = "<group>"; };
+		ED8C00CA8A0F0073D648D8E042728426 /* OAuth2RequestPerformer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2RequestPerformer.swift; path = Sources/Base/OAuth2RequestPerformer.swift; sourceTree = "<group>"; };
+		EF3A3600B983197A7DDA80724A9A3586 /* OAuth2DynReg.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2DynReg.swift; path = Sources/Flows/OAuth2DynReg.swift; sourceTree = "<group>"; };
+		F03309DA7EAC29BC183CDCE5F2A7588C /* OAuth2AuthConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2AuthConfig.swift; path = Sources/Base/OAuth2AuthConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5B6795260ED9DFBE2343240389D794B8 /* Frameworks */ = {
+		84B9BF6838B7E040DA72A12E54F55F96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DEBE20BA26F4AF1FA7954CF59055309 /* Foundation.framework in Frameworks */,
+				4B099C72519FD01EFEF8A789C30C8B85 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF0A9FC2146B5C378FE02F5614BCB255 /* Frameworks */ = {
+		C5A2A658C9FADCE4CE3BF0462C0A2D09 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FB986B3750F255F34801AA8E097CB6D /* Foundation.framework in Frameworks */,
+				6BEC713D06F21F4B833608A8C256DF6E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB8140CBE20BD5839609C63790A208DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50C6C256B011A4C063830EA24F2BB90F /* Foundation.framework in Frameworks */,
+				B1FFA547F1907ADD74085595696C082A /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02ED75438A7E6EB8C5197DBE5C00B8D3 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EB300B88E81B2191192620ECAEA09858 /* Info.plist */,
-				BBE1DB25A9827D985D65549B5ADEB9FE /* View2ViewTransition.modulemap */,
-				C9D13B3883B592560437B896CE0655E7 /* View2ViewTransition.xcconfig */,
-				FF010BE7AEBD3781B11AEEC6870D1FB8 /* View2ViewTransition-dummy.m */,
-				FEA0866E57978B99BAC7BE704135B446 /* View2ViewTransition-prefix.pch */,
-				EE86CF37842B4904E3CBEAD2980C9DA7 /* View2ViewTransition-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/View2ViewTransition";
-			sourceTree = "<group>";
-		};
 		036040FC57E6FC8B27890742CF1C2F59 /* Pods-BreakingSnooze */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,10 +188,20 @@
 			path = "Target Support Files/Pods-BreakingSnooze";
 			sourceTree = "<group>";
 		};
-		164B54A018BA5ED40195684266087AB4 /* Pods */ = {
+		13B5015DB356A1925057A70080C9A17E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F9A4F3A5757C53832C47A196BF52954A /* View2ViewTransition */,
+				52C8A2E97EC5BAEA477F1DAC72815ED5 /* Foundation.framework */,
+				901EDD927BE3F78F92BBD5B073065185 /* SafariServices.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		1A53302C4D4C2F2B764DC708AA740FD9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				733B42A57B77EA91DD99D9F24517F7FB /* p2.OAuth2 */,
+				C0C32BA3824BA1B14CF8EDBF2F8A360D /* View2ViewTransition */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -128,103 +214,191 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		6C4C903272710A83B4AB225659968FF4 /* Products */ = {
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BE71F477A3A04B94AAC1599C5135CC14 /* Pods_BreakingSnooze.framework */,
-				4F7181BE89F0574865F637B0DFA1E3E8 /* View2ViewTransition.framework */,
+				13B5015DB356A1925057A70080C9A17E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5700E922DA5C6A2D3156524AD970A6F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B330E4BE559893FDDE2AC8A5FE360989 /* p2_OAuth2.framework */,
+				6166DAFD6AFEB577B83F62347BAFE2B5 /* Pods_BreakingSnooze.framework */,
+				327EFF7ED582D15DD6CB91C3232A3A7E /* View2ViewTransition.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+		733B42A57B77EA91DD99D9F24517F7FB /* p2.OAuth2 */ = {
 			isa = PBXGroup;
 			children = (
-				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+				7A0FA83230BBA0B69C537447FA8CE323 /* extensions.swift */,
+				1C38A0A0A817A5497FBA56CD784A980F /* Keychain.swift */,
+				3B90016B394A85770161D69CF65DE92E /* OAuth2.swift */,
+				F03309DA7EAC29BC183CDCE5F2A7588C /* OAuth2AuthConfig.swift */,
+				7A63FF940A6272A621E8A3764AA5DC2B /* OAuth2Authorizer+iOS.swift */,
+				3DB8735EF1BFA32B20E7967785804A4A /* OAuth2AuthorizerUI.swift */,
+				0A8D8B7F92D82186611DD3AA416BDDDE /* OAuth2AuthRequest.swift */,
+				7D12B3488CAC93B5C3D2DEBE479BDB25 /* OAuth2Base.swift */,
+				90641077FAD79E046C43DC2C48085D7A /* OAuth2ClientConfig.swift */,
+				146BDE9DFFE6998D6870F55BBDFCA496 /* OAuth2ClientCredentials.swift */,
+				97D13829CD7EFE58EBFC56BC0F1FB6D2 /* OAuth2ClientCredentialsReddit.swift */,
+				88821309B62E881CCB9DEFD4886C0E0C /* OAuth2CodeGrant.swift */,
+				94964516FA3BAA575AA113E60512DC8A /* OAuth2CodeGrantAzure.swift */,
+				39507212552515D068F85C88313BD67B /* OAuth2CodeGrantBasicAuth.swift */,
+				7F9FA9C6AA3F06815C9294F1BDE65484 /* OAuth2CodeGrantFacebook.swift */,
+				421A314DBB89C994F1D8307BD824D638 /* OAuth2CodeGrantLinkedIn.swift */,
+				6E97DFC68A7C03096C6B2912140B1016 /* OAuth2CodeGrantNoTokenType.swift */,
+				DD286F02A27932048A43B779DF21836D /* OAuth2DataLoader.swift */,
+				C7D5C9EF472C314D76AC93A4687CFE0D /* OAuth2DataRequest.swift */,
+				E4FAD28B4257F1B9E5955D71374AACE5 /* OAuth2DebugURLSessionDelegate.swift */,
+				EF3A3600B983197A7DDA80724A9A3586 /* OAuth2DynReg.swift */,
+				D6ADEB1FC01B9F343086368A45341959 /* OAuth2Error.swift */,
+				508264CC7577C5DF3BD9FC718CC243A1 /* OAuth2ImplicitGrant.swift */,
+				B9E333D58B01D005B60713B2C748E1D5 /* OAuth2KeychainAccount.swift */,
+				8260DEA3BAEF7E788FAFC4C9C15BBE33 /* OAuth2Logger.swift */,
+				13E2B1782FA74A37497B83790E4444D8 /* OAuth2PasswordGrant.swift */,
+				7F5C533BF1D2A348BE540B937A5EF318 /* OAuth2Requestable.swift */,
+				ED8C00CA8A0F0073D648D8E042728426 /* OAuth2RequestPerformer.swift */,
+				A0F32C127869252D4622D78CC992EA67 /* OAuth2Response.swift */,
+				7A74957F9A1E9D2C54C566393505B43F /* OAuth2Securable.swift */,
+				58BE9B7CF9566CACC7E21C16F4114C2E /* OAuth2WebViewController.swift */,
+				C6D8C9E7B1F18F767C006A76B6D5C7C4 /* Support Files */,
 			);
-			name = iOS;
+			name = p2.OAuth2;
+			path = p2.OAuth2;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				164B54A018BA5ED40195684266087AB4 /* Pods */,
-				6C4C903272710A83B4AB225659968FF4 /* Products */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				1A53302C4D4C2F2B764DC708AA740FD9 /* Pods */,
+				5700E922DA5C6A2D3156524AD970A6F7 /* Products */,
 				21AC960C181CB90C3ABA56262289EBA8 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		98348BBCC541BBA77A5A4227B7A60FDF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+				869F27617ECE342D338B852CEDD9278B /* Info.plist */,
+				0C30D74C8F2DB31A8CBEB7ACEE227C04 /* View2ViewTransition.modulemap */,
+				1B2FB9C2246311EA6DB1234A097B1636 /* View2ViewTransition.xcconfig */,
+				C411A2FAD99B3229228A8468301385C8 /* View2ViewTransition-dummy.m */,
+				195AD5D835C82F4B55D1D558261712DA /* View2ViewTransition-prefix.pch */,
+				4A9366A1E5314A8F85D5A2E710A9A112 /* View2ViewTransition-umbrella.h */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/View2ViewTransition";
 			sourceTree = "<group>";
 		};
-		F9A4F3A5757C53832C47A196BF52954A /* View2ViewTransition */ = {
+		C0C32BA3824BA1B14CF8EDBF2F8A360D /* View2ViewTransition */ = {
 			isa = PBXGroup;
 			children = (
-				84EC967424925E2086F170A5BDA801BB /* DismissAnimationController.swift */,
-				1A9C958146F98CDF14BB6728A47820AF /* DismissInteractiveTransition.swift */,
-				7157828E2127A230ABD9988DE22D4CC0 /* PresentAnimationController.swift */,
-				02CB7DBE79187A2055379CD224863A74 /* TransitionController.swift */,
-				7AA9CAA0898D49439F33C7825BB3269F /* UIView+SnapshotImage.swift */,
-				2234A63F6C94087788C1CB474204DF08 /* View2ViewTransition.swift */,
-				02ED75438A7E6EB8C5197DBE5C00B8D3 /* Support Files */,
+				70C0CFB8BD22245F2A86361651207CCA /* DismissAnimationController.swift */,
+				CE7BFA9F5486CEA0388419937841521D /* DismissInteractiveTransition.swift */,
+				CA74821B14D8F165023785DB0BFF962C /* PresentAnimationController.swift */,
+				4775B87936087FD83AC07CFEA1934452 /* TransitionController.swift */,
+				8C1C128DB10B21334A6AC743EB128D2A /* UIView+SnapshotImage.swift */,
+				8B417EDFE88CB03405A3D361CF34FFD4 /* View2ViewTransition.swift */,
+				98348BBCC541BBA77A5A4227B7A60FDF /* Support Files */,
 			);
+			name = View2ViewTransition;
 			path = View2ViewTransition;
+			sourceTree = "<group>";
+		};
+		C6D8C9E7B1F18F767C006A76B6D5C7C4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6E9251D9A8CE1240E84C9F200D0AB3BC /* Info.plist */,
+				8405D1FB9A8D7CCE96F414AB6A75D009 /* p2.OAuth2.modulemap */,
+				C57F226BDCF94E1F7983229ED5D876BC /* p2.OAuth2.xcconfig */,
+				059232068C9EC699F95E75D434098A13 /* p2.OAuth2-dummy.m */,
+				DADD2F0F6AC2A93465BC83F900A9658F /* p2.OAuth2-prefix.pch */,
+				252578DB802261D776B1D86B4A3414CF /* p2.OAuth2-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/p2.OAuth2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1E9B5C1516FE2DD594BA9FAEF88512A8 /* Headers */ = {
+		28A5D498F44207D5B0A488F783C72F03 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4C9346CC5AFDD1E85C17B0396B445BC /* Pods-BreakingSnooze-umbrella.h in Headers */,
+				C11DA0A3716B3A16A81D3816200AED23 /* p2.OAuth2-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FE15E3D4FD1DC7B95E75951A1125398A /* Headers */ = {
+		8C281B3251224156C4D34F618ED4DAA5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A23C526C15EC5EBBFB599E2EB18EBBE2 /* View2ViewTransition-umbrella.h in Headers */,
+				6A8F1E4232DEBA80C7A4EB400FD67F22 /* Pods-BreakingSnooze-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7CC1F57FFBA78CB6E7F7EE08D20748 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FC953353EF77B8E4AAE9B8303A9C2A9 /* View2ViewTransition-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6F53C992B58F85A262BD13B51022B0DA /* Pods-BreakingSnooze */ = {
+		1F1AF5B67B594E6C7E3D13B680F2E158 /* Pods-BreakingSnooze */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74BD1D8BA574769853A091147220B486 /* Build configuration list for PBXNativeTarget "Pods-BreakingSnooze" */;
+			buildConfigurationList = 9940308F193F1AC7F50CD9C8572629DB /* Build configuration list for PBXNativeTarget "Pods-BreakingSnooze" */;
 			buildPhases = (
-				B59104FBFE03DF3D90DF813F552930A7 /* Sources */,
-				5B6795260ED9DFBE2343240389D794B8 /* Frameworks */,
-				1E9B5C1516FE2DD594BA9FAEF88512A8 /* Headers */,
+				AF3E452581BA2BC7B96C0979D7494B64 /* Sources */,
+				84B9BF6838B7E040DA72A12E54F55F96 /* Frameworks */,
+				8C281B3251224156C4D34F618ED4DAA5 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				637BFB91EEC649635A375B320E3A6E3D /* PBXTargetDependency */,
+				1A919C3C43AA5FB705427358674D354D /* PBXTargetDependency */,
+				6B94CB92DB6628C6405BC7CB0B5E2501 /* PBXTargetDependency */,
 			);
 			name = "Pods-BreakingSnooze";
 			productName = "Pods-BreakingSnooze";
-			productReference = BE71F477A3A04B94AAC1599C5135CC14 /* Pods_BreakingSnooze.framework */;
+			productReference = 6166DAFD6AFEB577B83F62347BAFE2B5 /* Pods_BreakingSnooze.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7B1D24101998825C3DE091191B9DB47F /* View2ViewTransition */ = {
+		8B45D2FB5F4BC304D75324A66B96EA5E /* p2.OAuth2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D3FC45AC322AE84B634677FC3DD7444 /* Build configuration list for PBXNativeTarget "View2ViewTransition" */;
+			buildConfigurationList = 9E8D23BE1107CD176EEC3C4FE9C1FF86 /* Build configuration list for PBXNativeTarget "p2.OAuth2" */;
 			buildPhases = (
-				595DE02094DAEF397F22CB42904B5D28 /* Sources */,
-				DF0A9FC2146B5C378FE02F5614BCB255 /* Frameworks */,
-				FE15E3D4FD1DC7B95E75951A1125398A /* Headers */,
+				0BEF1B6D7C6F1064778891D013EE40D1 /* Sources */,
+				EB8140CBE20BD5839609C63790A208DD /* Frameworks */,
+				28A5D498F44207D5B0A488F783C72F03 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = p2.OAuth2;
+			productName = p2.OAuth2;
+			productReference = B330E4BE559893FDDE2AC8A5FE360989 /* p2_OAuth2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EDC6129B06F036F45E5980B2A028783A /* View2ViewTransition */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1421D1F6EA49D9EBB4A0EF484210BB2 /* Build configuration list for PBXNativeTarget "View2ViewTransition" */;
+			buildPhases = (
+				376C03B2C4CA9C8F95A7502C284F9A77 /* Sources */,
+				C5A2A658C9FADCE4CE3BF0462C0A2D09 /* Frameworks */,
+				CF7CC1F57FFBA78CB6E7F7EE08D20748 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -232,7 +406,7 @@
 			);
 			name = View2ViewTransition;
 			productName = View2ViewTransition;
-			productReference = 4F7181BE89F0574865F637B0DFA1E3E8 /* View2ViewTransition.framework */;
+			productReference = 327EFF7ED582D15DD6CB91C3232A3A7E /* View2ViewTransition.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -242,7 +416,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -252,56 +426,101 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 6C4C903272710A83B4AB225659968FF4 /* Products */;
+			productRefGroup = 5700E922DA5C6A2D3156524AD970A6F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6F53C992B58F85A262BD13B51022B0DA /* Pods-BreakingSnooze */,
-				7B1D24101998825C3DE091191B9DB47F /* View2ViewTransition */,
+				8B45D2FB5F4BC304D75324A66B96EA5E /* p2.OAuth2 */,
+				1F1AF5B67B594E6C7E3D13B680F2E158 /* Pods-BreakingSnooze */,
+				EDC6129B06F036F45E5980B2A028783A /* View2ViewTransition */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		595DE02094DAEF397F22CB42904B5D28 /* Sources */ = {
+		0BEF1B6D7C6F1064778891D013EE40D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DC1F450D8640B95C0795C3D3D9BA6F8 /* DismissAnimationController.swift in Sources */,
-				6F811225F8F7278C953997FF7F381297 /* DismissInteractiveTransition.swift in Sources */,
-				0BEAB69533BB8DDFC2C349A381877358 /* PresentAnimationController.swift in Sources */,
-				D5ED5E1DEC46C4D8FB1E6331ABD91B78 /* TransitionController.swift in Sources */,
-				A4FC25293CEA835EB35A56FAE758B236 /* UIView+SnapshotImage.swift in Sources */,
-				BD4151AB4996CB5A97D19A3199EDB692 /* View2ViewTransition-dummy.m in Sources */,
-				B5529D50DAA2C24E6ECCE8D6F4D77A82 /* View2ViewTransition.swift in Sources */,
+				2CC224A6D6A3FA247BD7438CF6F07D61 /* extensions.swift in Sources */,
+				DF9A8411B962AAB76296B99B10784618 /* Keychain.swift in Sources */,
+				9F78F86BCFBC5DC77CF81E0E65F5AE36 /* OAuth2.swift in Sources */,
+				746D989AC367B583A91F7794345EC10D /* OAuth2AuthConfig.swift in Sources */,
+				2A3B854AB4CCF4938CF012486FD3902B /* OAuth2Authorizer+iOS.swift in Sources */,
+				839F3C7703CB6788BB2864B20A488D11 /* OAuth2AuthorizerUI.swift in Sources */,
+				ABA8A0D2417AAC23BAB37519EA11CE09 /* OAuth2AuthRequest.swift in Sources */,
+				0010A26B1D772BDE301624EAABF9637F /* OAuth2Base.swift in Sources */,
+				E3FE55B553C2FEEAC8CA09894AF3D66F /* OAuth2ClientConfig.swift in Sources */,
+				47F68E17DC3F3BE485DBF4A54DE7E577 /* OAuth2ClientCredentials.swift in Sources */,
+				11AC31DDB66B2AF22F07706A33961B01 /* OAuth2ClientCredentialsReddit.swift in Sources */,
+				BCE61B033894D653FF30E6ADEDA9323E /* OAuth2CodeGrant.swift in Sources */,
+				EDEE60A8BBCB8F096D3601FEF30F08CC /* OAuth2CodeGrantAzure.swift in Sources */,
+				72ACAF878A27251B2C7DC471E1D4975A /* OAuth2CodeGrantBasicAuth.swift in Sources */,
+				E4C0CD13240F2FBCA0578FFA4A28146F /* OAuth2CodeGrantFacebook.swift in Sources */,
+				8B27C37EEE27C352FF91E3E3BEDFB43B /* OAuth2CodeGrantLinkedIn.swift in Sources */,
+				C594E7F94AA7DCD8D71D0F5021A8C32D /* OAuth2CodeGrantNoTokenType.swift in Sources */,
+				928B281BD1145228FFFCA41C46D5FC27 /* OAuth2DataLoader.swift in Sources */,
+				4074162FE5059EF15F05B7B5DD247539 /* OAuth2DataRequest.swift in Sources */,
+				044B93344BE8B51071411AD0E05FF68C /* OAuth2DebugURLSessionDelegate.swift in Sources */,
+				D5754E6460A522C245EAFFA101DD774C /* OAuth2DynReg.swift in Sources */,
+				5A867CE565FF57E677E8D46561632B90 /* OAuth2Error.swift in Sources */,
+				C0D3B3CA74E4294E015012F7A5C08402 /* OAuth2ImplicitGrant.swift in Sources */,
+				8A51897B12D5836B02FB037333BBDEBB /* OAuth2KeychainAccount.swift in Sources */,
+				4E3FB468F325A17F49081EEB8FD32FDA /* OAuth2Logger.swift in Sources */,
+				5C1730356616BD6FCF85922BA6461943 /* OAuth2PasswordGrant.swift in Sources */,
+				BA28F00BAB8A4ACAE46CB573C36E367D /* OAuth2Requestable.swift in Sources */,
+				6CCDFB130DBED8F63986C483931B7EB1 /* OAuth2RequestPerformer.swift in Sources */,
+				C4140AA52A0149C13641D5069A41F608 /* OAuth2Response.swift in Sources */,
+				7119936DFBACE7283FF36B0B4FCAA76C /* OAuth2Securable.swift in Sources */,
+				60F6720AF15CD0E09D42E56BF61CEBFE /* OAuth2WebViewController.swift in Sources */,
+				C47E80D5F135A1521F8F82854F70C977 /* p2.OAuth2-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B59104FBFE03DF3D90DF813F552930A7 /* Sources */ = {
+		376C03B2C4CA9C8F95A7502C284F9A77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B729F889F66386F5C493D3B88F93E73 /* Pods-BreakingSnooze-dummy.m in Sources */,
+				BA408740DED6FC723C2C2C3B15D86015 /* DismissAnimationController.swift in Sources */,
+				FA0938533A9CCB4DF01E449A62644129 /* DismissInteractiveTransition.swift in Sources */,
+				AC84E1178CD97212A27A599D98EED0D9 /* PresentAnimationController.swift in Sources */,
+				194DE13727533082A759A17BD31DA16C /* TransitionController.swift in Sources */,
+				D921F3019DDC4674211D06A4AF5361FC /* UIView+SnapshotImage.swift in Sources */,
+				3F2EB815AB71C805753E61DA97188DF0 /* View2ViewTransition-dummy.m in Sources */,
+				952B35FD019272783A84BAB55DFB0CF0 /* View2ViewTransition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3E452581BA2BC7B96C0979D7494B64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3D56434A58D2BEF722C5B636436C712 /* Pods-BreakingSnooze-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		637BFB91EEC649635A375B320E3A6E3D /* PBXTargetDependency */ = {
+		1A919C3C43AA5FB705427358674D354D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = View2ViewTransition;
-			target = 7B1D24101998825C3DE091191B9DB47F /* View2ViewTransition */;
-			targetProxy = 404F55C606716A7BCF372CB25478AE9A /* PBXContainerItemProxy */;
+			target = EDC6129B06F036F45E5980B2A028783A /* View2ViewTransition */;
+			targetProxy = 53EFD4B9828A8A7ED882C2F093F093B8 /* PBXContainerItemProxy */;
+		};
+		6B94CB92DB6628C6405BC7CB0B5E2501 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = p2.OAuth2;
+			target = 8B45D2FB5F4BC304D75324A66B96EA5E /* p2.OAuth2 */;
+			targetProxy = 9302433C23F609065A3455516D4464E0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1187C679CDDC54A599FB29A15BB0337B /* Debug */ = {
+		07BC88C2169CF9E73170CE6126457EFC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E1A4361F7653B814D925C73AC96E572 /* Pods-BreakingSnooze.debug.xcconfig */;
+			baseConfigurationReference = 1B2FB9C2246311EA6DB1234A097B1636 /* View2ViewTransition.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -313,21 +532,51 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-BreakingSnooze/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/View2ViewTransition/View2ViewTransition-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/View2ViewTransition/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze.modulemap";
+				MODULEMAP_FILE = "Target Support Files/View2ViewTransition/View2ViewTransition.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_BreakingSnooze;
+				PRODUCT_NAME = View2ViewTransition;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0B96AFC623CD9B9E47EA2C51DD06D43E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C57F226BDCF94E1F7983229ED5D876BC /* p2.OAuth2.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/p2.OAuth2/p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/p2.OAuth2/p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -348,19 +597,15 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -382,11 +627,42 @@
 			};
 			name = Debug;
 		};
-		244A9A5C0FF6EDC446616BC2C365DD2F /* Release */ = {
+		232D4E645CAECD4C0A34CD0934A9CC7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B2FB9C2246311EA6DB1234A097B1636 /* View2ViewTransition.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/View2ViewTransition/View2ViewTransition-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/View2ViewTransition/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/View2ViewTransition/View2ViewTransition.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = View2ViewTransition;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3A31F40D7BF4B509576CB380EBE83A8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4037811605F5E6B501B310FBA94CFDF5 /* Pods-BreakingSnooze.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -418,42 +694,9 @@
 			};
 			name = Release;
 		};
-		71AC40504993D462C94B6EDFCB4B4440 /* Debug */ = {
+		976A851965F4F39C3065FFF3D6639FF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9D13B3883B592560437B896CE0655E7 /* View2ViewTransition.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/View2ViewTransition/View2ViewTransition-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/View2ViewTransition/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/View2ViewTransition/View2ViewTransition.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = View2ViewTransition;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8C39A3DBD34B7C58A99A330289D056D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9D13B3883B592560437B896CE0655E7 /* View2ViewTransition.xcconfig */;
+			baseConfigurationReference = C57F226BDCF94E1F7983229ED5D876BC /* p2.OAuth2.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -466,14 +709,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/View2ViewTransition/View2ViewTransition-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/View2ViewTransition/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/p2.OAuth2/p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/p2.OAuth2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/View2ViewTransition/View2ViewTransition.modulemap";
+				MODULEMAP_FILE = "Target Support Files/p2.OAuth2/p2.OAuth2.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = View2ViewTransition;
+				PRODUCT_NAME = p2_OAuth2;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -497,18 +740,14 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -522,11 +761,46 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		FA25AA3CC11AB03EABBBB0C6FE16F847 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E1A4361F7653B814D925C73AC96E572 /* Pods-BreakingSnooze.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BreakingSnooze/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BreakingSnooze/Pods-BreakingSnooze.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_BreakingSnooze;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -540,20 +814,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D3FC45AC322AE84B634677FC3DD7444 /* Build configuration list for PBXNativeTarget "View2ViewTransition" */ = {
+		9940308F193F1AC7F50CD9C8572629DB /* Build configuration list for PBXNativeTarget "Pods-BreakingSnooze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71AC40504993D462C94B6EDFCB4B4440 /* Debug */,
-				8C39A3DBD34B7C58A99A330289D056D7 /* Release */,
+				FA25AA3CC11AB03EABBBB0C6FE16F847 /* Debug */,
+				3A31F40D7BF4B509576CB380EBE83A8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74BD1D8BA574769853A091147220B486 /* Build configuration list for PBXNativeTarget "Pods-BreakingSnooze" */ = {
+		9E8D23BE1107CD176EEC3C4FE9C1FF86 /* Build configuration list for PBXNativeTarget "p2.OAuth2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1187C679CDDC54A599FB29A15BB0337B /* Debug */,
-				244A9A5C0FF6EDC446616BC2C365DD2F /* Release */,
+				0B96AFC623CD9B9E47EA2C51DD06D43E /* Debug */,
+				976A851965F4F39C3065FFF3D6639FF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1421D1F6EA49D9EBB4A0EF484210BB2 /* Build configuration list for PBXNativeTarget "View2ViewTransition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BC88C2169CF9E73170CE6126457EFC /* Debug */,
+				232D4E645CAECD4C0A34CD0934A9CC7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
