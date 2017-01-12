@@ -202,6 +202,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
     }
     
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -209,6 +210,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     
+
     //MARK: - Core Location
     
     func permission() {
@@ -314,7 +316,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
       
         return cell
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selected = segue.destination as? TopStoriesWebViewController,
             let cell = sender as? TopStoriesTableViewCell,
@@ -327,5 +329,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
 
     
     
+
 }
 

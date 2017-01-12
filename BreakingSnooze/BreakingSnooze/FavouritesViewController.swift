@@ -20,18 +20,46 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
-    private var controller: NSFetchedResultsController<NewsSource>!
+    private var controller: NSFetchedResultsController<Favorite>!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard let initialCoreDataCount = controller.fetchedObjects?.count else { return }
+        initializeFetchedResultsController()
+        guard let newCoreDataCount = controller.fetchedObjects?.count else { return }
+        if initialCoreDataCount != newCoreDataCount {
+            self.collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if navigationController?.accessibilityElementCount() ?? 0 > 1 {
-        self.navigationItem.leftBarButtonItem = closeItem
-        }
         self.view.addSubview(collectionView)
         if let source = sourceID {
             self.getDataFromAPI(source: source)
+            self.navigationItem.leftBarButtonItem = closeItem
+        }
+        initializeFetchedResultsController()
+    }
+    
+    
+    //MARK: Initialize Fetch Controller
+    
+    func initializeFetchedResultsController() {
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Favorite.title), ascending: false)]
+        controller = NSFetchedResultsController(fetchRequest: request,
+                                                managedObjectContext: mainContext,
+                                                sectionNameKeyPath: nil,
+                                                cacheName: nil)
+        controller.delegate = self
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
+    
     //MARK: Views
     
     
@@ -97,6 +125,14 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         presentedViewController.transitionController = self.transitionController
         transitionController.userInfo = ["destinationIndexPath": indexPath as NSIndexPath, "initialIndexPath": indexPath as NSIndexPath]
         presentedViewController.articles = self.articles
+        
+        //Pass Along the current article
+        if presentedViewController.articles == nil {
+            presentedViewController.currentArticle = SourceArticles(fromFavourite: controller.object(at: indexPath))
+        } else {
+            presentedViewController.currentArticle = articles?[indexPath.row]
+        }
+        
         let cell = self.collectionView.cellForItem(at: indexPath) as! PresentingCollectionViewCell
         presentedViewController.image = cell.contentImage.image
         // This example will push view controller if presenting view controller has navigation controller.
@@ -113,7 +149,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
             presentedViewController.transitioningDelegate = transitionController
             transitionController.present(viewController: presentedViewController, on: self, attached: presentedViewController, completion: nil)
         }
-
+        
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
@@ -121,7 +157,16 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     // MARK: CollectionView Data Source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articles?.count ?? 0
+        
+        if let arr = articles {
+            return arr.count
+        }
+        if let sections = controller.sections {
+            let objectCount = sections[section].numberOfObjects
+            print(objectCount)
+            return objectCount
+        }
+        return 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -133,19 +178,24 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         let cell: PresentingCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "presenting_cell", for: indexPath) as! PresentingCollectionViewCell
         cell.contentView.backgroundColor = .white
         
+        var currentArticle: SourceArticles
+        
         if let arr = articles {
-            let currentArticle = arr[indexPath.row]
-            cell.titleLabel.text = currentArticle.title
-            cell.authorLabel.text = currentArticle.author
-            cell.descriptionLabel.text = currentArticle.description
-            APIManager.shared.getData(urlString: currentArticle.imageURL){ (data: Data?) in
-                guard let validData = data else { return }
-                DispatchQueue.main.async {
-                    cell.contentImage.image = UIImage(data: validData)
-                    cell.setNeedsLayout()
-                }
+            currentArticle = arr[indexPath.row]
+            } else {
+            currentArticle = SourceArticles.init(fromFavourite: controller.object(at: indexPath))
+        }
+        cell.titleLabel.text = currentArticle.title
+        cell.authorLabel.text = currentArticle.author
+        cell.descriptionLabel.text = currentArticle.description
+        APIManager.shared.getData(urlString: currentArticle.imageURL){ (data: Data?) in
+            guard let validData = data else { return }
+            DispatchQueue.main.async {
+                cell.contentImage.image = UIImage(data: validData)
+                cell.setNeedsLayout()
             }
         }
+
         return cell
     }
     
@@ -182,7 +232,8 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     // MARK: Actions
     
     func onCloseButtonClicked(sender: UIBarButtonItem) {
-    
+        //self.tabBarController.
+
     }
 }
 
