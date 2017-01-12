@@ -286,5 +286,6 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     }
     
     func shareButtonPressed (sender: UIButton) {
+        APIManager.shared.postToSlack(message: currentArticle.articleURL)
     }
 }

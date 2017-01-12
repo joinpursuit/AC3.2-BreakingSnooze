@@ -15,7 +15,6 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
     var article: SourceArticles!
     var articles: [SourceArticles]?
     var image: UIImage!
-    var currentArticle: SourceArticles!
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -33,7 +32,10 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
         
         setupWebView()
         setUpViewHierarchyAndConstraints()
-
+        initializeFetchedResultsController()
+        if let _ = isThisInCoreData(article: article) {
+            favouriteButton.setTitle("❤️", for: .normal)
+        }
         let myURL = URL(string: article.articleURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
@@ -204,13 +206,13 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
     }
     
     func favouritesButtonPresses (sender: UIButton) {
-        if let favourite = isThisInCoreData(article: currentArticle) {
+        if let favourite = isThisInCoreData(article: article) {
             mainContext.delete(favourite)
             sender.setTitle("🖤", for: .normal)
             print("deletedFromCoreData")
         } else {
             let favorite = Favorite(context: mainContext)
-            favorite.populate(article: currentArticle)
+            favorite.populate(article: article)
             do {
                 try mainContext.save()
                 print("working")
