@@ -30,7 +30,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="105" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="60" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19o-6u-OhC">
-                                <rect key="frame" x="24" y="60" width="139" height="102"/>
+                                <rect key="frame" x="24" y="60" width="139" height="101.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="85"/>
                                 <color key="textColor" red="0.99479166666666663" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -57,19 +57,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listening to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2m-PO-dFJ">
-                                <rect key="frame" x="141" y="158" width="93" height="21"/>
+                                <rect key="frame" x="141.5" y="158" width="92.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="z100: Some song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7VT-Oe-Wuy">
-                                <rect key="frame" x="141" y="179" width="131" height="21"/>
+                                <rect key="frame" x="141.5" y="178.5" width="130.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tth-UU-5Ct">
-                                <rect key="frame" x="89" y="170" width="30" height="30"/>
+                                <rect key="frame" x="89" y="169.5" width="30" height="30"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgK-d8-9SC">
                                 <rect key="frame" x="335" y="10" width="30" height="30"/>
@@ -77,27 +77,50 @@
                                     <segue destination="aSf-6S-120" kind="showDetail" action="showViewController:sender:" id="vBT-Hh-dqU"/>
                                 </connections>
                             </button>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="js0-Ws-aLD">
-                                <rect key="frame" x="0.0" y="226" width="375" height="47"/>
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="js0-Ws-aLD">
+                                <rect key="frame" x="0.0" y="225.5" width="375" height="47.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bqa-XU-UHT">
-                                        <rect key="frame" x="17" y="7" width="310" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Today’s Breaking Snooze">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="28" name="ArialRoundedMTBold"/>
-                                                    <font key="NSOriginalFont" size="28" name="ArialRoundedMTBold"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aOF-GZ-X4A">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="bqa-XU-UHT">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="27.5"/>
+                                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Today’s Breaking Snooze">
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="24" name="AvenirNextCondensed-Regular"/>
+                                                            <font key="NSOriginalFont" size="28" name="ArialRoundedMTBold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETy-e5-vte">
+                                                <rect key="frame" x="0.0" y="27.5" width="375" height="20"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Label">
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="BrushScriptMT"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="aOF-GZ-X4A" firstAttribute="top" secondItem="js0-Ws-aLD" secondAttribute="top" id="PNK-vQ-cLQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="aOF-GZ-X4A" secondAttribute="trailing" id="XXc-Cf-a1y"/>
+                                    <constraint firstItem="aOF-GZ-X4A" firstAttribute="leading" secondItem="js0-Ws-aLD" secondAttribute="leading" id="r6I-Bp-UrP"/>
+                                    <constraint firstAttribute="bottom" secondItem="aOF-GZ-X4A" secondAttribute="bottom" id="wZY-Hr-qi7"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZcD-re-GM3">
                                 <rect key="frame" x="0.0" y="273" width="375" height="394"/>
@@ -194,6 +217,7 @@
                         <outlet property="breakingSnoozeBackgroundView" destination="js0-Ws-aLD" id="qjk-4D-Wps"/>
                         <outlet property="conditionsImageView" destination="Bye-I1-nUh" id="OAI-kd-FDz"/>
                         <outlet property="degreeIconView" destination="l1D-cb-QxX" id="sSb-Wt-YLQ"/>
+                        <outlet property="detailCompanyLabel" destination="ETy-e5-vte" id="WuG-fz-37L"/>
                         <outlet property="listeningToLabel" destination="D2m-PO-dFJ" id="ORz-aa-Kvo"/>
                         <outlet property="localNewsTableView" destination="ZcD-re-GM3" id="0AR-GQ-w3Y"/>
                         <outlet property="locationLabel" destination="lTz-HE-0Kh" id="8eV-Jr-zKy"/>
