@@ -50,7 +50,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return locMan
     }()
     var currentWeather: [Weather] = []
-    lazy var allArticles: [NewsArticles] = []
+    lazy var allArticles: [SourceArticles] = []
+    
     let sources = ["associated-press", "bb-news", "bloomberg", "buisness-insider", "buzzfeed"]
      let randomNum = Int(arc4random_uniform(UInt32(4)))
     
@@ -125,7 +126,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     //MARK: - Load data from API
     
     func loadData(endPoint: String) {
-        APIRequestManager.manager.getPOD(endPoint: endPoint) { (data: Data?) in
+        APIManager.shared.getData(urlString: endPoint) { (data: Data?) in
             if data != nil {
                 
                 if let new = Weather.getData(from: data!) {
@@ -202,26 +203,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
     }
     
-<<<<<<< HEAD
-    func getArticlesFromSources() {
-        
-        APIRequestManager.manager.getPOD(endPoint: AssociatedPress) { (data: Data?) in
-            if data != nil {
-                
-                if let article = NewsArticles.getData(from: data!) {
-                    self.allArticles = article
-                    
-                }
-                
-                DispatchQueue.main.async {
-                 self.localNewsTableView.reloadData()
-                }
-                
-            }
-        }
-        
-    }
-=======
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -229,7 +211,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     
->>>>>>> aadfc6a91fa832e93c7d2f7e98219938ad2e39c3
+
     //MARK: - Core Location
     
     func permission() {
@@ -287,12 +269,12 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     func getArticlesFromSources() {
 //        let random = controller.fetchedObjects?[Int(arc4random_uniform(UInt32(69)))].sourceID
         let random = sources[randomNum]
-        let endpoint = "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
+        let endpoint = "https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
         print("****************\(endpoint)************")
-        APIRequestManager.manager.getPOD(endPoint: endpoint) { (data: Data?) in
+        APIManager.shared.getData(urlString: endpoint) { (data: Data?) in
             if data != nil {
                 
-                if let article = NewsArticles.getData(from: data!) {
+                if let article = SourceArticles.parseArticles(from: data!) {
                     self.allArticles = article
                     
                 }
@@ -324,7 +306,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         cell.titleLabel.text = article.title
         cell.detailLabel.text = article.description
         
-        APIRequestManager.manager.getPOD(endPoint: article.image ) {(data: Data?) in
+        APIManager.shared.getData(urlString: article.imageURL ) {(data: Data?) in
             if let validData = data {
                     DispatchQueue.main.async {
                     cell.photoImageView.image = UIImage(data: validData)
@@ -335,7 +317,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
       
         return cell
     }
-<<<<<<< HEAD
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selected = segue.destination as? TopStoriesWebViewController,
@@ -347,9 +329,5 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
 
-    
-    
-=======
->>>>>>> 566229f66abaaac5290d6dc44338e0b1ef8be40f
 }
 
