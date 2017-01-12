@@ -198,6 +198,26 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
     }
     
+<<<<<<< HEAD
+    func getArticlesFromSources() {
+        
+        APIRequestManager.manager.getPOD(endPoint: AssociatedPress) { (data: Data?) in
+            if data != nil {
+                
+                if let article = NewsArticles.getData(from: data!) {
+                    self.allArticles = article
+                    
+                }
+                
+                DispatchQueue.main.async {
+                 self.localNewsTableView.reloadData()
+                }
+                
+            }
+        }
+        
+    }
+=======
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -205,6 +225,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     
+>>>>>>> aadfc6a91fa832e93c7d2f7e98219938ad2e39c3
     //MARK: - Core Location
     
     func permission() {
@@ -324,10 +345,5 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
       
         return cell
     }
-    
-    
-
-    
-    
 }
 

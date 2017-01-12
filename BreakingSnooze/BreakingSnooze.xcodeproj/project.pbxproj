@@ -20,6 +20,7 @@
 		810E8C4D1E258A7E002938F1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E8C4C1E258A7E002938F1 /* CoreDataManager.swift */; };
 		810E8C4F1E2595A3002938F1 /* PresentingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E8C4E1E2595A3002938F1 /* PresentingCollectionViewCell.swift */; };
 		810E8C511E2595D5002938F1 /* PresentedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E8C501E2595D5002938F1 /* PresentedCollectionViewCell.swift */; };
+		81AD4CF81E26D8BE00829CF0 /* Favorite+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AD4CF71E26D8BE00829CF0 /* Favorite+Extension.swift */; };
 		81D64CD21E253572000B47E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D64CD11E253572000B47E8 /* AppDelegate.swift */; };
 		81D64CD71E253572000B47E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D64CD51E253572000B47E8 /* Main.storyboard */; };
 		81D64CDC1E253572000B47E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D64CDB1E253572000B47E8 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		810E8C4C1E258A7E002938F1 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		810E8C4E1E2595A3002938F1 /* PresentingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentingCollectionViewCell.swift; sourceTree = "<group>"; };
 		810E8C501E2595D5002938F1 /* PresentedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentedCollectionViewCell.swift; sourceTree = "<group>"; };
+		81AD4CF71E26D8BE00829CF0 /* Favorite+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+Extension.swift"; sourceTree = "<group>"; };
 		81D64CCE1E253572000B47E8 /* BreakingSnooze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakingSnooze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D64CD11E253572000B47E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D64CD61E253572000B47E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				81D64CE91E253628000B47E8 /* NewsSource+Extension.swift */,
+				81AD4CF71E26D8BE00829CF0 /* Favorite+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				2D40F3681E258AF000E088C7 /* SourceCollectionViewCell.swift in Sources */,
 				810E8C4F1E2595A3002938F1 /* PresentingCollectionViewCell.swift in Sources */,
 				81D64CF41E253680000B47E8 /* BreakingSnooze.xcdatamodeld in Sources */,
+				81AD4CF81E26D8BE00829CF0 /* Favorite+Extension.swift in Sources */,
 				2DA2CE441E26AA15008F025C /* SettingsTableViewController.swift in Sources */,
 				81D64CD21E253572000B47E8 /* AppDelegate.swift in Sources */,
 				810E8C511E2595D5002938F1 /* PresentedCollectionViewCell.swift in Sources */,

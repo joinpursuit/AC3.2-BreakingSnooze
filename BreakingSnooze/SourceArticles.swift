@@ -39,6 +39,10 @@ class SourceArticles {
         self.init(author: author, title: title, description: description, articleURL: articleURL, imageURL: imageURL, publishedDate: publishedDate)
     }
     
+    convenience init(fromFavourite: Favorite) {
+        self.init(author: fromFavourite.author!, title: fromFavourite.title!, description: fromFavourite.descript!, articleURL: fromFavourite.url!, imageURL: fromFavourite.imageURL!, publishedDate: fromFavourite.publishDate!)
+    }
+    
     static func parseArticles(from data: Data) -> [SourceArticles]? {
         var articleDetails = [SourceArticles]()
         do {
@@ -58,13 +62,3 @@ class SourceArticles {
         return articleDetails
     }
 }
-
-/*
- "author": "TNW Deals",
- "title": "Easily create and edit documents with PDFpenPro 8 for Mac (50% off)",
- "description": "PDFs are one of the most prevalent document types online, but creating and editing them is a big pain. Luckily, there’s PDFpenPro, which lets you handle the biggest problem most PDF users inevitably face. Right now, you can get it get it for only $62 (usually $124.95) from TNW Deals. PDFpenPro makes creating all the …",
- "url": "http://thenextweb.com/offers/2016/12/05/easily-create-edit-documents-pdfpenpro-8-mac-50-off/",
- "urlToImage": "https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/12/L1gcm8K.jpg",
- "publishedAt": "2016-12-05T09:34:15Z"
- 
- */
