@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import p2_OAuth2
+//import p2_OAuth2
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
