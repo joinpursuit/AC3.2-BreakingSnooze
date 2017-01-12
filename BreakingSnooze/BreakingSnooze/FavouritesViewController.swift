@@ -99,7 +99,7 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
                 var articles = [SourceArticles]()
                 
                 for article in articlesDictArr {
-                    guard let validObject = SourceArticles.init(from: article) else { continue }
+                    guard let validObject = SourceArticles.init(from: article, source: "") else { continue }
                     articles.append(validObject)
                 }
                 self.articles = articles
@@ -232,7 +232,11 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
     // MARK: Actions
     
     func onCloseButtonClicked(sender: UIBarButtonItem) {
+
+        //self.tabBarController.
+
         self.navigationController?.popViewController(animated: true)
+
     }
 }
 

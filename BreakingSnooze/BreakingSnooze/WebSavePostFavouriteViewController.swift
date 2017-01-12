@@ -180,6 +180,7 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
         button.setTitle("Share on Slack", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightHeavy)
+        button.addTarget(self, action: #selector(shareButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -221,7 +222,15 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
     // MARK: CollectionView Data Source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        if let arr = articles {
+            return arr.count
+        }
+        if let sections = controller.sections {
+            let objectCount = sections[section].numberOfObjects
+            print(objectCount)
+            return objectCount
+        }
+        return 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -274,5 +283,9 @@ class WebSavePostFavouriteViewController: UIViewController, View2ViewTransitionP
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func shareButtonPressed (sender: UIButton) {
+        APIManager.shared.postToSlack(message: currentArticle.articleURL)
     }
 }
