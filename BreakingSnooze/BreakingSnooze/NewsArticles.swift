@@ -86,12 +86,4 @@ class NewsArticles {
         
     return nil
     }
-    
-
-
-
-
-
-
-
 }

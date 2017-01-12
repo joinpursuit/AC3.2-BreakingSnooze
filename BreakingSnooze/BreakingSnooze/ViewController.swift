@@ -5,7 +5,6 @@
 //  Created by C4Q on 1/9/17.
 //  Copyright © 2017 C4Q. All rights reserved.
 //
-//APIKEY = 817c2d1fcd584b7ca26af5888e55bfd2
 //APIKEYFORRADIO = ed4616717617f6e9d090f88c8f
 import Foundation
 import UIKit
@@ -197,35 +196,13 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         }
         
     }
-    
-<<<<<<< HEAD
-    func getArticlesFromSources() {
         
-        APIRequestManager.manager.getPOD(endPoint: AssociatedPress) { (data: Data?) in
-            if data != nil {
-                
-                if let article = NewsArticles.getData(from: data!) {
-                    self.allArticles = article
-                    
-                }
-                
-                DispatchQueue.main.async {
-                 self.localNewsTableView.reloadData()
-                }
-                
-            }
-        }
-        
-    }
-=======
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
->>>>>>> aadfc6a91fa832e93c7d2f7e98219938ad2e39c3
     //MARK: - Core Location
     
     func permission() {
