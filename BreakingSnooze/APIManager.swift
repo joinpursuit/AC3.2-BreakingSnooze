@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import p2_OAuth2
 
 enum getSourcesErrorHandler: Error {
     case failedToLoadData
@@ -31,10 +32,10 @@ class APIManager {
             }
             guard let validData = data else { return }
             completion(validData)
-        }.resume()
+            }.resume()
     }
     
-   
+    
     
     
     func getData(urlString: String, completion: @escaping (Data?) -> Void) {
@@ -50,5 +51,4 @@ class APIManager {
             }
         }.resume()
     }
-    
 }

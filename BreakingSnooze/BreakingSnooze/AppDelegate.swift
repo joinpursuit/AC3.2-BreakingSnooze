@@ -8,15 +8,28 @@
 
 import UIKit
 import CoreData
+import p2_OAuth2
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+   
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let oauth2 = OAuth2CodeGrant(settings: [
+            "client_id": "69312262336.125802163008",
+            "client_secret": "02c187210ea50bb0aac9d93df5f0c9cc",
+            "authorize_uri": "https://slack.com/oauth/authorize",
+            "token_uri": "https://slack.com/api/oauth.access",
+            "redirect_uri": "breakingsnooze://auth.url",
+            "scope": "chat:write:user",
+            "keychain": false,
+            "channel": "#random"
+            ] as OAuth2JSON)
+
         return true
     }
 
