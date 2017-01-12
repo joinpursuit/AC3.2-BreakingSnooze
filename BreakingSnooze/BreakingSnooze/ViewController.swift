@@ -51,11 +51,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return locMan
     }()
     var currentWeather: [Weather] = []
-
     lazy var allArticles: [SourceArticles] = []
-    
     let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
-     let randomNum = Int(arc4random_uniform(UInt32(22)))
+     let randomNum = Int(arc4random_uniform(UInt32(19)))
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -314,16 +312,10 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     
     //MARK: // -Helper Functions
     
-    func randomNewSource() -> NSFetchedResultsSectionInfo {
-        guard let section = controller.sections else {return NSFetchedResultsSectionInfo.self as! NSFetchedResultsSectionInfo}
-        let random = section[Int(arc4random_uniform(UInt32(68)))]
-        return random
-    }
-    
+
     func getArticlesFromSources() {
-        let random = sources[randomNum]
-        let endpoint = "https://newsapi.org/v1/articles?source=\(random)&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
-        print("****************\(endpoint)************")
+//        let random = sources[randomNum]
+        let endpoint = "https://newsapi.org/v1/articles?source=hacker-news&sortBy=top&apiKey=df4c5752e0f5490490473486e24881ef"
         APIManager.shared.getData(urlString: endpoint) { (data: Data?) in
             if data != nil {
                 
@@ -372,6 +364,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
       
         return cell
     }
+    
+    //MARK: -Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selected = segue.destination as? TopStoriesWebViewController,

@@ -10,35 +10,48 @@ import UIKit
 import WebKit
 import CoreData
 
-class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResultsControllerDelegate {
+class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResultsControllerDelegate, WKNavigationDelegate {
 
     var article: SourceArticles!
     var articles: [SourceArticles]?
     var image: UIImage!
-    var currentArticle: SourceArticles!
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
     private var controller: NSFetchedResultsController<Favorite>!
-    
-    
     var webView: WKWebView!
 
+    var indicator = UIActivityIndicatorView()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
+    
         setupWebView()
         setUpViewHierarchyAndConstraints()
-
         let myURL = URL(string: article.articleURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
-        
     }
+    
+
+    
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        view.addSubview(indicator)
+        indicator.frame = CGRect(x: 0, y:0, width: 40, height: 40)
+        indicator.startAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        indicator.stopAnimating()
+         indicator.removeFromSuperview()
+    }
+    
 
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
@@ -139,6 +152,7 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
 
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
+        webView.navigationDelegate = self
         
         if let containerView = view.viewWithTag(1) {
             containerView.addSubview(webView)
@@ -148,7 +162,8 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
             webView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
             webView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         }
-
+        
+    
     }
     
     //MARK: - View Hierarchy
@@ -204,13 +219,13 @@ class TopStoriesWebViewController: UIViewController, WKUIDelegate, NSFetchedResu
     }
     
     func favouritesButtonPresses (sender: UIButton) {
-        if let favourite = isThisInCoreData(article: currentArticle) {
+        if let favourite = isThisInCoreData(article: article) {
             mainContext.delete(favourite)
             sender.setTitle("🖤", for: .normal)
             print("deletedFromCoreData")
         } else {
             let favorite = Favorite(context: mainContext)
-            favorite.populate(article: currentArticle)
+            favorite.populate(article: article)
             do {
                 try mainContext.save()
                 print("working")

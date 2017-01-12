@@ -30,14 +30,17 @@ class SourceArticles {
     
     convenience init?(from articleObject: [String : Any], source: String) {
         
-        guard let author = articleObject["author"] as? String,
-            let title = articleObject["title"] as? String,
-            let description = articleObject["description"] as? String,
-            let articleURL = articleObject["url"] as? String
-            else { print("#######Didnt get in######"); return nil}
+//        guard let author = articleObject["author"] as? String ,
+//            let title = articleObject["title"] as? String,
+//            let description = articleObject["description"] as? String,
+//            let articleURL = articleObject["url"] as? String
+//            else { print("#######Didnt get in######"); return nil}
+        let author = articleObject["author"] as? String ?? ""
+        let title = articleObject["title"] as? String ?? ""
+        let description = articleObject["description"] as? String ?? ""
+        let articleURL = articleObject["url"] as? String ?? ""
         let publishedDate = articleObject["publishedAt"] as? String ?? ""
-        
-        let imageURL = articleObject["urlToImage"] as? String ?? ""
+        let imageURL = articleObject["urlToImage"] as? String ?? "http://130.211.52.161/tradeo-content/themes/nucleare-pro/images/no-image-box.png"
         
         self.init(source: source, author: author, title: title, description: description, articleURL: articleURL, imageURL: imageURL, publishedDate: publishedDate)
     }

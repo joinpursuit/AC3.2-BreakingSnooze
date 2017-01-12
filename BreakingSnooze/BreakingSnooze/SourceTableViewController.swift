@@ -16,13 +16,16 @@ class SourceTableViewController: UITableViewController, NSFetchedResultsControll
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
-    
     private var controller: NSFetchedResultsController<NewsSource>!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeFetchedResultsController()
     }
+    
+    
     
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<NewsSource> = NewsSource.fetchRequest()
