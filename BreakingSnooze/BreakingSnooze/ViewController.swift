@@ -152,7 +152,15 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 
                 DispatchQueue.main.async {
                     let imageName = self.currentWeather[0].icon
-                    let image = UIImage(named: imageName)
+                    let imageString = { () -> String in
+                        var articleURL = imageName
+                        if articleURL.characters.count > 3 {
+                            articleURL = String(articleURL.characters.suffix(3))
+                            return articleURL
+                        }
+                        return articleURL
+                    }()
+                    let image = UIImage(named: imageString)
                     self.conditionsImageView.image =  image
 
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
@@ -259,7 +267,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("locations updated")
         guard let validLocation = locations.last else {return}
         let latCoordinate = validLocation.coordinate.latitude
         let longCoordinate = validLocation.coordinate.longitude
@@ -289,8 +296,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
         
-        locationManager.delegate = nil
-        
+    
 
     }
     
@@ -316,6 +322,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 
                 if let article = SourceArticles.parseArticles(from: data!) {
                     self.allArticles = article
+                    
                     
                 }
                 
@@ -346,7 +353,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         cell.titleLabel.text = article.title
         cell.detailLabel.text = article.description
         
-        APIManager.shared.getData(urlString: article.imageURL ) {(data: Data?) in
+        
+        APIManager.shared.getData(urlString: article.imageURL) {(data: Data?) in
             if let validData = data {
                     DispatchQueue.main.async {
                     cell.photoImageView.image = UIImage(data: validData)
