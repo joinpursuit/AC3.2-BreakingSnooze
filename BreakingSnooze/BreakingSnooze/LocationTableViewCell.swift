@@ -16,7 +16,7 @@ class LocationTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerView
     let geo = CLGeocoder()
     let userDefaults = UserDefaults.standard
     
-    let pickerData = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
+    let pickerData = ["Current Location", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +45,19 @@ class LocationTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let state = pickerData[row]
         
+        if state == "Current Location" {
+            let latCoord = ""
+            let longCoord = ""
+            
+            let locationDict: [String : Any] = ["state" : state,
+                                                "latCoord" : latCoord,
+                                                "longCoord" : longCoord,
+                                                "didSetOwnLocation" : false
+            ]
+            self.userDefaults.set(locationDict, forKey: "locationSave")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+
+        } else {
         geo.geocodeAddressString(state) { (placemarkArr, eror) in
             guard let placemark = placemarkArr?[0] else { return }
             let latCoordinate = placemark.location?.coordinate.latitude
@@ -53,12 +66,14 @@ class LocationTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerView
             let latCoord =  String(format: "%0.4f", latCoordinate!)
             let longCoord = String(format: "%0.4f", longCoordinate!)
             
-            let locationDict: [String : Any] = ["latCoord" : latCoord,
+            let locationDict: [String : Any] = ["state" : state,
+                                                "latCoord" : latCoord,
                                                 "longCoord" : longCoord,
                                                 "didSetOwnLocation" : true
             ]
             self.userDefaults.set(locationDict, forKey: "locationSave")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        }
         }
     }
     

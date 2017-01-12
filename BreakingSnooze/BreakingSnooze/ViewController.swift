@@ -11,11 +11,8 @@ import UIKit
 import CoreData
 import CoreLocation
 
-
-
 fileprivate var sourcesURL = "https://newsapi.org/v1/sources"
 fileprivate let reuseIdentifer = "Top Stories Cell"
-
 
 class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -40,7 +37,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
+    
     private var controller: NSFetchedResultsController<NewsSource>!
+    
     let locationManager: CLLocationManager = {
         let locMan = CLLocationManager()
         
@@ -49,27 +48,27 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         return locMan
     }()
+    
     var currentWeather: [Weather] = []
-
     lazy var allArticles: [SourceArticles] = []
     
     let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
-     let randomNum = Int(arc4random_uniform(UInt32(21)))
-
+    
+    let randomNum = Int(arc4random_uniform(UInt32(21)))
     
     override func viewWillAppear(_ animated: Bool) {
-         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
+        locationManager.delegate = self
         localNewsTableView.delegate = self
         localNewsTableView.dataSource = self
+        permission()
         initializeFetchedResultsController()
         getSources()
-        locationManager.delegate = self
-        permission()
         whiteTextShadow()
         setUpButtonImages()
         getArticlesFromSources()
@@ -78,24 +77,29 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     }
     
     func loadList(notification: NSNotification){
-        //load data here
-        
         let userDefaults = UserDefaults.standard
-
         let locationDict = userDefaults.value(forKey: "locationSave")
         guard let locDict = locationDict as? [String : Any],
             let latCoord = locDict["latCoord"] as? String,
-            let longCoord = locDict["longCoord"] as? String else { return }
-        
-        loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
-
-        self.view.reloadInputViews()
+            let longCoord = locDict["longCoord"] as? String,
+            let didSetOwnLocation = locDict["didSetOwnLocation"] as? Bool else { return }
+        if didSetOwnLocation == false {
+            guard let lat = locationManager.location?.coordinate.latitude,
+                let long = locationManager.location?.coordinate.longitude else { return }
+            let latCoord =  String(format: "%0.4f", lat )
+            let longCoord = String(format: "%0.4f", long)
+            loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
+            self.view.reloadInputViews()
+        } else {
+            loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
+            self.view.reloadInputViews()
+        }
     }
-
+    
     func setUpButtonImages() {
         let playPauseImage = UIImage(named: "play_button")
         playPauseButton.setBackgroundImage(playPauseImage, for: UIControlState.normal)
-
+        
         let settingsImage = UIImage(named: "settings_Icon")
         settingsButton.setBackgroundImage(settingsImage, for: UIControlState.normal)
         
@@ -115,7 +119,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             breakingSnoozeBackgroundView,
             breakingNewsLabel,
             detailCompanyLabel
-        ].map { $0.layer.shadowOffset = CGSize(width: 0, height: 0) }
+            ].map { $0.layer.shadowOffset = CGSize(width: 0, height: 0) }
         
         let _ = [
             temperatureLabel,
@@ -127,10 +131,10 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             radioStationNameLabel,
             breakingNewsLabel,
             detailCompanyLabel
-        ].map { $0.layer.shadowOpacity = 0.50 }
+            ].map { $0.layer.shadowOpacity = 0.50 }
         
         breakingSnoozeBackgroundView.layer.shadowOpacity = 0.10
-
+        
         let _ = [
             temperatureLabel,
             locationLabel,
@@ -143,8 +147,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             breakingNewsLabel,
             detailCompanyLabel
             ].map { $0.layer.shadowRadius = 6 }
-        
-
     }
     
     //MARK: - Load data from API
@@ -156,7 +158,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                 if let new = Weather.getData(from: data!) {
                     self.currentWeather = new
                 }
-                
                 DispatchQueue.main.async {
                     let imageName = self.currentWeather[0].icon
                     let imageString = { () -> String in
@@ -169,7 +170,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
                     }()
                     let image = UIImage(named: imageString)
                     self.conditionsImageView.image =  image
-
+                    
                     self.temperatureLabel.text = String(Int(self.currentWeather[0].temp.rounded()))
                     self.locationLabel.text = "\(self.currentWeather[0].name), \(self.currentWeather[0].country)"
                     print("\(self.currentWeather[0].name), \n\(self.currentWeather[0].country)")
@@ -218,7 +219,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             }
         }
     }
-
+    
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<NewsSource> = NewsSource.fetchRequest()
         let sort = NSSortDescriptor(key: "sourceName", ascending: true)
@@ -254,13 +255,13 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
             print("IDK")
             locationManager.requestAlwaysAuthorization()
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             manager.startUpdatingLocation()
+            self.view.reloadInputViews()
         case .denied, .restricted:
             manager.stopUpdatingLocation()
         case .notDetermined:
@@ -278,9 +279,9 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         let userDefaults = UserDefaults.standard
         
         let locationDict: [String : Any] = ["latCoord" : latCoord,
-                            "longCoord" : longCoord,
-                            "didSetOwnLocation" : false
-                            ]
+                                            "longCoord" : longCoord,
+                                            "didSetOwnLocation" : false
+        ]
         
         if var locationSave = userDefaults.value(forKeyPath: "locationSave") {
             guard let locationDictionary = locationSave as? [String : Any],
@@ -298,8 +299,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         loadData(endPoint: "http://api.openweathermap.org/data/2.5/weather?lat=\(latCoord)&lon=\(longCoord)&appid=22b1e9d953bb8df3bcdf747f549be645&units=imperial")
         
-        locationManager.delegate = nil
-
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -335,11 +334,11 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         }
         
     }
-
-
+    
+    
     //MARK: // -Table View Delegate
     
-     func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
@@ -347,7 +346,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         return allArticles.count
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath) as! TopStoriesTableViewCell
         
         let article = allArticles[indexPath.row]
@@ -357,26 +356,26 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
         
         APIManager.shared.getData(urlString: article.imageURL) {(data: Data?) in
             if let validData = data {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
                     cell.photoImageView.image = UIImage(data: validData)
                     cell.setNeedsDisplay()                }
             }
-        
+            
         }
-      
+        
         return cell
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selected = segue.destination as? TopStoriesWebViewController,
             let cell = sender as? TopStoriesTableViewCell,
             let articleOf = localNewsTableView.indexPath(for: cell) {
             selected.article = allArticles[articleOf.row]
         }
-
+        
     }
     
-
-
+    
+    
 }
 
