@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -222,30 +221,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDJ-My-36f">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="dy6-7s-H3E">
                                         <barButtonItem key="backBarButtonItem" title="back" id="Ygb-v6-qCN"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iVT-hW-Ode">
-                                <rect key="frame" x="0.0" y="143" width="375" height="375"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="iVT-hW-Ode" secondAttribute="height" multiplier="1:1" id="GaI-gW-1Qt"/>
-                                </constraints>
-                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qo6-N3-YAR">
+                                <rect key="frame" x="0.0" y="511" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="Njd-5B-mee"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YDJ-My-36f" firstAttribute="leading" secondItem="WZ3-DR-xyS" secondAttribute="leading" id="3BS-da-bgX"/>
                             <constraint firstAttribute="trailing" secondItem="YDJ-My-36f" secondAttribute="trailing" id="3IY-0E-BeB"/>
-                            <constraint firstItem="iVT-hW-Ode" firstAttribute="leading" secondItem="WZ3-DR-xyS" secondAttribute="leading" id="CaN-zz-1LO"/>
-                            <constraint firstAttribute="trailing" secondItem="iVT-hW-Ode" secondAttribute="trailing" id="CjT-i2-802"/>
-                            <constraint firstItem="iVT-hW-Ode" firstAttribute="top" secondItem="YDJ-My-36f" secondAttribute="bottom" id="KWD-xw-M9w"/>
                             <constraint firstItem="YDJ-My-36f" firstAttribute="top" secondItem="Hgb-HK-gHR" secondAttribute="bottom" id="lSk-Fc-3ll"/>
-                            <constraint firstItem="De5-uz-d7M" firstAttribute="top" secondItem="iVT-hW-Ode" secondAttribute="bottom" constant="100" id="wh0-Tg-8VF"/>
                         </constraints>
                     </view>
                 </viewController>
