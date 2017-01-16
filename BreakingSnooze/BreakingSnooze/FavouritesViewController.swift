@@ -162,7 +162,8 @@ class FavouritesViewController: UIViewController, View2ViewTransitionPresenting,
         
         if let arr = articles {
             return arr.count
-        } else if let sections = controller.sections, let _ = self.sourceID {
+        }
+        if let sections = controller.sections {
             let objectCount = sections[section].numberOfObjects
             print(objectCount)
             return objectCount

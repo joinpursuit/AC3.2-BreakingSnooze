@@ -16,24 +16,22 @@ enum getSourcesErrorHandler: Error {
 
 class APIManager{
     static let shared: APIManager = APIManager()
-    private init() {
-        oauth2.logger = OAuth2DebugLogger(.debug)
-    }
+    private init() {}
     
-    let oauth2 = OAuth2CodeGrant(settings: [
-        "client_id": "69312262336.125802163008",
-        "client_secret": "02c187210ea50bb0aac9d93df5f0c9cc",
-        "authorize_uri": "https://slack.com/oauth/authorize",
-        "token_uri": "https://slack.com/api/oauth.access",
-        "redirect_uri": ["breakingsnooze://auth.url"],
-        "scope": "chat:write:user",
-        "keychain": false,
-        "channel": "#random",
-        "headers" : ["Accept": "application/json", "Content-Type" : "application/json"]
-        ] as OAuth2JSON)
-    
-    var loader: OAuth2DataLoader!
-    
+//    let oauth2 = OAuth2CodeGrant(settings: [
+//        "client_id": "69312262336.125802163008",
+//        "client_secret": "02c187210ea50bb0aac9d93df5f0c9cc",
+//        "authorize_uri": "https://slack.com/oauth/authorize",
+//        "token_uri": "https://slack.com/api/oauth.access",
+//        "redirect_uri": ["breakingsnooze://auth.url"],
+//        "scope": "chat:write:user",
+//        "keychain": false,
+//        "channel": "#random",
+//        "headers" : ["Accept": "application/json", "Content-Type" : "application/json"]
+//        ] as OAuth2JSON)
+//    
+//    var loader: OAuth2DataLoader!
+//    
     func getSources(from: String, completion: @escaping (Data?) -> Void) {
         guard let url: URL = URL(string: from) else { return }
         
@@ -65,13 +63,13 @@ class APIManager{
         }.resume()
     }
     
-    func application(_ app: UIApplication,
-                     open url: URL,
-                     options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
-        oauth2.handleRedirectURL(url)
-        return true
-    }
-    
+//    func application(_ app: UIApplication,
+//                     open url: URL,
+//                     options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+//        oauth2.handleRedirectURL(url)
+//        return true
+//    }
+//    
 //    func postToSlack (message: String) {
 //        APIManager.shared.oauth2.authConfig.authorizeEmbedded = true
 //        do{
