@@ -55,8 +55,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate, CLLo
     let sources = ["associated-press", "bloomberg", "buisness-insider", "buzzfeed","cnbc","cnn", "google-news", "hacker-news","mashable", "national-geographic", "newsweek", "new-york-magazine", "techcrunch", "techadar", "the-economist", "the-huffington-post", "the-new-york-times", "usa-today", "time", "the-washington-post"]
      let randomNum = Int(arc4random_uniform(UInt32(19)))
      var audioPlayer = AVAudioPlayer()
-
-     let randomNum = Int(arc4random_uniform(UInt32(19)))
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
