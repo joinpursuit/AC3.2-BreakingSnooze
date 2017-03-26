@@ -1,3 +1,5 @@
-# AC3.2-BreakingSnooze
+# BreakingSnooze
 
-Purpose: Create a News Reader that makes viewing news smooth 
+BreakingSnooze is an iOS newsreader app. 
+
+<img src="https://github.com/C4Q/AC3.2-groupFour-homelessness/blob/master/Images/Empty%20Save%20Jobs.png?raw=true" width="320"/>
