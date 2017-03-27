@@ -30,5 +30,5 @@ BreakingSnooze is an iOS newsreader app that pulls from multiple new sources suc
 
 
 # Acknowledgements
-- Our Instructors 
+- Our Instructors Louis and Jason
 - [C4Q](http://www.c4q.nyc/)
