@@ -27,3 +27,8 @@ BreakingSnooze is an iOS newsreader app that pulls from multiple new sources suc
 ### Saved Articles Tab
 
 <img src="https://github.com/C4Q/AC3.2-BreakingSnooze/blob/master/Images/Saved%20Articles.png?raw=true" width="320"/>
+
+
+# Acknowledgements
+- Our Instructors 
+- [C4Q](http://www.c4q.nyc/)
